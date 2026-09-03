@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>XANNY1616</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    min-height: 650px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 7% 10%;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, #050505 0%, transparent 50%),
+        linear-gradient(to right, rgba(0,0,0,.7), transparent 70%);
+    z-index: 2;
+}
+
+.hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: heroZoom 10s ease-out forwards;
+}
+
+@keyframes heroZoom {
+    from {
+        transform: scale(1.12);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    animation: reveal 1.5s ease forwards;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small-title {
+    font-size: 12px;
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+    opacity: .7;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 10vw, 150px);
+    line-height: .85;
+    letter-spacing: -5px;
+}
+
+.hero p {
+    margin-top: 25px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    opacity: .7;
+}
+
+/* SECTIONS */
+section {
+    padding: 120px 7%;
+}
+
+.section-title {
+    font-size: 12px;
+    letter-spacing: 5px;
+    opacity: .5;
+    margin-bottom: 25px;
+}
+
+.intro {
+    max-width: 900px;
+}
+
+.intro h2 {
+    font-size: clamp(40px, 7vw, 90px);
+    line-height: .95;
+    margin-bottom: 35px;
+}
+
+.intro p {
+    max-width: 600px;
+    color: #aaa;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* SPECS */
+.specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+}
+
+.spec {
+    padding: 50px 30px;
+    background: #101010;
+    transition: .4s;
+}
+
+.spec:hover {
+    transform: translateY(-10px);
+    background: #181818;
+}
+
+.spec-number {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.spec-label {
+    margin-top: 10px;
+    color: #777;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+/* GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+.gallery img:nth-child(2),
+.gallery img:nth-child(5) {
+    height: 650px;
+}
+
+/* FOOTER */
+footer {
+    padding: 80px 7%;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE */
+@media(max-width: 700px) {
+
+    nav {
+        padding: 20px;
+    }
+
+    nav div:last-child {
+        display: none;
+    }
+
+    .hero {
+        padding: 0 25px 70px;
+    }
+
+    section {
+        padding: 80px 25px;
+    }
+
+    .specs {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery img,
+    .gallery img:nth-child(2),
+    .gallery img:nth-child(5) {
+        height: 400px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">XANNY1616</div>
+
+    <div>
+        <a href="#car">CAR</a>
+        <a href="#gallery">GALLERY</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <img src="car1.jpeg">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            THE MACHINE
+        </div>
+
+        <h1>
+            XANNY<br>1616
+        </h1>
+
+        <p>
+            BUILT TO BE SEEN.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- INTRO -->
+
+<section id="car">
+
+    <div class="intro">
+
+        <div class="section-title">
+            01 — THE CAR
+        </div>
+
+        <h2>
+            NOT JUST A CAR.<br>
+            IT'S A STATEMENT.
+        </h2>
+
+        <p>
+            Welcome to XANNY1616 — a personal automotive experience
+            built around the machine, the details and the memories
+            behind every drive.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SPECS -->
+
+<section>
+
+    <div class="section-title">
+        02 — DETAILS
+    </div>
+
+    <div class="specs">
+
+        <div class="spec">
+            <div class="spec-number">01</div>
+            <div class="spec-label">THE LOOK</div>
+        </div>
+
+        <div class="spec">
+            <div class="spec-number">02</div>
+            <div class="spec-label">THE DRIVE</div>
+        </div>
+
+        <div class="spec">
+            <div class="spec-number">03</div>
+            <div class="spec-label">THE EXPERIENCE</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+    <div class="section-title">
+        03 — GALLERY
+    </div>
+
+    <div class="gallery">
+
+        <img src="car1.jpeg">
+        <img src="car2.jpeg">
+        <img src="car3.jpeg">
+        <img src="car4.jpeg">
+        <img src="car5.jpeg">
+        <img src="car6.jpeg">
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div>
+        XANNY1616
+    </div>
+
+    <div>
+        © 2026
+    </div>
+
+</footer>
+
+</body>
+</html>
