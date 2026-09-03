@@ -4,13 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>XANNY1616 — DRIVE DIFFERENT</title>
+<title>XANNY1616 — Automotive</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 *{
     margin:0;
@@ -20,433 +17,853 @@
 
 html{
     scroll-behavior:smooth;
+    background:#050505;
 }
 
 body{
     background:#050505;
-    color:#f2f2f2;
-    font-family:Arial, Helvetica, sans-serif;
+    color:#f4f4f4;
+    font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
 
-body.intro-active{
-    overflow:hidden;
+/* =========================
+   GLOBAL CHERRY TEXTURE
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    opacity:.045;
+
+    background-image:
+        repeating-radial-gradient(
+            circle at 20% 30%,
+            #ffffff 0 1px,
+            transparent 1px 4px
+        );
+
+    mix-blend-mode:screen;
 }
 
-img{
-    max-width:100%;
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(110,0,15,.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 75%,
+            rgba(85,0,12,.18),
+            transparent 32%
+        );
 }
 
+/* =========================
+   HEADER
+========================= */
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:50;
 
-:root{
-    --line:rgba(255,255,255,.13);
-    --muted:rgba(255,255,255,.42);
-    --soft:rgba(255,255,255,.07);
+    padding:28px 5vw;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+    background:rgba(5,5,5,.55);
 }
+
+.logo{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.35em;
+}
+
+.logo span{
+    color:#8d0015;
+}
+
+.nav{
+    display:flex;
+    gap:35px;
+}
+
+.nav a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:#fff;
+}
+
+/* =========================
+   GENERAL
+========================= */
 
 section{
     position:relative;
 }
 
-.container{
-    width:90%;
-    max-width:1500px;
-    margin:auto;
+.label{
+    font-size:10px;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    color:#777;
 }
 
 .line{
-    width:100%;
     height:1px;
-    background:var(--line);
+    width:100%;
+    background:rgba(255,255,255,.12);
 }
 
-.label{
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(90,0,12,.22),
+            transparent 35%
+        ),
+        #050505;
+}
+
+.intro-title{
+    font-size:clamp(55px,15vw,220px);
+    font-weight:900;
+    letter-spacing:-.08em;
+    line-height:.8;
+    white-space:nowrap;
+}
+
+.intro-title span{
+    display:inline-block;
+    animation:letterIn 1.2s cubic-bezier(.16,1,.3,1) both;
+}
+
+.intro-title span:nth-child(1){animation-delay:.05s}
+.intro-title span:nth-child(2){animation-delay:.10s}
+.intro-title span:nth-child(3){animation-delay:.15s}
+.intro-title span:nth-child(4){animation-delay:.20s}
+.intro-title span:nth-child(5){animation-delay:.25s}
+.intro-title span:nth-child(6){animation-delay:.30s}
+.intro-title span:nth-child(7){animation-delay:.35s}
+.intro-title span:nth-child(8){animation-delay:.40s}
+
+@keyframes letterIn{
+    from{
+        opacity:0;
+        transform:translateY(100px) rotate(8deg);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) rotate(0);
+    }
+}
+
+.intro-bottom{
+    position:absolute;
+    bottom:35px;
+    left:5vw;
+    right:5vw;
+
+    display:flex;
+    justify-content:space-between;
+
     font-size:9px;
-    letter-spacing:5px;
-    color:var(--muted);
+    letter-spacing:.25em;
+    color:#555;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    padding:150px 5vw 80px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            120deg,
+            #050505 0%,
+            #090607 55%,
+            #160308 100%
+        );
+}
+
+.hero-small{
+    margin-bottom:35px;
+}
+
+.hero-title{
+    font-size:clamp(60px,12vw,180px);
+    font-weight:800;
+    line-height:.82;
+    letter-spacing:-.075em;
+    max-width:1100px;
+}
+
+.hero-title .red{
+    color:#850014;
+}
+
+.hero-sub{
+    margin-top:55px;
+    max-width:430px;
+    color:#888;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* =========================
+   MANIFESTO
+========================= */
+
+.manifesto{
+    padding:160px 0;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 50%,
+            rgba(110,0,15,.15),
+            transparent 45%
+        ),
+        #050505;
+}
+
+.manifesto-line{
+    white-space:nowrap;
+    font-size:clamp(55px,11vw,160px);
+    font-weight:800;
+    letter-spacing:-.07em;
+    line-height:.85;
+
+    border-top:1px solid rgba(255,255,255,.09);
+    border-bottom:1px solid rgba(255,255,255,.09);
+
+    padding:18px 0;
+}
+
+.manifesto-line:nth-child(1){
+    transform:translateX(-10%);
+}
+
+.manifesto-line:nth-child(2){
+    transform:translateX(7%);
+    color:#820015;
+}
+
+.manifesto-line:nth-child(3){
+    transform:translateX(-4%);
+}
+
+.manifesto-line:nth-child(4){
+    transform:translateX(10%);
+    color:#666;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    padding:100px 5vw;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.stat{
+    padding:25px 0;
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+.stat-number{
+    font-size:clamp(40px,6vw,90px);
+    font-weight:700;
+    letter-spacing:-.06em;
+}
+
+.stat-text{
+    margin-top:12px;
+    color:#666;
+    font-size:9px;
+    letter-spacing:.2em;
     text-transform:uppercase;
 }
 
+/* ==================================================
+   MACHINE SECTION
+   THIS IS THE IMPORTANT PART
+================================================== */
 
-/* =========================================================
-   INTRO
-========================================================= */
+.machine{
+    height:220vh;
+    position:relative;
 
-.intro{
-    position:fixed;
-    inset:0;
-    z-index:9999;
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(100,0,15,.28),
+            transparent 38%
+        ),
+        #030303;
+}
 
-    background:#030303;
+/*
+   Sticky viewport.
+   Text stays locked while car transforms.
+*/
+
+.machine-sticky{
+    position:sticky;
+    top:0;
+
+    height:100vh;
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Decorative vertical lines */
+
+.machine-sticky::before,
+.machine-sticky::after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:rgba(255,255,255,.07);
+    z-index:1;
+}
+
+.machine-sticky::before{
+    left:5vw;
+}
+
+.machine-sticky::after{
+    right:5vw;
+}
+
+/* =========================
+   MACHINE TEXT
+========================= */
+
+.machine-title{
+    position:absolute;
+    top:11vh;
+    left:5vw;
+
+    z-index:10;
+
+    pointer-events:none;
+}
+
+.machine-title .small{
+    font-size:9px;
+    letter-spacing:.35em;
+    color:#777;
+}
+
+.machine-title h2{
+    margin-top:12px;
+
+    font-size:clamp(55px,9vw,135px);
+    line-height:.82;
+    letter-spacing:-.07em;
+    font-weight:800;
+}
+
+.machine-title h2 span{
+    color:#850014;
+}
+
+/* Right information */
+
+.machine-info{
+    position:absolute;
+    right:5vw;
+    bottom:11vh;
+
+    width:220px;
+    z-index:10;
+
+    pointer-events:none;
+}
+
+.machine-info p{
+    color:#777;
+    font-size:10px;
+    line-height:1.7;
+}
+
+/* =========================
+   CAR SCENE
+========================= */
+
+.car-scene{
+    position:absolute;
+
+    width:min(1100px,82vw);
+    height:600px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    transition:
-        opacity 1.3s cubic-bezier(.77,0,.18,1),
-        visibility 1.3s;
+    perspective:1600px;
+
+    z-index:5;
 }
 
-.intro.hide{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-}
+/*
+  Main 3D movement.
+*/
 
-.intro-inner{
-    width:90%;
-    max-width:1500px;
-}
-
-.intro-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    font-size:8px;
-    letter-spacing:4px;
-    color:rgba(255,255,255,.35);
-
-    margin-bottom:70px;
-}
-
-.intro-title{
-    overflow:hidden;
-}
-
-.intro-title span{
-    display:inline-block;
-
-    font-size:
-        clamp(65px,15vw,230px);
-
-    font-weight:900;
-
-    letter-spacing:-.09em;
-
-    line-height:.75;
-
-    transform:translateY(110%);
-
-    animation:
-        introLetters 1.4s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-}
-
-.intro-title span:nth-child(1){animation-delay:.05s}
-.intro-title span:nth-child(2){animation-delay:.09s}
-.intro-title span:nth-child(3){animation-delay:.13s}
-.intro-title span:nth-child(4){animation-delay:.17s}
-.intro-title span:nth-child(5){animation-delay:.21s}
-.intro-title span:nth-child(6){animation-delay:.25s}
-.intro-title span:nth-child(7){animation-delay:.29s}
-.intro-title span:nth-child(8){animation-delay:.33s}
-
-@keyframes introLetters{
-
-    to{
-        transform:translateY(0);
-    }
-
-}
-
-.intro-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-
-    margin-top:70px;
-}
-
-.intro-sub{
-    font-size:10px;
-    letter-spacing:5px;
-    color:var(--muted);
-}
-
-.enter{
-    background:none;
-    border:0;
-    color:white;
-
-    font-size:9px;
-    letter-spacing:4px;
-
-    cursor:pointer;
-
+.car-float{
     position:relative;
 
-    padding-bottom:10px;
-}
-
-.enter::after{
-    content:"";
-
-    position:absolute;
-    left:0;
-    bottom:0;
-
-    width:100%;
-    height:1px;
-
-    background:white;
-
-    transform:scaleX(.3);
-    transform-origin:left;
-
-    transition:.5s;
-}
-
-.enter:hover::after{
-    transform:scaleX(1);
-}
-
-
-/* =========================================================
-   NAV
-========================================================= */
-
-.nav{
-    position:fixed;
-
-    top:0;
-    left:0;
-
     width:100%;
 
-    z-index:500;
+    transform-style:preserve-3d;
 
-    padding:
-        25px 5vw;
+    transform:
+        translate3d(
+            var(--sceneX,0px),
+            var(--sceneY,150px),
+            var(--sceneZ,-300px)
+        )
+        rotateX(
+            calc(
+                var(--sceneRotateX,20deg)
+                + var(--mouseY,0deg)
+            )
+        )
+        rotateY(
+            calc(
+                var(--sceneRotateY,-16deg)
+                + var(--mouseX,0deg)
+            )
+        )
+        scale(var(--sceneScale,.62));
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    mix-blend-mode:difference;
+    transition:filter .2s linear;
 }
 
-.nav-logo{
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:5px;
-}
+/*
+  SECOND layer.
+  This makes the actual photograph transform.
+*/
 
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:35px;
-}
+.car-frame{
+    position:relative;
 
-.nav-link{
-    color:white;
-    text-decoration:none;
-
-    font-size:8px;
-    letter-spacing:3px;
-
-    opacity:.55;
-
-    transition:.3s;
-}
-
-.nav-link:hover{
-    opacity:1;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    height:100vh;
-    min-height:700px;
+    width:100%;
+    aspect-ratio:16/9;
 
     overflow:hidden;
 
-    display:flex;
-    align-items:flex-end;
+    border:1px solid rgba(255,255,255,.12);
+
+    transform-style:preserve-3d;
+
+    transform:
+        translate3d(
+            var(--frameX,0px),
+            var(--frameY,0px),
+            0
+        )
+        rotateZ(var(--frameRotateZ,-2deg))
+        rotateX(var(--frameRotateX,8deg))
+        scale(var(--frameScale,.86));
+
+    box-shadow:
+        0 50px 120px rgba(0,0,0,.8),
+        0 0 100px rgba(110,0,15,var(--redGlow,.18));
+
+    background:#080808;
 }
 
-.hero-image{
-    position:absolute;
-    inset:0;
+/*
+  Actual photo.
 
+  This is what creates the "photo itself is moving"
+  feeling instead of simply sliding the whole car.
+*/
+
+.car-image{
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    filter:
-        brightness(.48)
-        contrast(1.05);
+    display:block;
 
     transform:
-        scale(1.08);
+        translate3d(
+            var(--imageX,-35px),
+            var(--imageY,20px),
+            0
+        )
+        scale(var(--imageScale,1.18))
+        rotateZ(var(--imageRotate,-1deg));
 
-    animation:
-        heroZoom 8s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
+    transform-origin:center center;
+
+    filter:
+        brightness(var(--imageBrightness,.78))
+        contrast(var(--imageContrast,1.12))
+        saturate(var(--imageSaturation,.92));
+
+    will-change:transform,filter;
 }
 
-@keyframes heroZoom{
+/* Cinematic red atmosphere */
 
-    from{
-        transform:scale(1.08);
-    }
+.car-frame::before{
+    content:"";
 
-    to{
-        transform:scale(1);
-    }
-
-}
-
-.hero-overlay{
     position:absolute;
-    inset:0;
+    inset:-20%;
+
+    z-index:2;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at var(--glowX,50%) var(--glowY,50%),
+            rgba(130,0,18,var(--glowOpacity,.22)),
+            transparent 42%
+        );
+
+    mix-blend-mode:screen;
+}
+
+/* Moving light sweep */
+
+.car-frame::after{
+    content:"";
+
+    position:absolute;
+
+    top:-30%;
+    bottom:-30%;
+
+    width:22%;
+
+    left:var(--shineX,-30%);
+
+    z-index:4;
+    pointer-events:none;
 
     background:
         linear-gradient(
-            to bottom,
-            rgba(0,0,0,.5),
-            transparent 35%,
-            rgba(0,0,0,.85)
-        );
-}
-
-.hero-grid{
-    position:absolute;
-    inset:0;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
             90deg,
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
+            transparent,
+            rgba(255,255,255,.08),
+            rgba(130,0,18,.16),
+            transparent
         );
 
-    background-size:
-        100px 100px;
+    transform:skewX(-18deg);
 
-    opacity:.15;
+    filter:blur(8px);
 }
 
-.hero-content{
-    position:relative;
-    z-index:5;
+/* =========================
+   SHADOW
+========================= */
 
-    width:90%;
-    max-width:1500px;
+.car-shadow{
+    position:absolute;
 
-    margin:auto;
+    left:50%;
+    bottom:-55px;
 
-    padding-bottom:9vh;
+    width:70%;
+    height:50px;
+
+    transform:
+        translateX(-50%)
+        scaleX(var(--shadowScale,1))
+        scaleY(var(--shadowY,.8));
+
+    background:#000;
+
+    filter:blur(25px);
+
+    opacity:var(--shadowOpacity,.7);
+
+    z-index:-1;
 }
 
-.hero-small{
+/* =========================
+   MACHINE LABELS
+========================= */
+
+.machine-counter{
+    position:absolute;
+    top:50%;
+    left:5vw;
+
+    transform:translateY(-50%);
+
+    z-index:10;
+
     font-size:9px;
-    letter-spacing:5px;
+    letter-spacing:.3em;
+    color:#555;
 
-    color:rgba(255,255,255,.5);
-
-    margin-bottom:25px;
+    writing-mode:vertical-rl;
 }
 
-.hero-title{
-    overflow:hidden;
-}
+.machine-scroll{
+    position:absolute;
+    bottom:35px;
+    left:50%;
 
-.hero-title span{
-    display:inline-block;
+    transform:translateX(-50%);
 
-    font-size:
-        clamp(90px,17vw,260px);
+    z-index:10;
 
-    font-weight:900;
-
-    letter-spacing:-.11em;
-
-    line-height:.72;
-
-    transform:translateY(120%);
-
-    animation:
-        heroLetters 1.5s
-        cubic-bezier(.16,1,.3,1)
-        .5s forwards;
-}
-
-@keyframes heroLetters{
-
-    to{
-        transform:translateY(0);
-    }
-
-}
-
-.hero-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-top:45px;
-}
-
-.hero-description{
-    max-width:380px;
-
-    font-size:11px;
-
-    line-height:1.7;
-
-    color:rgba(255,255,255,.48);
-}
-
-.scroll{
     font-size:8px;
-    letter-spacing:4px;
+    letter-spacing:.3em;
+    color:#555;
 
-    color:rgba(255,255,255,.4);
+    text-transform:uppercase;
 }
 
+/* =========================
+   CONTROLS
+========================= */
 
-/* =========================================================
-   MANIFESTO
-========================================================= */
+.machine-controls{
+    position:absolute;
+    bottom:8vh;
+    left:5vw;
 
-.manifesto{
-    padding:
-        220px 0
-        240px;
+    display:flex;
+    gap:8px;
+
+    z-index:20;
+}
+
+.control{
+    min-width:105px;
+
+    padding:14px 18px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(0,0,0,.4);
+
+    color:#aaa;
+
+    font-size:9px;
+    letter-spacing:.25em;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    backdrop-filter:blur(10px);
+}
+
+.control:hover{
+    border-color:#850014;
+    color:#fff;
+}
+
+.control.active{
+    background:#850014;
+    border-color:#850014;
+    color:#fff;
+}
+
+/* =========================
+   TECHNICAL
+========================= */
+
+.technical{
+    padding:180px 5vw;
+
+    background:
+        linear-gradient(
+            140deg,
+            #030303,
+            #0b0305,
+            #030303
+        );
+}
+
+.tech-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8vw;
+
+    align-items:center;
+}
+
+.tech-image{
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.tech-image img{
+    width:100%;
+    display:block;
+}
+
+.tech-title{
+    font-size:clamp(55px,8vw,120px);
+    font-weight:800;
+    line-height:.85;
+    letter-spacing:-.07em;
+}
+
+.tech-title span{
+    color:#850014;
+}
+
+.tech-copy{
+    margin-top:35px;
+    max-width:400px;
+
+    color:#777;
+    font-size:12px;
+    line-height:1.9;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+    padding:160px 5vw;
 
     background:#050505;
 }
 
-.manifesto-top{
+.gallery-head{
     display:flex;
     justify-content:space-between;
+    align-items:end;
 
-    margin-bottom:100px;
+    margin-bottom:70px;
 }
 
-.manifesto-title{
-    width:90%;
-    max-width:1300px;
+.gallery-title{
+    font-size:clamp(60px,9vw,130px);
+    font-weight:800;
+    letter-spacing:-.07em;
+    line-height:.8;
+}
 
-    font-size:
-        clamp(55px,9vw,145px);
+.gallery-title span{
+    color:#850014;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    background:#090909;
+}
+
+.gallery-item:nth-child(3n){
+    grid-column:span 2;
+}
+
+.gallery-item img{
+    width:100%;
+    display:block;
+
+    transition:
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        filter .7s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.035);
+    filter:brightness(.8);
+}
+
+/* =========================
+   FINAL STATEMENT
+========================= */
+
+.statement{
+    min-height:90vh;
+
+    padding:120px 5vw;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(125,0,18,.25),
+            transparent 35%
+        ),
+        #040404;
+}
+
+.statement h2{
+    max-width:1200px;
+
+    font-size:clamp(55px,10vw,150px);
 
     line-height:.82;
 
@@ -455,1349 +872,338 @@ section{
     font-weight:800;
 }
 
-.moving-line{
-    display:inline-block;
-
-    transform:translateX(0);
-
-    transition:
-        transform .1s linear;
+.statement h2 span{
+    color:#850014;
 }
 
-.muted{
-    color:#444;
+.statement p{
+    margin-top:50px;
+
+    color:#666;
+
+    font-size:10px;
+    letter-spacing:.25em;
 }
 
+/* =========================
+   SOCIAL
+========================= */
 
-/* =========================================================
-   STATS
-========================================================= */
+.social{
+    padding:100px 5vw;
 
-.stats{
-    padding-bottom:180px;
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.stats-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    border-top:1px solid var(--line);
-}
-
-.stat{
-    padding:
-        45px 25px;
-
-    border-right:
-        1px solid var(--line);
-
-    min-height:190px;
-}
-
-.stat:last-child{
-    border-right:0;
-}
-
-.stat-number{
-    font-size:8px;
-    letter-spacing:3px;
-    color:var(--muted);
-
-    margin-bottom:55px;
-}
-
-.stat-value{
-    font-size:
-        clamp(30px,4vw,60px);
-
-    font-weight:bold;
-
+.social h3{
+    font-size:clamp(30px,5vw,65px);
     letter-spacing:-.05em;
 }
 
-.stat-name{
-    margin-top:8px;
-
-    font-size:8px;
-    letter-spacing:3px;
-
-    color:var(--muted);
+.social h3 span{
+    color:#850014;
 }
 
+.social a{
+    color:#aaa;
+    text-decoration:none;
 
-/* =========================================================
-   MACHINE
-========================================================= */
+    font-size:10px;
+    letter-spacing:.25em;
 
-.machine{
-    min-height:150vh;
+    border-bottom:1px solid #850014;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #171717 0%,
-            #0b0b0b 35%,
-            #050505 75%
-        );
-
-    padding-top:170px;
-
-    overflow:hidden;
-
-    perspective:1600px;
-}
-
-.machine-head{
-    width:90%;
-    max-width:1500px;
-
-    margin:auto;
-
-    display:flex;
-    justify-content:space-between;
-
-    align-items:flex-end;
-}
-
-.machine-title{
-    overflow:hidden;
-}
-
-.machine-title h2{
-    font-size:
-        clamp(65px,12vw,180px);
-
-    letter-spacing:-.1em;
-
-    line-height:.75;
-}
-
-.machine-info{
-    width:230px;
-
-    font-size:9px;
-
-    line-height:1.7;
-
-    color:var(--muted);
-}
-
-
-/* =========================================================
-   CAR SCENE
-========================================================= */
-
-.car-scene{
-    width:min(1200px,95vw);
-
-    height:720px;
-
-    margin:
-        80px auto
-        0;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    perspective:1600px;
-}
-
-.car-float{
-
-    position:relative;
-
-    width:min(1000px,90vw);
-
-    transform-style:preserve-3d;
-
-    will-change:transform;
-
-    transform:
-        translate3d(
-            0,
-            var(--scrollY,110px),
-            var(--scrollZ,-150px)
-        )
-
-        rotateX(
-            calc(
-                var(--scrollRotateX,14deg)
-                +
-                var(--mouseY,0deg)
-            )
-        )
-
-        rotateY(
-            calc(
-                var(--scrollRotateY,-12deg)
-                +
-                var(--mouseX,0deg)
-            )
-        )
-
-        scale(
-            var(--scrollScale,.76)
-        );
-}
-
-.car-frame{
-    position:relative;
-
-    transform-style:preserve-3d;
-}
-
-.car-frame::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-80px;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,255,255,.12),
-            transparent 65%
-        );
-
-    filter:blur(40px);
-
-    transform:translateZ(-100px);
-
-    opacity:.4;
-
-    pointer-events:none;
-}
-
-.car-image{
-
-    display:block;
-
-    width:100%;
-
-    border-radius:8px;
-
-    box-shadow:
-        0 70px 130px
-        rgba(0,0,0,.8);
-
-    user-select:none;
-
-    -webkit-user-drag:none;
-}
-
-.car-shadow{
-
-    position:absolute;
-
-    left:10%;
-    right:10%;
-
-    bottom:-65px;
-
-    height:55px;
-
-    border-radius:50%;
-
-    background:#000;
-
-    filter:blur(30px);
-
-    transform:translateZ(-120px);
-}
-
-
-/* =========================================================
-   MACHINE CONTROLS
-========================================================= */
-
-.machine-controls{
-
-    position:relative;
-
-    z-index:20;
-
-    width:90%;
-
-    max-width:1000px;
-
-    margin:
-        -10px auto
-        0;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    border-top:
-        1px solid var(--line);
-
-    border-bottom:
-        1px solid var(--line);
-
-    padding:20px 0;
-}
-
-.control-group{
-    display:flex;
-    gap:25px;
-}
-
-.control{
-
-    background:none;
-
-    border:0;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    opacity:.55;
+    padding-bottom:8px;
 
     transition:.3s;
 }
 
-.control:hover{
-    opacity:1;
+.social a:hover{
+    color:#fff;
 }
 
-.control.active{
-    opacity:1;
-}
-
-.rpm{
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:var(--muted);
-}
-
-.rpm strong{
-    color:white;
-
-    margin-left:8px;
-}
-
-
-/* =========================================================
-   ENGINE EFFECT
-========================================================= */
-
-.machine.engine-running .car-frame{
-
-    filter:
-        drop-shadow(
-            0 0 30px
-            rgba(255,255,255,.08)
-        );
-
-}
-
-
-/* =========================================================
-   REV
-========================================================= */
-
-.car-scene.rev .car-float{
-
-    animation:
-        revShake .09s
-        linear infinite;
-
-}
-
-@keyframes revShake{
-
-    0%{
-        margin-left:-2px;
-    }
-
-    50%{
-        margin-left:2px;
-    }
-
-    100%{
-        margin-left:-2px;
-    }
-
-}
-
-
-/* =========================================================
-   TECHNICAL SECTION
-========================================================= */
-
-.technical{
-    padding:
-        220px 0;
-
-    background:#050505;
-}
-
-.tech-layout{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:100px;
-
-    align-items:center;
-}
-
-.tech-image{
-    overflow:hidden;
-}
-
-.tech-image img{
-
-    width:100%;
-
-    display:block;
-
-    filter:brightness(.7);
-
-    transition:
-        transform 1.5s
-        cubic-bezier(.2,.7,.2,1);
-
-}
-
-.tech-image:hover img{
-    transform:scale(1.04);
-}
-
-.tech-copy h2{
-
-    font-size:
-        clamp(50px,7vw,105px);
-
-    letter-spacing:-.08em;
-
-    line-height:.82;
-
-    margin:
-        25px 0
-        40px;
-}
-
-.tech-copy p{
-
-    max-width:430px;
-
-    font-size:12px;
-
-    line-height:1.8;
-
-    color:var(--muted);
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery{
-
-    padding:
-        200px 0;
-
-    background:#050505;
-}
-
-.gallery-head{
-
-    width:90%;
-
-    max-width:1500px;
-
-    margin:auto;
-
-    margin-bottom:110px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-end;
-}
-
-.gallery-head h2{
-
-    font-size:
-        clamp(70px,13vw,190px);
-
-    line-height:.72;
-
-    letter-spacing:-.1em;
-}
-
-.gallery-count{
-
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    color:var(--muted);
-}
-
-.gallery-grid{
-
-    width:90%;
-
-    max-width:1500px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(12,1fr);
-
-    gap:
-        100px 25px;
-}
-
-.gallery-item{
-
-    overflow:hidden;
-
-    position:relative;
-}
-
-.gallery-item:nth-child(1){
-    grid-column:1 / 8;
-}
-
-.gallery-item:nth-child(2){
-    grid-column:9 / 13;
-    margin-top:180px;
-}
-
-.gallery-item:nth-child(3){
-    grid-column:2 / 7;
-}
-
-.gallery-item:nth-child(4){
-    grid-column:8 / 13;
-    margin-top:120px;
-}
-
-.gallery-item:nth-child(5){
-    grid-column:1 / 6;
-    margin-top:80px;
-}
-
-.gallery-item:nth-child(6){
-    grid-column:7 / 13;
-}
-
-.gallery-item:nth-child(7){
-    grid-column:2 / 8;
-    margin-top:100px;
-}
-
-.gallery-item:nth-child(8){
-    grid-column:9 / 13;
-}
-
-.gallery-item:nth-child(9){
-    grid-column:1 / 7;
-}
-
-.gallery-item:nth-child(10){
-    grid-column:8 / 13;
-    margin-top:140px;
-}
-
-.gallery-item:nth-child(11){
-    grid-column:2 / 7;
-}
-
-.gallery-item:nth-child(12){
-    grid-column:8 / 13;
-    margin-top:100px;
-}
-
-.gallery-item:nth-child(13){
-    grid-column:1 / 6;
-}
-
-.gallery-item:nth-child(14){
-    grid-column:7 / 13;
-    margin-top:160px;
-}
-
-.gallery-item:nth-child(15){
-    grid-column:3 / 11;
-    margin-top:80px;
-}
-
-.gallery-item img{
-
-    display:block;
-
-    width:100%;
-
-    transition:
-        transform 1.2s
-        cubic-bezier(.2,.7,.2,1);
-
-    filter:brightness(.75);
-
-}
-
-.gallery-item:hover img{
-
-    transform:scale(1.045);
-
-    filter:brightness(1);
-
-}
-
-
-/* =========================================================
-   FINAL STATEMENT
-========================================================= */
-
-.final{
-
-    height:100vh;
-
-    min-height:650px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    overflow:hidden;
-}
-
-.final-image{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    filter:
-        brightness(.25)
-        contrast(1.1);
-
-    transform:scale(1.08);
-
-    transition:
-        transform 2s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-.final:hover .final-image{
-    transform:scale(1);
-}
-
-.final-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        radial-gradient(
-            circle,
-            transparent,
-            rgba(0,0,0,.7)
-        );
-
-}
-
-.final-content{
-
-    position:relative;
-
-    z-index:5;
-}
-
-.final-content h2{
-
-    font-size:
-        clamp(65px,14vw,210px);
-
-    font-weight:900;
-
-    letter-spacing:-.11em;
-
-    line-height:.7;
-}
-
-.final-content p{
-
-    margin-top:45px;
-
-    font-size:9px;
-
-    letter-spacing:6px;
-
-    color:var(--muted);
-}
-
-
-/* =========================================================
-   INSTAGRAM
-========================================================= */
-
-.social{
-
-    padding:
-        180px 0;
-
-    text-align:center;
-
-    background:#050505;
-}
-
-.social h2{
-
-    font-size:
-        clamp(50px,9vw,130px);
-
-    letter-spacing:-.08em;
-
-    line-height:.8;
-
-    margin:
-        30px 0
-        50px;
-}
-
-.social-link{
-
-    display:inline-block;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    padding-bottom:10px;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.4);
-
-    transition:.4s;
-}
-
-.social-link:hover{
-
-    letter-spacing:6px;
-
-}
-
-
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer{
-
-    border-top:
-        1px solid var(--line);
-
-    padding:
-        30px 5vw;
+    padding:35px 5vw;
 
     display:flex;
-
     justify-content:space-between;
 
-    font-size:7px;
+    color:#444;
 
-    letter-spacing:3px;
+    font-size:8px;
+    letter-spacing:.25em;
 
-    color:rgba(255,255,255,.3);
+    text-transform:uppercase;
 }
 
-
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
 @media(max-width:800px){
 
-    .intro-top{
-        margin-bottom:45px;
+    header{
+        padding:20px 5vw;
     }
 
-    .intro-bottom{
-        margin-top:50px;
-    }
-
-    .nav-right{
-        gap:15px;
-    }
-
-    .nav-link{
+    .nav{
         display:none;
     }
 
-    .hero{
-        min-height:650px;
-    }
-
-    .hero-title span{
-        font-size:
-            clamp(80px,24vw,150px);
-    }
-
-    .hero-bottom{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:30px;
-    }
-
-    .manifesto{
-        padding:
-            140px 0
-            160px;
-    }
-
-    .manifesto-title{
-        font-size:
-            clamp(48px,13vw,90px);
+    .intro-title{
+        font-size:19vw;
     }
 
     .stats{
-        padding-bottom:120px;
-    }
-
-    .stats-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .stat{
-        border-bottom:
-            1px solid var(--line);
+        grid-template-columns:1fr 1fr;
     }
 
     .machine{
-        padding-top:120px;
-        min-height:125vh;
+        height:210vh;
     }
 
-    .machine-head{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:35px;
+    .machine-title{
+        top:14vh;
+        left:7vw;
     }
 
     .machine-info{
-        width:100%;
-        max-width:350px;
+        display:none;
     }
 
-    .machine-title h2{
-        font-size:
-            clamp(60px,18vw,120px);
+    .machine-counter{
+        display:none;
     }
 
     .car-scene{
+        width:105vw;
         height:500px;
-        width:100%;
-    }
-
-    .car-float{
-        width:100%;
     }
 
     .machine-controls{
-        width:90%;
+        left:7vw;
+        bottom:8vh;
     }
 
-    .technical{
-        padding:140px 0;
+    .control{
+        min-width:90px;
+        padding:12px;
     }
 
-    .tech-layout{
+    .tech-grid{
         grid-template-columns:1fr;
-        gap:60px;
-    }
-
-    .gallery{
-        padding:140px 0;
-    }
-
-    .gallery-head{
-        margin-bottom:80px;
     }
 
     .gallery-grid{
-        display:block;
-        width:90%;
+        grid-template-columns:1fr;
     }
 
-    .gallery-item,
-    .gallery-item:nth-child(n){
-        margin:
-            0 0
-            55px;
+    .gallery-item:nth-child(3n){
+        grid-column:span 1;
     }
 
-    .final{
-        min-height:600px;
+    .social{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:35px;
     }
 
     footer{
         flex-direction:column;
         gap:15px;
     }
-
 }
-
 </style>
 </head>
 
+<body>
 
-<body class="intro-active">
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="logo">
+        XANNY<span>1616</span>
+    </div>
+
+    <nav class="nav">
+        <a href="#machine">Machine</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
 
-<!-- =====================================================
+<!-- =========================
      INTRO
-===================================================== -->
+========================= -->
 
-<div class="intro" id="intro">
+<section class="intro">
 
-    <div class="intro-inner">
-
-        <div class="intro-top">
-
-            <span>
-                XANNY1616
-            </span>
-
-            <span>
-                AUTOMOTIVE / 2026
-            </span>
-
-        </div>
-
-
-        <div class="intro-title">
-
-            <span>X</span>
-            <span>A</span>
-            <span>N</span>
-            <span>N</span>
-            <span>Y</span>
-            <span>1</span>
-            <span>6</span>
-            <span>1</span>
-            <span>6</span>
-
-        </div>
-
-
-        <div class="intro-bottom">
-
-            <div class="intro-sub">
-                DRIVE DIFFERENT.
-            </div>
-
-            <button
-                class="enter"
-                id="enterBtn"
-            >
-                ENTER EXPERIENCE
-            </button>
-
-        </div>
-
+    <div class="intro-title">
+        <span>X</span><span>A</span><span>N</span><span>N</span><span>Y</span><span>1</span><span>6</span><span>1</span><span>6</span>
     </div>
 
-</div>
-
-
-<!-- =====================================================
-     NAV
-===================================================== -->
-
-<nav class="nav">
-
-    <div class="nav-logo">
-        XANNY1616
+    <div class="intro-bottom">
+        <span>AUTOMOTIVE / 001</span>
+        <span>EST. 2026</span>
     </div>
 
-    <div class="nav-right">
-
-        <a
-            href="#about"
-            class="nav-link"
-        >
-            ABOUT
-        </a>
-
-        <a
-            href="#machine"
-            class="nav-link"
-        >
-            MACHINE
-        </a>
-
-        <a
-            href="#gallery"
-            class="nav-link"
-        >
-            GALLERY
-        </a>
-
-        <a
-            href="https://www.instagram.com/xanny1616/"
-            target="_blank"
-            class="nav-link"
-        >
-            INSTAGRAM
-        </a>
-
-    </div>
-
-</nav>
+</section>
 
 
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
 <section class="hero">
 
-    <img
-        src="car1.jpeg"
-        class="hero-image"
-        alt="XANNY1616"
-    >
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-grid"></div>
-
-
-    <div class="hero-content">
-
-        <div class="hero-small">
-            PERSONAL AUTOMOTIVE / XANNY1616
-        </div>
-
-
-        <div class="hero-title">
-
-            <span>
-                XANNY
-            </span>
-
-        </div>
-
-
-        <div class="hero-bottom">
-
-            <div class="hero-description">
-
-                Designed around the machine.
-                Built around movement.
-                A personal automotive experience
-                where every detail has a purpose.
-
-            </div>
-
-
-            <div class="scroll">
-                SCROLL / 01
-            </div>
-
-        </div>
-
+    <div class="hero-small label">
+        THE MACHINE / THE EXPERIENCE
     </div>
+
+    <h1 class="hero-title">
+        BUILT<br>
+        <span class="red">TO</span><br>
+        BE <span class="red">SEEN.</span>
+    </h1>
+
+    <p class="hero-sub">
+        A visual study of machines, movement and obsession.
+        Designed in darkness. Defined by detail.
+    </p>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      MANIFESTO
-===================================================== -->
+========================= -->
 
-<section
-    class="manifesto"
-    id="about"
->
+<section class="manifesto">
 
-    <div class="container">
+    <div class="manifesto-line">
+        BUILT TO
+    </div>
 
-        <div class="manifesto-top">
+    <div class="manifesto-line">
+        BE SEEN
+    </div>
 
-            <span class="label">
-                01 / PHILOSOPHY
-            </span>
+    <div class="manifesto-line">
+        BUILT TO
+    </div>
 
-            <span class="label">
-                XANNY1616
-            </span>
-
-        </div>
-
-
-        <h2 class="manifesto-title">
-
-            <span
-                class="moving-line"
-                id="moveLine1"
-            >
-                BUILT TO
-            </span>
-
-            <br>
-
-            <span
-                class="moving-line muted"
-                id="moveLine2"
-            >
-                BE SEEN.
-            </span>
-
-            <br>
-
-            <span
-                class="moving-line"
-                id="moveLine3"
-            >
-                BUILT TO
-            </span>
-
-            <br>
-
-            <span
-                class="moving-line muted"
-                id="moveLine4"
-            >
-                BE FELT.
-            </span>
-
-        </h2>
-
+    <div class="manifesto-line">
+        BE FELT
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      STATS
-===================================================== -->
+========================= -->
 
 <section class="stats">
 
-    <div class="container">
+    <div class="stat">
+        <div class="stat-number">01</div>
+        <div class="stat-text">Machine</div>
+    </div>
 
-        <div class="stats-grid">
+    <div class="stat">
+        <div class="stat-number">16</div>
+        <div class="stat-text">Identity</div>
+    </div>
 
-            <div class="stat">
+    <div class="stat">
+        <div class="stat-number">4K</div>
+        <div class="stat-text">Detail</div>
+    </div>
 
-                <div class="stat-number">
-                    01
-                </div>
-
-                <div class="stat-value">
-                    RAW
-                </div>
-
-                <div class="stat-name">
-                    CHARACTER
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-number">
-                    02
-                </div>
-
-                <div class="stat-value">
-                    PURE
-                </div>
-
-                <div class="stat-name">
-                    ATTITUDE
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-number">
-                    03
-                </div>
-
-                <div class="stat-value">
-                    DARK
-                </div>
-
-                <div class="stat-name">
-                    PRESENCE
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-number">
-                    04
-                </div>
-
-                <div class="stat-value">
-                    1616
-                </div>
-
-                <div class="stat-name">
-                    IDENTITY
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="stat">
+        <div class="stat-number">∞</div>
+        <div class="stat-text">Obsession</div>
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =================================================
      MACHINE
-===================================================== -->
+================================================= -->
 
-<section
-    class="machine"
-    id="machine"
->
+<section class="machine" id="machine">
 
-    <div class="machine-head">
+    <div class="machine-sticky">
 
-        <div>
+        <div class="machine-title">
+            <div class="small">XANNY1616 / MACHINE 001</div>
 
-            <div class="label">
-                02 / THE MACHINE
-            </div>
-
-            <div class="machine-title">
-
-                <h2>
-                    EXPERIENCE
-                </h2>
-
-            </div>
-
+            <h2>
+                THE<br>
+                <span>MACHINE.</span>
+            </h2>
         </div>
 
+        <div class="machine-counter">
+            SCROLL / EXPERIENCE
+        </div>
 
         <div class="machine-info">
-
-            Scroll into the machine.
-            The vehicle begins distant,
-            tilted and suspended —
-            then moves toward you
-            as the section enters focus.
-
+            <p>
+                Precision in darkness.
+                Every angle designed to move
+                with the camera.
+            </p>
         </div>
 
-    </div>
+        <div class="car-scene" id="carScene">
 
+            <div class="car-float" id="carFloat">
 
-    <!-- CAR -->
+                <div class="car-frame" id="carFrame">
 
-    <div
-        class="car-scene"
-        id="carScene"
-    >
+                    <img
+                        src="car15.jpeg"
+                        class="car-image"
+                        id="carImage"
+                        alt="XANNY1616 automotive"
+                    >
 
-        <div
-            class="car-float"
-            id="carFloat"
-        >
+                    <div class="car-shadow"></div>
 
-            <div class="car-frame">
-
-                <img
-                    src="car15.jpeg"
-                    class="car-image"
-                    alt="XANNY1616 Machine"
-                >
-
-                <div class="car-shadow"></div>
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+        <div class="machine-controls">
 
-
-    <!-- CONTROLS -->
-
-    <div
-        class="machine-controls"
-    >
-
-        <div class="control-group">
-
-            <button
-                class="control"
-                id="engineBtn"
-            >
-                ENGINE / OFF
+            <button class="control" id="engineBtn">
+                ENGINE
             </button>
 
-            <button
-                class="control"
-                id="revBtn"
-            >
+            <button class="control" id="revBtn">
                 REV
             </button>
 
         </div>
 
-
-        <div class="rpm">
-
-            RPM
-
-            <strong id="rpmValue">
-                0800
-            </strong>
-
+        <div class="machine-scroll">
+            SCROLL TO TRANSFORM
         </div>
 
     </div>
@@ -1805,82 +1211,62 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      TECHNICAL
-===================================================== -->
+========================= -->
 
 <section class="technical">
 
-    <div class="container">
+    <div class="tech-grid">
 
-        <div class="tech-layout">
-
-            <div class="tech-image">
-
-                <img
-                    src="car5.jpeg"
-                    alt="XANNY1616"
-                >
-
-            </div>
-
-
-            <div class="tech-copy">
-
-                <div class="label">
-                    03 / DETAILS
-                </div>
-
-                <h2>
-                    FORM<br>
-                    FOLLOWS<br>
-                    ATTITUDE.
-                </h2>
-
-                <p>
-
-                    Every angle tells a different story.
-                    Light changes the character.
-                    Motion changes the presence.
-                    The machine is never completely still.
-
-                </p>
-
-            </div>
-
+        <div class="tech-image">
+            <img src="car5.jpeg" alt="Automotive detail">
         </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     GALLERY
-===================================================== -->
-
-<section
-    class="gallery"
-    id="gallery"
->
-
-    <div class="gallery-head">
 
         <div>
 
             <div class="label">
-                04 / VISUAL ARCHIVE
+                ENGINEERED / NOT DECORATED
             </div>
 
-            <h2>
-                GALLERY
+            <h2 class="tech-title">
+                FORM<br>
+                <span>FOLLOWS</span><br>
+                FORCE.
             </h2>
+
+            <p class="tech-copy">
+                Every surface exists for a reason.
+                Every line has intention.
+                Every detail becomes part of the machine.
+            </p>
 
         </div>
 
+    </div>
 
-        <div class="gallery-count">
-            15 FRAMES
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section class="gallery" id="gallery">
+
+    <div class="gallery-head">
+
+        <div>
+            <div class="label">THE ARCHIVE</div>
+
+            <h2 class="gallery-title">
+                VISUAL<br>
+                <span>MEMORY.</span>
+            </h2>
+        </div>
+
+        <div class="label">
+            001 — 015
         </div>
 
     </div>
@@ -1889,63 +1275,63 @@ footer{
     <div class="gallery-grid">
 
         <div class="gallery-item">
-            <img src="car1.jpeg" alt="Car 1">
+            <img src="car1.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car2.jpeg" alt="Car 2">
+            <img src="car2.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car3.jpeg" alt="Car 3">
+            <img src="car3.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car4.jpeg" alt="Car 4">
+            <img src="car4.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car5.jpeg" alt="Car 5">
+            <img src="car5.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car6.jpeg" alt="Car 6">
+            <img src="car6.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car7.jpeg" alt="Car 7">
+            <img src="car7.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car8.jpeg" alt="Car 8">
+            <img src="car8.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car9.jpeg" alt="Car 9">
+            <img src="car9.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car10.jpeg" alt="Car 10">
+            <img src="car10.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car11.jpeg" alt="Car 11">
+            <img src="car11.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car12.jpeg" alt="Car 12">
+            <img src="car12.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car13.jpeg" alt="Car 13">
+            <img src="car13.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car14.jpeg" alt="Car 14">
+            <img src="car14.jpeg" alt="">
         </div>
 
         <div class="gallery-item">
-            <img src="car15.jpeg" alt="Car 15">
+            <img src="car15.jpeg" alt="">
         </div>
 
     </div>
@@ -1953,571 +1339,495 @@ footer{
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      FINAL
-===================================================== -->
+========================= -->
 
-<section class="final">
-
-    <img
-        src="car10.jpeg"
-        class="final-image"
-        alt="XANNY1616"
-    >
-
-    <div class="final-overlay"></div>
-
-
-    <div class="final-content">
-
-        <h2>
-            DRIVE<br>
-            DIFFERENT.
-        </h2>
-
-        <p>
-            XANNY1616 / AUTOMOTIVE
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     SOCIAL
-===================================================== -->
-
-<section class="social">
+<section class="statement">
 
     <div class="label">
-        05 / SOCIAL
+        XANNY1616 / FINAL STATEMENT
     </div>
 
     <h2>
-        FOLLOW<br>
-        THE RIDE.
+        NOT JUST<br>
+        A <span>CAR.</span><br>
+        A PRESENCE.
     </h2>
+
+    <p>
+        DESIGNED IN BLACK / DEFINED IN CHERRY
+    </p>
+
+</section>
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section class="social" id="contact">
+
+    <h3>
+        FOLLOW<br>
+        <span>THE MACHINE.</span>
+    </h3>
 
     <a
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
-        class="social-link"
+        rel="noopener"
     >
-        @XANNY1616
+        INSTAGRAM / @XANNY1616
     </a>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== -->
+========================= -->
 
 <footer>
 
-    <span>
-        XANNY1616
-    </span>
+    <span>© 2026 XANNY1616</span>
 
-    <span>
-        DRIVE DIFFERENT.
-    </span>
+    <span>BUILT TO BE SEEN</span>
 
-    <span>
-        © 2026
-    </span>
+    <span>001 / 001</span>
 
 </footer>
 
 
+<audio id="engineAudio" src="engine.mp3" loop></audio>
+
+
 <script>
 
-/* =========================================================
-   INTRO
-========================================================= */
+/* ==================================================
+   ELEMENTS
+================================================== */
 
-const intro =
-    document.getElementById("intro");
+const machine = document.querySelector(".machine");
+const carScene = document.getElementById("carScene");
+const carFloat = document.getElementById("carFloat");
+const carFrame = document.getElementById("carFrame");
+const carImage = document.getElementById("carImage");
 
-const enterBtn =
-    document.getElementById("enterBtn");
+const engineBtn = document.getElementById("engineBtn");
+const revBtn = document.getElementById("revBtn");
 
-
-enterBtn.addEventListener(
-    "click",
-    () => {
-
-        intro.classList.add("hide");
-
-        document.body.classList.remove(
-            "intro-active"
-        );
-
-    }
-);
+const engineAudio = document.getElementById("engineAudio");
 
 
-/* =========================================================
-   MACHINE ELEMENTS
-========================================================= */
-
-const carScene =
-    document.getElementById("carScene");
-
-const carFloat =
-    document.getElementById("carFloat");
-
-const machine =
-    document.querySelector(".machine");
-
-
-/* =========================================================
+/* ==================================================
    SCROLL PROGRESS
-========================================================= */
-
-let scrollProgress = 0;
+================================================== */
 
 let targetProgress = 0;
+let currentProgress = 0;
 
+function updateScroll(){
 
-function updateScrollProgress(){
-
-    const rect =
-        carScene.getBoundingClientRect();
-
-    const viewport =
-        window.innerHeight;
-
+    const rect = machine.getBoundingClientRect();
 
     /*
-       Animation begins when the
-       machine enters the viewport.
+       Machine starts transforming when the section
+       enters the viewport.
     */
 
-    const startPoint =
-        viewport * 0.92;
+    const total = machine.offsetHeight - window.innerHeight;
 
+    let progress = -rect.top / total;
 
-    /*
-       Animation completes when
-       the machine is around the
-       upper-middle viewport.
-    */
+    progress = Math.max(0, Math.min(1, progress));
 
-    const endPoint =
-        viewport * 0.28;
-
-
-    targetProgress =
-        (
-            startPoint -
-            rect.top
-        )
-        /
-        (
-            startPoint -
-            endPoint
-        );
-
-
-    targetProgress =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                targetProgress
-            )
-        );
-
+    targetProgress = progress;
 }
-
 
 window.addEventListener(
     "scroll",
-    updateScrollProgress,
-    {
-        passive:true
-    }
+    updateScroll,
+    {passive:true}
 );
-
 
 window.addEventListener(
     "resize",
-    updateScrollProgress
+    updateScroll
 );
 
-
-updateScrollProgress();
-
-
-/* =========================================================
-   SCROLL 3D MOTION
-========================================================= */
-
-function renderScrollMotion(){
-
-    scrollProgress +=
-        (
-            targetProgress -
-            scrollProgress
-        ) * 0.085;
+updateScroll();
 
 
-    const p =
-        scrollProgress;
+/* ==================================================
+   SMOOTH CINEMATIC MOTION
+================================================== */
 
+function easeInOut(p){
 
-    /*
-       Smooth cubic easing.
-    */
+    return p < .5
 
-    const ease =
-        p < 0.5
+        ? 4 * p * p * p
 
-        ?
-
-        4 * p * p * p
-
-        :
-
-        1 -
-        Math.pow(
-            -2 * p + 2,
-            3
-        ) / 2;
-
-
-    /*
-       DISTANCE
-    */
-
-    const translateZ =
-        -150 +
-        ease * 150;
-
-
-    /*
-       VERTICAL FLOAT
-    */
-
-    const translateY =
-        110 -
-        ease * 110;
-
-
-    /*
-       STARTING TILT
-    */
-
-    const rotateX =
-        14 -
-        ease * 14;
-
-
-    const rotateY =
-        -12 +
-        ease * 12;
-
-
-    /*
-       SCALE
-    */
-
-    const scale =
-        .76 +
-        ease * .24;
-
-
-    carFloat.style.setProperty(
-        "--scrollY",
-        translateY + "px"
-    );
-
-
-    carFloat.style.setProperty(
-        "--scrollZ",
-        translateZ + "px"
-    );
-
-
-    carFloat.style.setProperty(
-        "--scrollRotateX",
-        rotateX + "deg"
-    );
-
-
-    carFloat.style.setProperty(
-        "--scrollRotateY",
-        rotateY + "deg"
-    );
-
-
-    carFloat.style.setProperty(
-        "--scrollScale",
-        scale
-    );
-
-
-    requestAnimationFrame(
-        renderScrollMotion
-    );
-
+        : 1 - Math.pow(-2 * p + 2,3) / 2;
 }
 
 
-renderScrollMotion();
+function render(){
+
+    currentProgress +=
+        (targetProgress - currentProgress) * .075;
+
+    const p = easeInOut(currentProgress);
 
 
-/* =========================================================
-   MOUSE TILT
-========================================================= */
+    /*
+       ============================================
+       MAIN 3D CAMERA MOVEMENT
+       ============================================
+    */
+
+    const sceneY =
+        160 - p * 160;
+
+    const sceneZ =
+        -320 + p * 320;
+
+    const sceneRotateX =
+        19 - p * 19;
+
+    const sceneRotateY =
+        -15 + p * 15;
+
+    const sceneScale =
+        .62 + p * .38;
+
+
+    /*
+       ============================================
+       ACTUAL PHOTO TRANSFORMATION
+       ============================================
+    */
+
+    const frameX =
+        -18 + p * 18;
+
+    const frameY =
+        18 - p * 18;
+
+    const frameRotateZ =
+        -2.2 + p * 2.2;
+
+    const frameRotateX =
+        7 - p * 7;
+
+    const frameScale =
+        .84 + p * .16;
+
+
+    /*
+       Internal photo movement.
+       This is what makes the PHOTO itself
+       feel like it is changing.
+    */
+
+    const imageX =
+        -42 + p * 42;
+
+    const imageY =
+        25 - p * 25;
+
+    const imageScale =
+        1.22 - p * .22;
+
+    const imageRotate =
+        -1.2 + p * 1.2;
+
+
+    /*
+       Cinematic lighting changes.
+    */
+
+    const brightness =
+        .70 + p * .25;
+
+    const contrast =
+        1.18 - p * .08;
+
+    const saturation =
+        .85 + p * .18;
+
+
+    /*
+       Moving shine across the photo.
+    */
+
+    const shineX =
+        -35 + p * 170;
+
+
+    /*
+       Red atmosphere.
+    */
+
+    const glowX =
+        25 + p * 55;
+
+    const glowY =
+        65 - p * 30;
+
+    const glowOpacity =
+        .10 + p * .22;
+
+
+    /*
+       Shadow follows camera distance.
+    */
+
+    const shadowScale =
+        .65 + p * .55;
+
+    const shadowY =
+        1.1 - p * .3;
+
+    const shadowOpacity =
+        .45 + p * .35;
+
+
+    /*
+       Apply main scene.
+    */
+
+    carFloat.style.setProperty(
+        "--sceneY",
+        sceneY + "px"
+    );
+
+    carFloat.style.setProperty(
+        "--sceneZ",
+        sceneZ + "px"
+    );
+
+    carFloat.style.setProperty(
+        "--sceneRotateX",
+        sceneRotateX + "deg"
+    );
+
+    carFloat.style.setProperty(
+        "--sceneRotateY",
+        sceneRotateY + "deg"
+    );
+
+    carFloat.style.setProperty(
+        "--sceneScale",
+        sceneScale
+    );
+
+
+    /*
+       Apply FRAME movement.
+    */
+
+    carFrame.style.setProperty(
+        "--frameX",
+        frameX + "px"
+    );
+
+    carFrame.style.setProperty(
+        "--frameY",
+        frameY + "px"
+    );
+
+    carFrame.style.setProperty(
+        "--frameRotateZ",
+        frameRotateZ + "deg"
+    );
+
+    carFrame.style.setProperty(
+        "--frameRotateX",
+        frameRotateX + "deg"
+    );
+
+    carFrame.style.setProperty(
+        "--frameScale",
+        frameScale
+    );
+
+
+    /*
+       Apply IMAGE movement.
+    */
+
+    carImage.style.setProperty(
+        "--imageX",
+        imageX + "px"
+    );
+
+    carImage.style.setProperty(
+        "--imageY",
+        imageY + "px"
+    );
+
+    carImage.style.setProperty(
+        "--imageScale",
+        imageScale
+    );
+
+    carImage.style.setProperty(
+        "--imageRotate",
+        imageRotate + "deg"
+    );
+
+
+    /*
+       Image lighting.
+    */
+
+    carImage.style.setProperty(
+        "--imageBrightness",
+        brightness
+    );
+
+    carImage.style.setProperty(
+        "--imageContrast",
+        contrast
+    );
+
+    carImage.style.setProperty(
+        "--imageSaturation",
+        saturation
+    );
+
+
+    /*
+       Red glow.
+    */
+
+    carFrame.style.setProperty(
+        "--glowX",
+        glowX + "%"
+    );
+
+    carFrame.style.setProperty(
+        "--glowY",
+        glowY + "%"
+    );
+
+    carFrame.style.setProperty(
+        "--glowOpacity",
+        glowOpacity
+    );
+
+
+    /*
+       Shine.
+    */
+
+    carFrame.style.setProperty(
+        "--shineX",
+        shineX + "%"
+    );
+
+
+    /*
+       Shadow.
+    */
+
+    const shadow =
+        carFrame.querySelector(".car-shadow");
+
+    shadow.style.setProperty(
+        "--shadowScale",
+        shadowScale
+    );
+
+    shadow.style.setProperty(
+        "--shadowY",
+        shadowY
+    );
+
+    shadow.style.setProperty(
+        "--shadowOpacity",
+        shadowOpacity
+    );
+
+
+    requestAnimationFrame(render);
+}
+
+render();
+
+
+/* ==================================================
+   MOUSE PARALLAX
+================================================== */
 
 let mouseX = 0;
-
 let mouseY = 0;
 
+window.addEventListener("mousemove",(event)=>{
 
-const maxTilt = 6;
+    const x =
+        (event.clientX / window.innerWidth - .5);
 
+    const y =
+        (event.clientY / window.innerHeight - .5);
 
-carScene.addEventListener(
-    "mousemove",
-    function(event){
+    mouseX = x * 4;
+    mouseY = -y * 3;
 
-        const rect =
-            carScene.getBoundingClientRect();
-
-
-        const x =
-            (
-                event.clientX -
-                rect.left
-            )
-            /
-            rect.width;
-
-
-        const y =
-            (
-                event.clientY -
-                rect.top
-            )
-            /
-            rect.height;
-
-
-        mouseX =
-            (x - .5) *
-            maxTilt;
-
-
-        mouseY =
-            -(y - .5) *
-            maxTilt;
-
-
-        carFloat.style.setProperty(
-            "--mouseX",
-            mouseX + "deg"
-        );
-
-
-        carFloat.style.setProperty(
-            "--mouseY",
-            mouseY + "deg"
-        );
-
-    }
-);
-
-
-carScene.addEventListener(
-    "mouseleave",
-    function(){
-
-        carFloat.style.setProperty(
-            "--mouseX",
-            "0deg"
-        );
-
-        carFloat.style.setProperty(
-            "--mouseY",
-            "0deg"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   MOVING TYPOGRAPHY
-========================================================= */
-
-const moveLine1 =
-    document.getElementById(
-        "moveLine1"
+    carFloat.style.setProperty(
+        "--mouseX",
+        mouseX + "deg"
     );
 
-const moveLine2 =
-    document.getElementById(
-        "moveLine2"
+    carFloat.style.setProperty(
+        "--mouseY",
+        mouseY + "deg"
     );
 
-const moveLine3 =
-    document.getElementById(
-        "moveLine3"
-    );
-
-const moveLine4 =
-    document.getElementById(
-        "moveLine4"
-    );
+});
 
 
-function updateTypography(){
-
-    const scroll =
-        window.scrollY;
-
-
-    moveLine1.style.transform =
-        `translateX(${scroll * .035}px)`;
-
-
-    moveLine2.style.transform =
-        `translateX(${-scroll * .025}px)`;
-
-
-    moveLine3.style.transform =
-        `translateX(${scroll * .02}px)`;
-
-
-    moveLine4.style.transform =
-        `translateX(${-scroll * .035}px)`;
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    updateTypography,
-    {
-        passive:true
-    }
-);
-
-
-/* =========================================================
+/* ==================================================
    ENGINE
-========================================================= */
+================================================== */
 
-const engineBtn =
-    document.getElementById(
-        "engineBtn"
-    );
+let engineOn = false;
 
-const engineAudio =
-    new Audio(
-        "engine.mp3"
-    );
+engineBtn.addEventListener("click",async()=>{
 
+    if(!engineOn){
 
-engineAudio.loop = true;
+        try{
+            await engineAudio.play();
+        }catch(e){}
 
-engineAudio.volume = .65;
+        engineOn = true;
 
+        engineBtn.classList.add("active");
 
-let engineRunning =
-    false;
+    }else{
 
+        engineAudio.pause();
 
-engineBtn.addEventListener(
-    "click",
-    function(){
+        engineOn = false;
 
-        if(!engineRunning){
-
-            engineAudio.currentTime = 0;
-
-
-            engineAudio.play()
-                .then(
-                    function(){
-
-                        engineRunning =
-                            true;
-
-
-                        engineBtn.textContent =
-                            "ENGINE / ON";
-
-
-                        engineBtn.classList.add(
-                            "active"
-                        );
-
-
-                        machine.classList.add(
-                            "engine-running"
-                        );
-
-                    }
-                )
-                .catch(
-                    function(){
-
-                        alert(
-                            "Tap ENGINE again to start the sound."
-                        );
-
-                    }
-                );
-
-        }
-
-        else{
-
-            engineAudio.pause();
-
-            engineRunning =
-                false;
-
-
-            engineBtn.textContent =
-                "ENGINE / OFF";
-
-
-            engineBtn.classList.remove(
-                "active"
-            );
-
-
-            machine.classList.remove(
-                "engine-running"
-            );
-
-        }
-
+        engineBtn.classList.remove("active");
     }
-);
+
+});
 
 
-/* =========================================================
-   REV AUDIO
-========================================================= */
+/* ==================================================
+   REV
+================================================== */
 
-let audioContext =
-    null;
+let audioContext = null;
+let oscillator = null;
+let gainNode = null;
 
-let revOscillator =
-    null;
-
-let revGain =
-    null;
-
-
-function setupAudio(){
+function createRev(){
 
     if(!audioContext){
 
@@ -2526,177 +1836,119 @@ function setupAudio(){
                 window.AudioContext ||
                 window.webkitAudioContext
             )();
-
     }
 
+    oscillator =
+        audioContext.createOscillator();
 
-    if(
-        audioContext.state ===
-        "suspended"
-    ){
+    gainNode =
+        audioContext.createGain();
 
-        audioContext.resume();
+    oscillator.type = "sawtooth";
 
-    }
+    oscillator.frequency.value = 90;
 
-}
+    gainNode.gain.value = 0;
 
+    oscillator.connect(gainNode);
 
-/* =========================================================
-   REV
-========================================================= */
-
-const revBtn =
-    document.getElementById(
-        "revBtn"
+    gainNode.connect(
+        audioContext.destination
     );
+
+    oscillator.start();
+}
 
 
 function revEngine(){
 
-    setupAudio();
-
-
-    /*
-       Start engine automatically.
-    */
-
-    if(!engineRunning){
-
-        engineAudio.currentTime =
-            0;
-
-
-        engineAudio.play()
-            .then(
-                function(){
-
-                    engineRunning =
-                        true;
-
-
-                    engineBtn.textContent =
-                        "ENGINE / ON";
-
-
-                    engineBtn.classList.add(
-                        "active"
-                    );
-
-
-                    machine.classList.add(
-                        "engine-running"
-                    );
-
-                }
-            )
-            .catch(
-                function(){}
-            );
-
+    if(!audioContext){
+        createRev();
     }
 
+    if(audioContext.state === "suspended"){
+        audioContext.resume();
+    }
+
+    const now = audioContext.currentTime;
 
     /*
-       Stop previous rev.
+       RPM rise.
     */
 
-    if(revOscillator){
+    oscillator.frequency.cancelScheduledValues(now);
 
-        try{
+    oscillator.frequency.setValueAtTime(
+        85,
+        now
+    );
 
-            revOscillator.stop();
+    oscillator.frequency.exponentialRampToValueAtTime(
+        260,
+        now + .35
+    );
 
+    oscillator.frequency.exponentialRampToValueAtTime(
+        110,
+        now + 1.25
+    );
+
+
+    /*
+       Volume rise and fall.
+    */
+
+    gainNode.gain.cancelScheduledValues(now);
+
+    gainNode.gain.setValueAtTime(
+        .001,
+        now
+    );
+
+    gainNode.gain.exponentialRampToValueAtTime(
+        .22,
+        now + .12
+    );
+
+    gainNode.gain.exponentialRampToValueAtTime(
+        .001,
+        now + 1.3
+    );
+
+
+    /*
+       Visual REV effect.
+
+       IMPORTANT:
+       This is only activated when
+       pressing REV. Normal scrolling
+       does NOT shake the car.
+    */
+
+    carFloat.animate(
+        [
+            {
+                transform:carFloat.style.transform
+            },
+            {
+                transform:
+                    "translate3d(0,-5px,0) " +
+                    "rotateX(1deg) " +
+                    "rotateY(-1deg) " +
+                    "scale(1.015)"
+            },
+            {
+                transform:
+                    "translate3d(0,0,0) " +
+                    "rotateX(0deg) " +
+                    "rotateY(0deg) " +
+                    "scale(1)"
+            }
+        ],
+        {
+            duration:1300,
+            easing:"cubic-bezier(.16,1,.3,1)"
         }
-
-        catch(e){}
-
-    }
-
-
-    revOscillator =
-        audioContext.createOscillator();
-
-
-    revGain =
-        audioContext.createGain();
-
-
-    revOscillator.type =
-        "sawtooth";
-
-
-    revOscillator.frequency.setValueAtTime(
-        90,
-        audioContext.currentTime
-    );
-
-
-    revOscillator.frequency.exponentialRampToValueAtTime(
-        540,
-        audioContext.currentTime + 1
-    );
-
-
-    revOscillator.frequency.exponentialRampToValueAtTime(
-        120,
-        audioContext.currentTime + 1.9
-    );
-
-
-    revGain.gain.setValueAtTime(
-        .001,
-        audioContext.currentTime
-    );
-
-
-    revGain.gain.exponentialRampToValueAtTime(
-        .18,
-        audioContext.currentTime + .12
-    );
-
-
-    revGain.gain.exponentialRampToValueAtTime(
-        .001,
-        audioContext.currentTime + 1.9
-    );
-
-
-    revOscillator.connect(
-        revGain
-    );
-
-
-    revGain.connect(
-        audioContext.destination
-    );
-
-
-    revOscillator.start();
-
-
-    revOscillator.stop(
-        audioContext.currentTime + 1.95
-    );
-
-
-    machine.classList.add(
-        "rev"
-    );
-
-
-    animateRPM();
-
-
-    setTimeout(
-        function(){
-
-            machine.classList.remove(
-                "rev"
-            );
-
-        },
-        1950
     );
 
 }
@@ -2708,134 +1960,36 @@ revBtn.addEventListener(
 );
 
 
-/* =========================================================
-   RPM
-========================================================= */
-
-const rpmValue =
-    document.getElementById(
-        "rpmValue"
-    );
-
-
-function animateRPM(){
-
-    const duration =
-        1900;
-
-
-    const start =
-        performance.now();
-
-
-    function frame(now){
-
-        const elapsed =
-            now - start;
-
-
-        const progress =
-            Math.min(
-                elapsed / duration,
-                1
-            );
-
-
-        let rpm;
-
-
-        if(progress < .55){
-
-            const p =
-                progress / .55;
-
-
-            rpm =
-                800 +
-                (
-                    7500 -
-                    800
-                ) *
-                p;
-
-        }
-
-        else{
-
-            const p =
-                (
-                    progress -
-                    .55
-                )
-                /
-                .45;
-
-
-            rpm =
-                7500 -
-                (
-                    7500 -
-                    1100
-                ) *
-                p;
-
-        }
-
-
-        rpmValue.textContent =
-            Math.round(rpm)
-                .toString()
-                .padStart(
-                    4,
-                    "0"
-                );
-
-
-        if(progress < 1){
-
-            requestAnimationFrame(
-                frame
-            );
-
-        }
-
-    }
-
-
-    requestAnimationFrame(
-        frame
-    );
-
-}
-
-
-/* =========================================================
+/* ==================================================
    KEYBOARD
-========================================================= */
+================================================== */
 
-document.addEventListener(
-    "keydown",
-    function(event){
+window.addEventListener("keydown",(event)=>{
 
-        const key =
-            event.key.toLowerCase();
-
-
-        if(key === "e"){
-
-            engineBtn.click();
-
-        }
-
-
-        if(key === "r"){
-
-            revEngine();
-
-        }
-
+    if(event.key.toLowerCase() === "e"){
+        engineBtn.click();
     }
-);
+
+    if(event.key.toLowerCase() === "r"){
+        revEngine();
+    }
+
+});
+
+
+/* ==================================================
+   IMAGE FALLBACK
+================================================== */
+
+document.querySelectorAll("img").forEach(img=>{
+
+    img.addEventListener("error",()=>{
+
+        img.style.background="#090909";
+
+    });
+
+});
 
 </script>
 
