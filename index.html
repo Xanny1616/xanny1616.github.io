@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XANNY1616 — Honda City 2003</title>
+<title>XANNY1616 — HONDA CITY 2003</title>
 
 <style>
 *{
@@ -23,20 +23,79 @@ body{
     overflow-x:hidden;
 }
 
-/* =========================
+/* =========================================================
+   GLOBAL CHERRY RED ATMOSPHERE
+========================================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    pointer-events:none;
+    background:
+        radial-gradient(
+            ellipse at 50% 30%,
+            rgba(130,0,20,.13),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 20% 80%,
+            rgba(100,0,15,.08),
+            transparent 32%
+        );
+}
+
+/* =========================================================
    START SCREEN
-========================= */
+========================================================= */
 
 #startScreen{
     position:fixed;
     inset:0;
     z-index:9999;
-    background:#030303;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(130,0,20,.30) 0%,
+            rgba(80,0,12,.18) 28%,
+            rgba(3,3,3,.94) 72%
+        ),
+        #030303;
+
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    transition:opacity 1.1s ease,visibility 1.1s ease;
+
+    transition:
+        opacity 1.1s ease,
+        visibility 1.1s ease;
+}
+
+#startScreen::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(155,0,25,.22),
+            transparent 48%
+        );
+    animation:redPulse 5s ease-in-out infinite;
+    pointer-events:none;
+}
+
+@keyframes redPulse{
+    0%,100%{
+        transform:scale(.95);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
 }
 
 #startScreen.hide{
@@ -51,8 +110,12 @@ body{
     left:50%;
     top:53%;
     transform:translate(-50%,-50%) scale(.94);
-    opacity:.52;
-    filter:brightness(.48) contrast(1.18) saturate(.78);
+    opacity:.54;
+    filter:
+        brightness(.46)
+        contrast(1.18)
+        saturate(.80)
+        drop-shadow(0 0 70px rgba(130,0,20,.30));
 }
 
 .start-car img{
@@ -63,9 +126,20 @@ body{
 .start-overlay{
     position:absolute;
     inset:0;
+
     background:
-        radial-gradient(circle at center,transparent 15%,rgba(0,0,0,.38) 55%,#030303 100%),
-        linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.72));
+        radial-gradient(
+            ellipse at center,
+            transparent 12%,
+            rgba(50,0,8,.10) 38%,
+            rgba(0,0,0,.62) 78%,
+            #030303 100%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(30,0,5,.15),
+            rgba(0,0,0,.68)
+        );
 }
 
 .start-content{
@@ -77,7 +151,7 @@ body{
 .start-label{
     font-size:10px;
     letter-spacing:.45em;
-    color:#777;
+    color:#8c6970;
     margin-bottom:20px;
 }
 
@@ -86,6 +160,8 @@ body{
     line-height:.78;
     letter-spacing:-.085em;
     font-weight:900;
+    text-shadow:
+        0 0 40px rgba(120,0,18,.20);
 }
 
 .start-content h1 span{
@@ -95,26 +171,34 @@ body{
 .start-content p{
     margin-top:25px;
     font-size:10px;
-    letter-spacing:.45em;
-    color:#888;
+    letter-spacing:.42em;
+    color:#9b7d82;
 }
 
 #startMachine{
     margin-top:42px;
     padding:15px 34px;
-    background:transparent;
-    border:1px solid rgba(255,255,255,.3);
+
+    background:rgba(55,0,8,.20);
+    border:1px solid rgba(255,255,255,.30);
+
     color:white;
     font-size:10px;
     letter-spacing:.35em;
+
     cursor:pointer;
     transition:.35s ease;
+
+    box-shadow:
+        0 0 35px rgba(110,0,18,.12);
 }
 
 #startMachine:hover{
     background:#850014;
     border-color:#850014;
     transform:translateY(-2px);
+    box-shadow:
+        0 0 45px rgba(133,0,20,.35);
 }
 
 .start-bottom{
@@ -122,46 +206,95 @@ body{
     bottom:25px;
     left:30px;
     right:30px;
+
     display:flex;
     justify-content:space-between;
+
     font-size:9px;
     letter-spacing:.25em;
-    color:#555;
+    color:#66545a;
 }
 
-/* =========================
+/* =========================================================
    INTRO
-========================= */
+========================================================= */
 
 .intro{
     height:100vh;
     min-height:650px;
+
     display:flex;
     align-items:center;
     justify-content:center;
     flex-direction:column;
+
     position:relative;
     overflow:hidden;
-    background:#030303;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(125,0,20,.20),
+            transparent 46%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(85,0,14,.14),
+            transparent 42%
+        ),
+        #030303;
+}
+
+.intro::before{
+    content:"";
+    position:absolute;
+    width:70vw;
+    height:70vw;
+    max-width:900px;
+    max-height:900px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(125,0,20,.10),
+            transparent 68%
+        );
+
+    filter:blur(35px);
+    pointer-events:none;
 }
 
 .intro-title{
+    position:relative;
+    z-index:2;
+
     font-size:clamp(38px,10vw,145px);
     font-weight:900;
+
     letter-spacing:-.075em;
     line-height:.8;
+
     white-space:nowrap;
     width:100%;
     max-width:100%;
+
     text-align:center;
     overflow:hidden;
+
     transform-origin:center;
+
+    text-shadow:
+        0 0 55px rgba(130,0,20,.12);
 }
 
 .intro-title span{
     display:inline-block;
+
     opacity:0;
     transform:translateY(70px);
+
     animation:letterIn .8s forwards;
 }
 
@@ -187,39 +320,56 @@ body{
     bottom:30px;
     left:30px;
     right:30px;
+
     display:flex;
     justify-content:space-between;
+
     font-size:9px;
-    color:#555;
+    color:#66545a;
     letter-spacing:.3em;
 }
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
     min-height:100vh;
     padding:140px 8vw;
+
     display:flex;
     justify-content:center;
     flex-direction:column;
+
     position:relative;
     overflow:hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 70% 50%,
+            rgba(120,0,20,.13),
+            transparent 42%
+        ),
+        #030303;
 }
 
 .label{
     font-size:10px;
     letter-spacing:.4em;
-    color:#666;
+    color:#705d62;
 }
 
 .hero-title{
     margin-top:35px;
+
     font-size:clamp(70px,13vw,190px);
     line-height:.76;
+
     letter-spacing:-.08em;
     font-weight:900;
+
+    text-shadow:
+        0 0 80px rgba(120,0,18,.08);
 }
 
 .red{
@@ -229,66 +379,49 @@ body{
 .hero-sub{
     max-width:480px;
     margin-top:55px;
+
     color:#777;
     font-size:13px;
     line-height:1.8;
 }
 
-/* =========================
-   HONDA CITY 2003
-========================= */
+/* =========================================================
+   HONDA CITY 2003 MODEL
+========================================================= */
 
 .manifesto{
     padding:170px 0;
+
     overflow:hidden;
+
     background:
         radial-gradient(
             ellipse at 50% 50%,
-            rgba(115,0,18,.15),
+            rgba(125,0,20,.22),
             transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 20% 80%,
+            rgba(100,0,15,.10),
+            transparent 35%
         ),
         #030303;
 }
 
-.manifesto-line{
-    width:max-content;
-    min-width:100%;
-    white-space:nowrap;
-    font-size:clamp(42px,8.5vw,125px);
-    font-weight:900;
-    letter-spacing:-.065em;
-    line-height:.82;
-    border-top:1px solid rgba(255,255,255,.08);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    padding:17px 0;
-    font-family:Arial,Helvetica,sans-serif;
+.manifesto::before{
+    content:"";
+    display:block;
+    position:absolute;
 }
-
-.manifesto-line:nth-child(1){
-    transform:translateX(-5%);
-}
-
-.manifesto-line:nth-child(2){
-    transform:translateX(8%);
-    color:#850014;
-}
-
-.manifesto-line:nth-child(3){
-    transform:translateX(-3%);
-}
-
-.manifesto-line:nth-child(4){
-    transform:translateX(7%);
-    color:#666;
-}
-
-/* MODEL NAME DETAIL */
 
 .model-small{
     display:block;
+
     font-size:10px;
     letter-spacing:.42em;
-    color:#555;
+
+    color:#66545a;
+
     margin:0 8vw 35px;
 }
 
@@ -296,16 +429,65 @@ body{
     color:#850014;
 }
 
-/* =========================
+.manifesto-line{
+    width:max-content;
+    min-width:100%;
+
+    white-space:nowrap;
+
+    font-size:clamp(42px,8.5vw,125px);
+    font-weight:900;
+
+    letter-spacing:-.065em;
+    line-height:.82;
+
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    padding:17px 0;
+
+    text-shadow:
+        0 0 45px rgba(120,0,18,.10);
+}
+
+.manifesto-line:nth-child(2){
+    transform:translateX(-5%);
+}
+
+.manifesto-line:nth-child(3){
+    transform:translateX(8%);
+    color:#850014;
+}
+
+.manifesto-line:nth-child(4){
+    transform:translateX(-3%);
+}
+
+.manifesto-line:nth-child(5){
+    transform:translateX(7%);
+    color:#666;
+}
+
+/* =========================================================
    STATS
-========================= */
+========================================================= */
 
 .stats{
     padding:100px 8vw;
+
     display:grid;
     grid-template-columns:repeat(4,1fr);
+
     border-top:1px solid rgba(255,255,255,.08);
     border-bottom:1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(80,0,12,.06),
+            transparent,
+            rgba(80,0,12,.06)
+        );
 }
 
 .stat{
@@ -325,14 +507,16 @@ body{
 
 .stat-label{
     margin-top:12px;
+
     font-size:9px;
     letter-spacing:.3em;
-    color:#666;
+
+    color:#66545a;
 }
 
-/* =========================
+/* =========================================================
    MACHINE
-========================= */
+========================================================= */
 
 .machine{
     height:250vh;
@@ -342,137 +526,244 @@ body{
 .machine-sticky{
     position:sticky;
     top:0;
+
     height:100vh;
+
     overflow:hidden;
+
     perspective:1200px;
+
     background:
         radial-gradient(
             circle at 50% 55%,
-            rgba(110,0,20,.16),
+            rgba(130,0,22,.23),
             transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(90,0,15,.15),
+            transparent 45%
         ),
         #020202;
 }
 
+.machine-sticky::before{
+    content:"";
+    position:absolute;
+
+    width:80vw;
+    height:80vw;
+
+    max-width:1000px;
+    max-height:1000px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(125,0,20,.12),
+            transparent 65%
+        );
+
+    filter:blur(40px);
+
+    pointer-events:none;
+}
+
 .machine-label{
     position:absolute;
+
     top:35px;
     left:35px;
+
     z-index:10;
+
     font-size:9px;
     letter-spacing:.35em;
-    color:#555;
+
+    color:#66545a;
 }
 
 .machine-title{
     position:absolute;
+
     right:35px;
     top:35px;
+
     z-index:10;
+
     text-align:right;
+
     font-size:9px;
     line-height:1.7;
+
     letter-spacing:.3em;
-    color:#555;
+
+    color:#66545a;
 }
 
 .machine-scene{
     position:absolute;
     inset:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     transform:
-        translate3d(0,var(--sceneY,160px),var(--sceneZ,-320px))
+        translate3d(
+            0,
+            var(--sceneY,160px),
+            var(--sceneZ,-320px)
+        )
         rotateX(var(--sceneRotateX,19deg))
         rotateY(var(--sceneRotateY,-15deg))
         scale(var(--sceneScale,.62));
+
     transform-style:preserve-3d;
+
     will-change:transform;
 }
 
 .car-frame{
     position:relative;
+
     width:min(1100px,92vw);
+
     transform:
-        translate3d(var(--frameX,-18px),var(--frameY,18px),0)
+        translate3d(
+            var(--frameX,-18px),
+            var(--frameY,18px),
+            0
+        )
         rotateZ(var(--frameRotateZ,-2.2deg))
         rotateX(var(--frameRotateX,7deg))
+        rotateY(var(--mouseX,0deg))
         scale(var(--frameScale,.84));
+
     transform-style:preserve-3d;
+
     will-change:transform;
 }
 
 .car-frame::before{
     content:"";
+
     position:absolute;
     inset:12%;
-    background:rgba(120,0,18,.18);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(130,0,22,.42),
+            transparent 68%
+        );
+
     filter:blur(90px);
+
     opacity:.25;
-    transform:translate3d(var(--glowX,25%),var(--glowY,65%),-80px);
+
+    transform:
+        translate3d(
+            var(--glowX,25%),
+            var(--glowY,65%),
+            -80px
+        );
+
     pointer-events:none;
 }
 
 .car-frame::after{
     content:"";
+
     position:absolute;
     inset:-5%;
-    background:linear-gradient(
-        105deg,
-        transparent 35%,
-        rgba(255,255,255,.13) 48%,
-        transparent 58%
-    );
-    transform:translateX(var(--shineX,-35%));
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent 35%,
+            rgba(255,255,255,.13) 48%,
+            transparent 58%
+        );
+
+    transform:
+        translateX(var(--shineX,-35%));
+
     mix-blend-mode:screen;
+
     pointer-events:none;
 }
 
 .car-image{
     width:100%;
     display:block;
+
     transform:
-        translate3d(var(--imageX,-42px),var(--imageY,25px),0)
+        translate3d(
+            var(--imageX,-42px),
+            var(--imageY,25px),
+            0
+        )
         scale(var(--imageScale,1.22))
         rotateZ(var(--imageRotate,-1.2deg));
+
     filter:
         brightness(var(--brightness,.70))
         contrast(var(--contrast,1.18))
         saturate(var(--saturation,.85));
+
     will-change:transform,filter;
 }
 
 .car-shadow{
     position:absolute;
+
     width:70%;
     height:13%;
+
     left:15%;
     bottom:-5%;
+
     background:#000;
+
     border-radius:50%;
+
     filter:blur(35px);
+
     transform:
         scaleX(var(--shadowScale,.65))
         scaleY(var(--shadowY,1.1));
+
     opacity:var(--shadowOpacity,.45);
 }
 
 .machine-caption{
     position:absolute;
+
     bottom:40px;
     left:35px;
     right:35px;
+
     display:flex;
     justify-content:space-between;
     align-items:end;
+
     z-index:10;
 }
 
 .machine-caption p{
     max-width:280px;
+
     font-size:11px;
     line-height:1.7;
+
     color:#666;
 }
 
@@ -483,55 +774,84 @@ body{
 
 .control{
     border:1px solid rgba(255,255,255,.18);
-    background:transparent;
+
+    background:
+        rgba(70,0,10,.12);
+
     color:#aaa;
+
     padding:12px 20px;
+
     font-size:9px;
     letter-spacing:.3em;
+
     cursor:pointer;
+
     transition:.3s ease;
 }
 
 .control:hover,
 .control.active{
     color:#fff;
+
     border-color:#850014;
-    background:rgba(133,0,20,.15);
+
+    background:
+        rgba(133,0,20,.18);
+
+    box-shadow:
+        0 0 30px rgba(133,0,20,.16);
 }
 
-/* =========================
-   TECH
-========================= */
+/* =========================================================
+   TECHNICAL
+========================================================= */
 
 .technical{
     padding:150px 8vw;
+
+    background:
+        radial-gradient(
+            ellipse at 80% 40%,
+            rgba(120,0,20,.11),
+            transparent 38%
+        ),
+        #030303;
 }
 
 .tech-heading{
     font-size:clamp(50px,9vw,120px);
+
     font-weight:900;
+
     letter-spacing:-.07em;
     line-height:.8;
+
     margin-bottom:80px;
 }
 
 .tech-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
+
     border-top:1px solid rgba(255,255,255,.1);
 }
 
 .tech-item{
     padding:30px 20px;
+
     border-right:1px solid rgba(255,255,255,.1);
     border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .tech-item span{
     display:block;
+
     font-size:9px;
     letter-spacing:.3em;
-    color:#555;
+
+    color:#66545a;
+
     margin-bottom:15px;
 }
 
@@ -540,24 +860,37 @@ body{
     font-weight:500;
 }
 
-/* =========================
+/* =========================================================
    GALLERY
-========================= */
+========================================================= */
 
 .gallery{
     padding:150px 5vw;
+
+    background:
+        radial-gradient(
+            ellipse at 30% 40%,
+            rgba(110,0,18,.10),
+            transparent 38%
+        ),
+        #030303;
 }
 
 .gallery-heading{
     font-size:clamp(55px,10vw,140px);
+
     font-weight:900;
+
     letter-spacing:-.08em;
+
     margin-bottom:70px;
 }
 
 .gallery-grid{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:15px;
 }
 
@@ -569,7 +902,9 @@ body{
 .gallery-item img{
     width:100%;
     display:block;
-    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+
+    transition:
+        transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
 .gallery-item:hover img{
@@ -580,29 +915,44 @@ body{
     grid-column:span 2;
 }
 
-/* =========================
+/* =========================================================
    FINAL
-========================= */
+========================================================= */
 
 .final{
     min-height:80vh;
+
     padding:150px 8vw;
+
     display:flex;
     justify-content:center;
     flex-direction:column;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(125,0,20,.17),
+            transparent 50%
+        ),
+        #030303;
 }
 
 .final-small{
     font-size:10px;
     letter-spacing:.4em;
-    color:#555;
+
+    color:#66545a;
 }
 
 .final-title{
     margin-top:30px;
+
     font-size:clamp(55px,11vw,150px);
+
     line-height:.8;
+
     font-weight:900;
+
     letter-spacing:-.08em;
 }
 
@@ -612,39 +962,58 @@ body{
 
 .instagram{
     margin-top:60px;
+
     color:#888;
+
     text-decoration:none;
+
     font-size:11px;
+
     letter-spacing:.3em;
+
+    transition:.3s;
 }
 
 .instagram:hover{
     color:#fff;
 }
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
     padding:30px;
+
     border-top:1px solid rgba(255,255,255,.08);
+
     display:flex;
     justify-content:space-between;
-    color:#444;
+
+    color:#51464a;
+
     font-size:8px;
     letter-spacing:.3em;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(90,0,15,.08),
+            transparent,
+            rgba(90,0,15,.08)
+        );
 }
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:800px){
 
     .intro-title{
         font-size:13.5vw;
         letter-spacing:-.09em;
+
         transform:scaleX(.94);
         transform-origin:center;
     }
@@ -665,11 +1034,16 @@ footer{
         font-size:12vw;
         letter-spacing:-.085em;
         padding:13px 0;
+
+        min-width:100%;
     }
 
     .model-small{
         margin-left:7vw;
         margin-right:7vw;
+
+        font-size:8px;
+        letter-spacing:.32em;
     }
 
     .stats{
@@ -698,8 +1072,11 @@ footer{
         left:20px;
         right:20px;
         bottom:22px;
+
         flex-direction:column;
+
         align-items:flex-start;
+
         gap:20px;
     }
 
@@ -735,6 +1112,12 @@ footer{
         padding:100px 7vw;
     }
 
+    .final-title{
+        font-size:18vw;
+        max-width:100%;
+        overflow:hidden;
+    }
+
     .start-content h1{
         font-size:20vw;
     }
@@ -745,17 +1128,44 @@ footer{
     }
 }
 
+/* =========================================================
+   IPHONE FIX
+========================================================= */
+
 @media(max-width:430px){
 
     .intro-title{
         font-size:12.8vw;
         letter-spacing:-.10em;
+
         transform:scaleX(.92);
     }
 
     .manifesto-line{
         font-size:10.8vw;
         letter-spacing:-.095em;
+
+        /*
+          Keeps HONDA CITY and 2003 safely inside
+          the iPhone viewport.
+        */
+        transform:translateX(0) !important;
+
+        width:100%;
+        min-width:100%;
+
+        text-align:center;
+
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .manifesto-line:nth-child(3){
+        color:#850014;
+    }
+
+    .manifesto-line:nth-child(5){
+        color:#666;
     }
 
     .hero-title{
@@ -765,6 +1175,18 @@ footer{
     .start-content h1{
         font-size:19vw;
     }
+
+    .start-content p{
+        font-size:8px;
+        letter-spacing:.30em;
+    }
+
+    .model-small{
+        text-align:center;
+        margin-left:20px;
+        margin-right:20px;
+        line-height:1.8;
+    }
 }
 
 @media(max-width:360px){
@@ -772,26 +1194,36 @@ footer{
     .intro-title{
         font-size:12.2vw;
         letter-spacing:-.105em;
+
         transform:scaleX(.90);
     }
 
     .manifesto-line{
         font-size:10.2vw;
+        letter-spacing:-.105em;
+    }
+
+    .start-content h1{
+        font-size:18vw;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
+<!-- =========================================================
      START SCREEN
-========================= -->
+========================================================= -->
 
 <div id="startScreen">
 
     <div class="start-car">
-        <img src="car15.jpeg" alt="Honda City 2003">
+        <img
+            src="car15.jpeg"
+            alt="Honda City 2003"
+        >
     </div>
 
     <div class="start-overlay"></div>
@@ -824,14 +1256,22 @@ footer{
 </div>
 
 
-<!-- =========================
+<!-- =========================================================
      INTRO
-========================= -->
+========================================================= -->
 
 <section class="intro">
 
     <div class="intro-title">
-        <span>X</span><span>A</span><span>N</span><span>N</span><span>Y</span><span>1</span><span>6</span><span>1</span><span>6</span>
+        <span>X</span>
+        <span>A</span>
+        <span>N</span>
+        <span>N</span>
+        <span>Y</span>
+        <span>1</span>
+        <span>6</span>
+        <span>1</span>
+        <span>6</span>
     </div>
 
     <div class="intro-bottom">
@@ -842,9 +1282,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      HERO
-========================= -->
+========================================================= -->
 
 <section class="hero">
 
@@ -866,15 +1306,17 @@ footer{
 </section>
 
 
-<!-- =========================
-     HONDA CITY MODEL
-========================= -->
+<!-- =========================================================
+     HONDA CITY 2003
+========================================================= -->
 
 <section class="manifesto">
 
     <span class="model-small">
-        XANNY1616 / <span class="model-number">01</span>
-        &nbsp;&nbsp; MODEL IDENTIFICATION
+        XANNY1616 /
+        <span class="model-number">01</span>
+        &nbsp;&nbsp;
+        MODEL IDENTIFICATION
     </span>
 
     <div class="manifesto-line">
@@ -896,9 +1338,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      STATS
-========================= -->
+========================================================= -->
 
 <section class="stats">
 
@@ -925,9 +1367,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      MACHINE
-========================= -->
+========================================================= -->
 
 <section class="machine" id="machine">
 
@@ -986,9 +1428,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      TECHNICAL
-========================= -->
+========================================================= -->
 
 <section class="technical">
 
@@ -1038,9 +1480,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      GALLERY
-========================= -->
+========================================================= -->
 
 <section class="gallery">
 
@@ -1119,9 +1561,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      FINAL
-========================= -->
+========================================================= -->
 
 <section class="final">
 
@@ -1145,65 +1587,104 @@ footer{
 </section>
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
     <span>XANNY1616</span>
+
     <span>HONDA CITY / 2003</span>
+
     <span>EST. 2026</span>
 
 </footer>
 
 
-<audio id="engineAudio" src="engine.mp3" loop></audio>
+<!-- =========================================================
+     ENGINE AUDIO
+========================================================= -->
+
+<audio
+    id="engineAudio"
+    src="engine.mp3"
+    loop>
+</audio>
 
 
 <script>
 
-/* =========================
+/* =========================================================
    START SCREEN
-========================= */
+========================================================= */
 
-const startScreen=document.getElementById("startScreen");
-const startMachine=document.getElementById("startMachine");
+const startScreen =
+    document.getElementById("startScreen");
+
+const startMachine =
+    document.getElementById("startMachine");
 
 startMachine.addEventListener("click",()=>{
 
     startScreen.classList.add("hide");
 
     setTimeout(()=>{
+
         startScreen.style.display="none";
+
     },1200);
 
 });
 
 
-/* =========================
+/* =========================================================
    MACHINE SCROLL
-========================= */
+========================================================= */
 
-const machine=document.getElementById("machine");
-const machineScene=document.getElementById("machineScene");
-const carFrame=document.getElementById("carFrame");
-const carImage=document.getElementById("carImage");
+const machine =
+    document.getElementById("machine");
+
+const machineScene =
+    document.getElementById("machineScene");
+
+const carFrame =
+    document.getElementById("carFrame");
+
+const carImage =
+    document.getElementById("carImage");
 
 let targetProgress=0;
 let currentProgress=0;
 
+
 function updateScroll(){
 
-    const rect=machine.getBoundingClientRect();
+    const rect =
+        machine.getBoundingClientRect();
 
-    const total=machine.offsetHeight-window.innerHeight;
+    const total =
+        machine.offsetHeight-window.innerHeight;
 
-    let progress=-rect.top/total;
+    let progress =
+        -rect.top/total;
 
-    progress=Math.max(0,Math.min(1,progress));
+    progress =
+        Math.max(
+            0,
+            Math.min(1,progress)
+        );
 
     targetProgress=progress;
 
 }
 
-window.addEventListener("scroll",updateScroll,{passive:true});
+
+window.addEventListener(
+    "scroll",
+    updateScroll,
+    {passive:true}
+);
 
 
 function easeInOut(p){
@@ -1220,85 +1701,86 @@ function render(){
     currentProgress +=
         (targetProgress-currentProgress)*.075;
 
-    const p=easeInOut(currentProgress);
+    const p =
+        easeInOut(currentProgress);
 
 
-    const sceneY=
+    const sceneY =
         160-p*160;
 
-    const sceneZ=
+    const sceneZ =
         -320+p*320;
 
-    const sceneRotateX=
+    const sceneRotateX =
         19-p*19;
 
-    const sceneRotateY=
+    const sceneRotateY =
         -15+p*15;
 
-    const sceneScale=
+    const sceneScale =
         .62+p*.38;
 
 
-    const frameX=
+    const frameX =
         -18+p*18;
 
-    const frameY=
+    const frameY =
         18-p*18;
 
-    const frameRotateZ=
+    const frameRotateZ =
         -2.2+p*2.2;
 
-    const frameRotateX=
+    const frameRotateX =
         7-p*7;
 
-    const frameScale=
+    const frameScale =
         .84+p*.16;
 
 
-    const imageX=
+    const imageX =
         -42+p*42;
 
-    const imageY=
+    const imageY =
         25-p*25;
 
-    const imageScale=
+    const imageScale =
         1.22-p*.22;
 
-    const imageRotate=
+    const imageRotate =
         -1.2+p*1.2;
 
 
-    const brightness=
+    const brightness =
         .70+p*.25;
 
-    const contrast=
+    const contrast =
         1.18-p*.08;
 
-    const saturation=
+    const saturation =
         .85+p*.18;
 
 
-    const shineX=
+    const shineX =
         -35+p*170;
 
-    const glowX=
+    const glowX =
         25+p*55;
 
-    const glowY=
+    const glowY =
         65-p*30;
 
 
-    const glowOpacity=
+    const glowOpacity =
         .10+p*.22;
 
 
-    const shadowScale=
+    const shadowScale =
         .65+p*.55;
 
-    const shadowY=
+    const shadowY =
         1.1-p*.3;
 
-    const shadowOpacity=
+    const shadowOpacity =
         .45+p*.35;
 
 
@@ -1432,78 +1914,87 @@ function render(){
 
 }
 
+
 render();
 
 
-/* =========================
+/* =========================================================
    MOUSE PARALLAX
-========================= */
+========================================================= */
 
-window.addEventListener("mousemove",(event)=>{
+window.addEventListener(
+    "mousemove",
+    (event)=>{
 
-    const x=
-        event.clientX/window.innerWidth-.5;
+        const x =
+            event.clientX/
+            window.innerWidth-.5;
 
-    const y=
-        event.clientY/window.innerHeight-.5;
-
-
-    carFrame.style.setProperty(
-        "--mouseX",
-        (x*4)+"deg"
-    );
-
-    carFrame.style.setProperty(
-        "--mouseY",
-        (-y*3)+"deg"
-    );
-
-});
+        const y =
+            event.clientY/
+            window.innerHeight-.5;
 
 
-/* =========================
+        carFrame.style.setProperty(
+            "--mouseX",
+            (x*4)+"deg"
+        );
+
+        carFrame.style.setProperty(
+            "--mouseY",
+            (-y*3)+"deg"
+        );
+
+    }
+);
+
+
+/* =========================================================
    ENGINE
-========================= */
+========================================================= */
 
-const engineBtn=
+const engineBtn =
     document.getElementById("engineBtn");
 
-const engineAudio=
+const engineAudio =
     document.getElementById("engineAudio");
 
 let engineOn=false;
 
 
-engineBtn.addEventListener("click",async()=>{
+engineBtn.addEventListener(
+    "click",
+    async()=>{
 
-    if(!engineOn){
+        if(!engineOn){
 
-        try{
-            await engineAudio.play();
-        }catch(error){}
+            try{
+                await engineAudio.play();
+            }catch(error){}
 
-        engineOn=true;
+            engineOn=true;
 
-        engineBtn.classList.add("active");
+            engineBtn.classList.add("active");
 
-    }else{
+        }else{
 
-        engineAudio.pause();
+            engineAudio.pause();
 
-        engineOn=false;
+            engineOn=false;
 
-        engineBtn.classList.remove("active");
+            engineBtn.classList.remove("active");
+
+        }
 
     }
+);
 
-});
 
+/* =========================================================
+   REV
+========================================================= */
 
-/* =========================
-   REV AUDIO
-========================= */
-
-const revBtn=
+const revBtn =
     document.getElementById("revBtn");
 
 let audioContext;
@@ -1516,32 +2007,44 @@ function revEngine(){
 
     revActive=true;
 
+
     if(!audioContext){
 
-        audioContext=
-            new(window.AudioContext||
-            window.webkitAudioContext)();
+        audioContext =
+            new(
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
 
     }
 
-    const oscillator=
+
+    if(audioContext.state==="suspended"){
+        audioContext.resume();
+    }
+
+
+    const oscillator =
         audioContext.createOscillator();
 
-    const gain=
+    const gain =
         audioContext.createGain();
 
 
     oscillator.type="sawtooth";
+
 
     oscillator.frequency.setValueAtTime(
         85,
         audioContext.currentTime
     );
 
+
     oscillator.frequency.exponentialRampToValueAtTime(
         260,
         audioContext.currentTime+.55
     );
+
 
     oscillator.frequency.exponentialRampToValueAtTime(
         110,
@@ -1554,10 +2057,12 @@ function revEngine(){
         audioContext.currentTime
     );
 
+
     gain.gain.exponentialRampToValueAtTime(
         .22,
         audioContext.currentTime+.08
     );
+
 
     gain.gain.exponentialRampToValueAtTime(
         .001,
@@ -1567,9 +2072,13 @@ function revEngine(){
 
     oscillator.connect(gain);
 
-    gain.connect(audioContext.destination);
+    gain.connect(
+        audioContext.destination
+    );
+
 
     oscillator.start();
+
 
     oscillator.stop(
         audioContext.currentTime+1.35
@@ -1585,37 +2094,40 @@ function revEngine(){
 }
 
 
-revBtn.addEventListener("click",()=>{
+revBtn.addEventListener(
+    "click",
+    revEngine
+);
 
-    revEngine();
 
-});
-
-
-/* =========================
+/* =========================================================
    KEYBOARD CONTROLS
-========================= */
+========================================================= */
 
-document.addEventListener("keydown",(event)=>{
+document.addEventListener(
+    "keydown",
+    (event)=>{
 
-    if(event.key.toLowerCase()==="e"){
+        if(
+            event.key.toLowerCase()==="e"
+        ){
+            engineBtn.click();
+        }
 
-        engineBtn.click();
+
+        if(
+            event.key.toLowerCase()==="r"
+        ){
+            revEngine();
+        }
 
     }
-
-    if(event.key.toLowerCase()==="r"){
-
-        revEngine();
-
-    }
-
-});
+);
 
 
-/* =========================
+/* =========================================================
    INITIAL SCROLL
-========================= */
+========================================================= */
 
 updateScroll();
 
