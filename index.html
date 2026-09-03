@@ -442,128 +442,6 @@ body::before{
         rotateY(var(--imageRY,0deg));
 }
 
-/* =========================================================
-   FAKE HEADLIGHTS
-========================================================= */
-
-.headlight{
-    position:absolute;
-
-    width:42px;
-    height:24px;
-
-    left:7.7%;
-    top:63.5%;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,255,255,1) 0%,
-            rgba(225,240,255,.98) 20%,
-            rgba(190,220,255,.75) 38%,
-            rgba(150,195,255,.35) 55%,
-            transparent 78%
-        );
-
-    filter:
-        blur(1px)
-        drop-shadow(0 0 7px rgba(235,245,255,1))
-        drop-shadow(0 0 18px rgba(190,220,255,.95))
-        drop-shadow(0 0 38px rgba(150,190,255,.65))
-        drop-shadow(0 0 65px rgba(120,170,255,.35));
-
-    opacity:0;
-
-    pointer-events:none;
-
-    z-index:8;
-
-    transform:
-        translate(-50%,-50%)
-        scale(.65);
-
-    transition:
-        opacity .45s ease,
-        transform .45s ease;
-}
-
-.headlight::before{
-    content:"";
-
-    position:absolute;
-
-    left:-5px;
-    top:50%;
-
-    width:330px;
-    height:70px;
-
-    transform:
-        translateY(-50%)
-        skewX(-14deg);
-
-    transform-origin:right center;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(180,215,255,.08) 30%,
-            rgba(190,220,255,.20) 65%,
-            rgba(220,235,255,.30) 100%
-        );
-
-    filter:blur(15px);
-
-    opacity:0;
-
-    transition:
-        opacity .5s ease;
-}
-
-.headlight::after{
-    content:"";
-
-    position:absolute;
-
-    inset:-12px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.45),
-            rgba(180,215,255,.18) 35%,
-            transparent 70%
-        );
-
-    filter:blur(8px);
-
-    opacity:0;
-
-    transition:
-        opacity .4s ease;
-}
-
-.headlight.active{
-    opacity:1;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-}
-
-.headlight.active::before{
-    opacity:1;
-}
-
-.headlight.active::after{
-    opacity:1;
-}
-
 /* CINEMATIC SHINE */
 
 .carWrap::after{
@@ -891,16 +769,6 @@ footer{
         flex-direction:column;
         gap:15px;
     }
-
-    .headlight{
-        width:34px;
-        height:20px;
-    }
-
-    .headlight::before{
-        width:210px;
-        height:55px;
-    }
 }
 
 </style>
@@ -1075,12 +943,6 @@ footer{
                     alt="Honda City 2003"
                 >
 
-                <!-- FAKE HEADLIGHT -->
-                <div
-                    class="headlight"
-                    id="headlight"
-                ></div>
-
             </div>
 
         </div>
@@ -1106,13 +968,6 @@ footer{
                 id="engineBtn"
             >
                 ENGINE
-            </button>
-
-            <button
-                class="control"
-                id="headlightsBtn"
-            >
-                HEADLIGHTS
             </button>
 
             <button
@@ -1631,50 +1486,6 @@ engineAudio.addEventListener(
     "ended",
     ()=>{
         setEngineState(false);
-    }
-);
-
-
-/* HEADLIGHTS */
-
-const headlightsBtn =
-    document.getElementById("headlightsBtn");
-
-const headlight =
-    document.getElementById("headlight");
-
-let headlightsOn = false;
-
-
-function setHeadlightsState(state){
-
-    headlightsOn = state;
-
-    if(headlightsOn){
-
-        headlight.classList.add("active");
-
-        headlightsBtn.classList.add("active");
-
-    }else{
-
-        headlight.classList.remove("active");
-
-        headlightsBtn.classList.remove("active");
-
-    }
-
-}
-
-
-headlightsBtn.addEventListener(
-    "click",
-    ()=>{
-
-        setHeadlightsState(
-            !headlightsOn
-        );
-
     }
 );
 
