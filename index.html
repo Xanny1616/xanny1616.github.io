@@ -4,27 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XANNY1616 — Automotive</title>
+
 <style>
+
 /* =========================
    RESET
 ========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     background: #050505;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
+
 /* =========================
    LOADER
 ========================= */
+
 .loader {
     position: fixed;
     inset: 0;
@@ -38,16 +45,18 @@ body {
         opacity 1s ease,
         visibility 1s ease;
 }
+
 .loader.hide {
     opacity: 0;
     visibility: hidden;
 }
+
 .loader-logo {
-    font-size:
-        clamp(35px, 7vw, 80px);
+    font-size: clamp(35px, 7vw, 80px);
     font-weight: 900;
     letter-spacing: 8px;
 }
+
 .loader-line {
     width: 160px;
     height: 1px;
@@ -55,21 +64,24 @@ body {
     margin-top: 25px;
     overflow: hidden;
 }
+
 .loader-progress {
     width: 0;
     height: 100%;
     background: white;
-    animation:
-        loading 2s ease forwards;
+    animation: loading 2s ease forwards;
 }
+
 @keyframes loading {
     to {
         width: 100%;
     }
 }
+
 /* =========================
    CURSOR LIGHT
 ========================= */
+
 .cursor-light {
     position: fixed;
     width: 350px;
@@ -82,25 +94,348 @@ body {
             rgba(255,255,255,.09),
             rgba(255,255,255,0) 65%
         );
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     z-index: 9998;
     mix-blend-mode: screen;
 }
+
+/* =========================
+   CINEMATIC INTRO
+========================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Background car */
+
+.intro-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.68),
+            rgba(0,0,0,.82)
+        ),
+        url("car1.jpeg");
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.18);
+
+    animation:
+        introCarMove 5.5s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
+}
+
+@keyframes introCarMove {
+
+    from {
+        transform: scale(1.18);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+
+}
+
+/* Film grain */
+
+#intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.025) 0px,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+
+    opacity: .35;
+}
+
+/* Intro content */
+
+.intro-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Logo */
+
+.intro-logo {
+    font-size:
+        clamp(
+            45px,
+            10vw,
+            120px
+        );
+
+    font-weight: 900;
+    letter-spacing: 12px;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.96);
+
+    animation:
+        introLogo 1.2s
+        cubic-bezier(.2,.7,.2,1)
+        1.1s forwards;
+}
+
+@keyframes introLogo {
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+/* Logo impact */
+
+.intro-logo.intro-impact {
+    animation:
+        introLogoImpact .65s ease-out;
+}
+
+@keyframes introLogoImpact {
+
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    35% {
+        transform: scale(1.035);
+        filter: brightness(1.35);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+}
+
+/* Subtitle */
+
+.intro-sub {
+    margin-top: 18px;
+
+    font-size: 10px;
+    letter-spacing: 6px;
+
+    color: rgba(255,255,255,.6);
+
+    opacity: 0;
+
+    animation:
+        introSub 1s ease
+        1.7s forwards;
+}
+
+@keyframes introSub {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+/* Line */
+
+.intro-line {
+    width: 0;
+    height: 1px;
+
+    background: rgba(255,255,255,.7);
+
+    margin: 28px auto;
+
+    animation:
+        introLine 1.3s
+        ease
+        1.9s forwards;
+}
+
+@keyframes introLine {
+
+    to {
+        width: 180px;
+    }
+
+}
+
+/* Title */
+
+.intro-title {
+
+    font-size:
+        clamp(
+            16px,
+            3vw,
+            28px
+        );
+
+    letter-spacing: 10px;
+    font-weight: 300;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation:
+        introTitle 1s
+        ease
+        2.3s forwards;
+}
+
+@keyframes introTitle {
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* Title impact */
+
+.intro-title.intro-impact {
+    animation:
+        introTitleImpact .7s ease-out;
+}
+
+@keyframes introTitleImpact {
+
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    30% {
+        transform: scale(1.045);
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+}
+
+/* TAP TO ENTER */
+
+.tap-enter {
+
+    margin-top: 55px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 150px;
+
+    padding:
+        12px 22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-radius: 40px;
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    animation:
+        tapEnter 1s ease
+        3s forwards;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border .3s ease,
+        transform .3s ease;
+}
+
+.tap-enter:hover {
+
+    background: white;
+    color: black;
+    border-color: white;
+
+    transform: scale(1.05);
+
+}
+
+@keyframes tapEnter {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
 /* =========================
    NAVIGATION
 ========================= */
+
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+
     padding: 25px 6%;
+
     display: flex;
-    justify-content:
-        space-between;
+    justify-content: space-between;
     align-items: center;
+
     z-index: 1000;
+
     background:
         linear-gradient(
             to bottom,
@@ -108,65 +443,87 @@ nav {
             transparent
         );
 }
+
 .logo {
     font-size: 22px;
     font-weight: 900;
     letter-spacing: 5px;
 }
+
 .nav-links {
     display: flex;
     gap: 28px;
     align-items: center;
 }
+
 .nav-links a {
     color: white;
     text-decoration: none;
+
     font-size: 11px;
     letter-spacing: 2px;
+
     text-transform: uppercase;
+
     opacity: .75;
+
     transition: .3s;
 }
+
 .nav-links a:hover {
     opacity: 1;
 }
+
 .instagram {
     border:
         1px solid
         rgba(255,255,255,.4);
+
     padding:
         10px 15px;
+
     border-radius: 30px;
 }
+
 .instagram:hover {
     background: white;
     color: black !important;
 }
+
 /* =========================
    HERO
 ========================= */
+
 .hero {
     height: 100vh;
     min-height: 650px;
+
     position: relative;
     overflow: hidden;
 }
+
 .hero-image {
     width: 100%;
     height: 110%;
+
     object-fit: cover;
+
     transform: scale(1.08);
+
     animation:
         heroZoom
         12s ease-out
         forwards;
+
     transition:
         transform .2s ease-out;
 }
+
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
+
     background:
         linear-gradient(
             to top,
@@ -178,515 +535,1068 @@ nav {
             rgba(0,0,0,.55),
             transparent 65%
         );
+
     pointer-events: none;
 }
+
 @keyframes heroZoom {
+
     from {
         transform: scale(1.15);
     }
+
     to {
         transform: scale(1.03);
     }
+
 }
+
 .hero-content {
     position: absolute;
+
     z-index: 2;
+
     left: 7%;
     bottom: 12%;
 }
+
 .hero-content p {
+
     font-size: 11px;
     letter-spacing: 6px;
+
     margin-bottom: 18px;
+
     opacity: .75;
 }
+
 .hero-content h1 {
+
     font-size:
         clamp(
             60px,
             11vw,
             160px
         );
+
     line-height: .82;
+
     letter-spacing: -7px;
+
     font-weight: 900;
 }
+
 .hero-content span {
+
     display: block;
+
     font-size:
         clamp(
             14px,
             2vw,
             23px
         );
+
     letter-spacing: 8px;
+
     margin-top: 25px;
+
     font-weight: 300;
 }
+
 .scroll-indicator {
+
     position: absolute;
+
     z-index: 3;
+
     right: 6%;
     bottom: 9%;
+
     writing-mode:
         vertical-rl;
+
     font-size: 9px;
+
     letter-spacing: 4px;
+
     opacity: .55;
 }
+
 .scroll-indicator::after {
+
     content: "";
+
     display: block;
+
     width: 1px;
     height: 70px;
+
     background: white;
+
     margin:
         15px auto 0;
+
     opacity: .5;
 }
+
 /* =========================
-   INTRO
+   ABOUT
 ========================= */
+
 .intro {
     padding:
         160px 8%;
+
     background: #050505;
 }
+
 .intro-inner {
     max-width: 1050px;
 }
+
 .small-title {
+
     font-size: 10px;
     letter-spacing: 6px;
+
     opacity: .45;
+
     margin-bottom: 28px;
 }
+
 .intro h2 {
+
     font-size:
         clamp(
             38px,
             6.5vw,
             90px
         );
+
     line-height: .95;
+
     letter-spacing: -3px;
+
     margin-bottom: 40px;
 }
+
 .intro p {
+
     max-width: 720px;
+
     font-size: 18px;
+
     line-height: 1.9;
+
     color: #999;
 }
+
 /* =========================
    SPECS
 ========================= */
+
 .specs {
+
     display: grid;
+
     grid-template-columns:
         repeat(4,1fr);
+
     border-top:
         1px solid #222;
+
     border-bottom:
         1px solid #222;
 }
+
 .spec {
+
     padding:
         65px 30px;
+
     border-right:
         1px solid #222;
 }
+
 .spec:last-child {
     border-right: none;
 }
+
 .spec h3 {
+
     font-size: 42px;
+
     margin-bottom: 12px;
 }
+
 .spec p {
+
     font-size: 9px;
+
     letter-spacing: 4px;
+
     color: #777;
+
     text-transform: uppercase;
 }
+
 /* =========================
    FEATURE
 ========================= */
+
 .feature {
+
     min-height: 100vh;
+
     display: grid;
+
     grid-template-columns:
         1fr 1fr;
+
     align-items: center;
+
     gap: 70px;
+
     padding:
         120px 7%;
 }
+
 .feature-image-wrap {
+
     overflow: hidden;
+
     height: 680px;
 }
+
 .feature-image {
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     transition:
         transform 1.5s
         cubic-bezier(.2,.7,.2,1);
 }
+
 .feature-image-wrap:hover
 .feature-image {
+
     transform: scale(1.08);
 }
+
 .feature-text h2 {
+
     font-size:
         clamp(
             45px,
             6.5vw,
             100px
         );
+
     line-height: .88;
+
     letter-spacing: -5px;
+
     margin-bottom: 35px;
 }
+
 .feature-text p {
+
     color: #999;
+
     line-height: 1.9;
+
     max-width: 500px;
 }
+
 /* =========================
    GALLERY
 ========================= */
+
 .gallery {
+
     padding:
         120px 6%;
 }
+
 .gallery-title {
+
     font-size:
         clamp(
             50px,
             8vw,
             110px
         );
+
     margin-bottom: 80px;
+
     letter-spacing: -5px;
 }
+
 .gallery-grid {
+
     display: grid;
+
     grid-template-columns:
         repeat(2,1fr);
+
     gap: 22px;
 }
+
 .gallery-item {
+
     height: 520px;
+
     overflow: hidden;
+
     background: #111;
+
     position: relative;
 }
+
 .gallery-item:nth-child(2),
 .gallery-item:nth-child(5),
 .gallery-item:nth-child(8),
 .gallery-item:nth-child(11),
 .gallery-item:nth-child(14) {
+
     margin-top: 120px;
 }
+
 .gallery-item::after {
+
     content: "";
+
     position: absolute;
+
     inset: 0;
+
     background:
         linear-gradient(
             to top,
             rgba(0,0,0,.35),
             transparent 50%
         );
+
     pointer-events: none;
 }
+
 .gallery-item img {
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     transition:
         transform 1.2s
         cubic-bezier(.2,.7,.2,1),
         filter 1.2s ease;
+
+    cursor: pointer;
 }
+
 .gallery-item:hover img {
+
     transform: scale(1.1);
+
     filter: brightness(1.12);
 }
+
+/* =========================
+   FULLSCREEN PHOTO VIEWER
+========================= */
+
+.photo-viewer {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.96);
+
+    z-index: 11000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+.photo-viewer.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.photo-viewer img {
+
+    max-width: 90vw;
+    max-height: 88vh;
+
+    object-fit: contain;
+
+    transform: scale(.92);
+
+    transition:
+        transform .4s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.photo-viewer.active img {
+
+    transform: scale(1);
+}
+
+.viewer-close {
+
+    position: absolute;
+
+    top: 25px;
+    right: 35px;
+
+    width: 45px;
+    height: 45px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    transition: .3s;
+}
+
+.viewer-close:hover {
+
+    background: white;
+    color: black;
+}
+
+.viewer-prev,
+.viewer-next {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,.3);
+
+    color: white;
+
+    font-size: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    transition: .3s;
+}
+
+.viewer-prev {
+    left: 30px;
+}
+
+.viewer-next {
+    right: 30px;
+}
+
+.viewer-prev:hover,
+.viewer-next:hover {
+
+    background: white;
+    color: black;
+}
+
+.viewer-counter {
+
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #888;
+}
+
 /* =========================
    FINAL
 ========================= */
+
 .final {
+
     min-height: 85vh;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
+
     text-align: center;
+
     padding: 100px 20px;
 }
+
 .final h2 {
+
     font-size:
         clamp(
             60px,
             12vw,
             180px
         );
+
     line-height: .78;
+
     letter-spacing: -8px;
 }
+
 .final p {
+
     margin-top: 40px;
+
     letter-spacing: 7px;
+
     color: #666;
+
     font-size: 10px;
 }
+
 /* =========================
    INSTAGRAM
 ========================= */
+
 .social {
+
     padding:
         100px 20px;
+
     text-align: center;
+
     border-top:
         1px solid #1c1c1c;
 }
+
 .social-title {
+
     font-size: 10px;
+
     letter-spacing: 6px;
+
     color: #666;
+
     margin-bottom: 25px;
 }
+
 .social a {
+
     color: white;
+
     text-decoration: none;
+
     font-size:
         clamp(
             32px,
             6vw,
             70px
         );
+
     font-weight: 900;
+
     letter-spacing: -3px;
+
     transition: .4s;
 }
+
 .social a:hover {
     opacity: .55;
 }
+
 /* =========================
    SCROLL REVEAL
 ========================= */
+
 .reveal {
+
     opacity: 0;
+
     transform:
         translateY(70px);
+
     transition:
         opacity 1.1s ease,
         transform 1.1s
         cubic-bezier(.2,.7,.2,1);
 }
+
 .reveal.show {
+
     opacity: 1;
+
     transform:
         translateY(0);
 }
+
 .gallery-item.reveal {
+
     transform:
         translateY(90px)
         scale(.96);
 }
+
 .gallery-item.reveal.show {
+
     transform:
         translateY(0)
         scale(1);
 }
+
 /* =========================
    MOBILE
 ========================= */
+
 @media (max-width:700px) {
+
     .cursor-light {
         display: none;
     }
+
     nav {
         padding:
             20px 5%;
     }
+
     .logo {
+
         font-size: 16px;
+
         letter-spacing: 3px;
     }
+
     .nav-links {
+
         gap: 10px;
     }
+
     .nav-links a {
+
         font-size: 8px;
+
         letter-spacing: 1px;
     }
+
     .instagram {
+
         padding:
             8px 10px;
     }
+
     .hero {
+
         min-height: 600px;
     }
+
     .hero-content {
+
         left: 6%;
+
         bottom: 11%;
     }
+
     .hero-content h1 {
+
         letter-spacing: -4px;
     }
+
     .hero-content span {
+
         letter-spacing: 5px;
     }
+
     .scroll-indicator {
+
         display: none;
     }
+
     .intro {
+
         padding:
             110px 7%;
     }
+
     .intro h2 {
+
         letter-spacing: -2px;
     }
+
     .intro p {
+
         font-size: 16px;
     }
+
     .specs {
+
         grid-template-columns:
             repeat(2,1fr);
     }
+
     .spec {
+
         padding:
             40px 20px;
+
         border-bottom:
             1px solid #222;
     }
+
     .spec:nth-child(2) {
+
         border-right: none;
     }
+
     .feature {
+
         grid-template-columns: 1fr;
+
         padding:
             90px 7%;
+
         gap: 55px;
     }
+
     .feature-image-wrap {
+
         height: 450px;
+
         order: 2;
     }
+
     .gallery {
+
         padding:
             90px 5%;
     }
+
     .gallery-title {
+
         margin-bottom: 55px;
     }
+
     .gallery-grid {
+
         grid-template-columns: 1fr;
     }
+
     .gallery-item {
+
         height: 430px;
     }
+
     .gallery-item:nth-child(2),
     .gallery-item:nth-child(5),
     .gallery-item:nth-child(8),
     .gallery-item:nth-child(11),
     .gallery-item:nth-child(14) {
+
         margin-top: 0;
     }
+
     .final h2 {
+
         letter-spacing: -5px;
     }
+
     .social {
+
         padding:
             80px 20px;
     }
+
+    /* INTRO MOBILE */
+
+    .intro-logo {
+
+        font-size:
+            clamp(
+                38px,
+                11vw,
+                70px
+            );
+
+        letter-spacing: 7px;
+    }
+
+    .intro-sub {
+
+        font-size: 8px;
+
+        letter-spacing: 4px;
+    }
+
+    .intro-title {
+
+        font-size: 13px;
+
+        letter-spacing: 6px;
+    }
+
+    .tap-enter {
+
+        margin-top: 45px;
+
+        min-width: 145px;
+
+        padding:
+            11px 18px;
+
+        font-size: 8px;
+    }
+
+    .viewer-close {
+
+        top: 18px;
+
+        right: 18px;
+    }
+
+    .viewer-prev {
+
+        left: 12px;
+    }
+
+    .viewer-next {
+
+        right: 12px;
+    }
+
+    .viewer-prev,
+    .viewer-next {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+    .photo-viewer img {
+
+        max-width: 92vw;
+        max-height: 80vh;
+    }
+
 }
+
 </style>
 </head>
+
 <body>
+
+<!-- =========================
+     CINEMATIC INTRO
+========================= -->
+
+<div id="intro">
+
+    <div class="intro-bg"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-logo">
+            XANNY1616
+        </div>
+
+        <div class="intro-sub">
+            AUTOMOTIVE / 1616
+        </div>
+
+        <div class="intro-line"></div>
+
+        <div class="intro-title">
+            DRIVE DIFFERENT
+        </div>
+
+        <div class="tap-enter" id="enterIntro">
+            TAP TO ENTER
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ENGINE SOUND
+========================= -->
+
+<audio id="introEngine" preload="auto">
+    <source src="engine.mp3" type="audio/mpeg">
+</audio>
+
 <!-- =========================
      LOADER
 ========================= -->
+
 <div class="loader" id="loader">
+
     <div class="loader-logo">
         XANNY1616
     </div>
+
     <div class="loader-line">
+
         <div class="loader-progress"></div>
+
     </div>
+
 </div>
+
 <!-- =========================
      CURSOR LIGHT
 ========================= -->
+
 <div
     class="cursor-light"
     id="cursorLight">
 </div>
+
 <!-- =========================
      NAVIGATION
 ========================= -->
+
 <nav>
+
     <div class="logo">
         XANNY1616
     </div>
+
     <div class="nav-links">
+
         <a href="#about">
             About
         </a>
+
         <a href="#gallery">
             Gallery
         </a>
+
         <a
             class="instagram"
             href="https://www.instagram.com/xanny1616/"
             target="_blank"
             rel="noopener noreferrer">
+
             @xanny1616
+
         </a>
+
     </div>
+
 </nav>
+
 <!-- =========================
      HERO
 ========================= -->
+
 <section class="hero">
+
     <img
         class="hero-image"
         id="heroImage"
         src="car1.jpeg"
         alt="XANNY1616 Car">
+
     <div class="hero-content">
+
         <p>
             AUTOMOTIVE / 1616
         </p>
+
         <h1>
             XANNY
         </h1>
+
         <span>
             DRIVE DIFFERENT
         </span>
+
     </div>
+
     <div class="scroll-indicator">
         SCROLL
     </div>
+
 </section>
+
 <!-- =========================
      ABOUT
 ========================= -->
+
 <section
     class="intro"
     id="about">
+
     <div class="intro-inner reveal">
+
         <div class="small-title">
             THE MACHINE
         </div>
+
         <h2>
             BUILT FOR THE<br>
             ROAD AHEAD.
         </h2>
+
         <p>
             XANNY1616 is more than a car.
             It is a statement of movement,
@@ -694,280 +1604,1001 @@ nav {
             Every detail tells a story.
             Every drive creates a memory.
         </p>
+
     </div>
+
 </section>
+
 <!-- =========================
      SPECS
 ========================= -->
+
 <section class="specs">
+
     <div class="spec reveal">
+
         <h3>01</h3>
+
         <p>
             Precision
         </p>
+
     </div>
+
     <div class="spec reveal">
+
         <h3>02</h3>
+
         <p>
             Performance
         </p>
+
     </div>
+
     <div class="spec reveal">
+
         <h3>03</h3>
+
         <p>
             Design
         </p>
+
     </div>
+
     <div class="spec reveal">
+
         <h3>04</h3>
+
         <p>
             Experience
         </p>
+
     </div>
+
 </section>
+
 <!-- =========================
      FEATURE
 ========================= -->
+
 <section class="feature">
+
     <div class="feature-image-wrap reveal">
+
         <img
             class="feature-image"
             src="car2.jpeg"
             alt="XANNY1616">
+
     </div>
+
     <div class="feature-text reveal">
+
         <div class="small-title">
             DETAILS MATTER
         </div>
+
         <h2>
             EVERY<br>
             ANGLE.
         </h2>
+
         <p>
             Designed to look different from
             every perspective. From the
             silhouette to the smallest details,
             this machine was made to stand out.
         </p>
+
     </div>
+
 </section>
+
 <!-- =========================
      15 PHOTO GALLERY
 ========================= -->
+
 <section
     class="gallery"
     id="gallery">
+
     <div class="gallery-title reveal">
         THE GALLERY
     </div>
+
     <div class="gallery-grid">
+
         <div class="gallery-item reveal">
             <img
                 src="car1.jpeg"
                 alt="XANNY1616 Car 1"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car2.jpeg"
                 alt="XANNY1616 Car 2"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car3.jpeg"
                 alt="XANNY1616 Car 3"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car4.jpeg"
                 alt="XANNY1616 Car 4"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car5.jpeg"
                 alt="XANNY1616 Car 5"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car6.jpeg"
                 alt="XANNY1616 Car 6"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car7.jpeg"
                 alt="XANNY1616 Car 7"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car8.jpeg"
                 alt="XANNY1616 Car 8"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car9.jpeg"
                 alt="XANNY1616 Car 9"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car10.jpeg"
                 alt="XANNY1616 Car 10"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car11.jpeg"
                 alt="XANNY1616 Car 11"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car12.jpeg"
                 alt="XANNY1616 Car 12"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car13.jpeg"
                 alt="XANNY1616 Car 13"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car14.jpeg"
                 alt="XANNY1616 Car 14"
                 loading="lazy">
         </div>
+
         <div class="gallery-item reveal">
             <img
                 src="car15.jpeg"
                 alt="XANNY1616 Car 15"
                 loading="lazy">
         </div>
+
     </div>
+
 </section>
+
 <!-- =========================
      FINAL
 ========================= -->
+
 <section class="final">
+
     <h2 class="reveal">
         DRIVE<br>
         DIFFERENT.
     </h2>
+
     <p class="reveal">
         XANNY1616 • AUTOMOTIVE
     </p>
+
 </section>
+
 <!-- =========================
      INSTAGRAM
 ========================= -->
+
 <section class="social reveal">
+
     <div class="social-title">
         FOLLOW THE JOURNEY
     </div>
+
     <a
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
         rel="noopener noreferrer">
+
         @xanny1616
+
     </a>
+
 </section>
+
+<!-- =========================
+     FULLSCREEN PHOTO VIEWER
+========================= -->
+
+<div
+    class="photo-viewer"
+    id="photoViewer">
+
+    <button
+        class="viewer-close"
+        id="viewerClose"
+        aria-label="Close">
+
+        ×
+
+    </button>
+
+    <button
+        class="viewer-prev"
+        id="viewerPrev"
+        aria-label="Previous photo">
+
+        ‹
+
+    </button>
+
+    <img
+        id="viewerImage"
+        src=""
+        alt="XANNY1616">
+
+    <button
+        class="viewer-next"
+        id="viewerNext"
+        aria-label="Next photo">
+
+        ›
+
+    </button>
+
+    <div
+        class="viewer-counter"
+        id="viewerCounter">
+
+        1 / 15
+
+    </div>
+
+</div>
+
 <!-- =========================
      JAVASCRIPT
 ========================= -->
+
 <script>
+
 /* =========================
    LOADER
 ========================= */
+
 window.addEventListener(
     "load",
     function() {
+
         setTimeout(
             function() {
+
                 document
                     .getElementById("loader")
                     .classList
                     .add("hide");
+
             },
             1800
         );
+
     }
 );
+
+
+/* =========================
+   CINEMATIC INTRO
+========================= */
+
+const intro =
+    document.getElementById("intro");
+
+const enterIntro =
+    document.getElementById("enterIntro");
+
+const introEngine =
+    document.getElementById("introEngine");
+
+let introStarted = false;
+
+let fadeInTimer;
+let fadeOutTimer;
+
+
+/* START INTRO */
+
+function startIntro() {
+
+    if (introStarted) {
+        return;
+    }
+
+    introStarted = true;
+
+
+    clearInterval(fadeInTimer);
+    clearInterval(fadeOutTimer);
+
+
+    /* Reset engine */
+
+    introEngine.pause();
+
+    introEngine.currentTime = 0;
+
+    introEngine.volume = 0;
+
+
+    /* =========================
+       ENGINE START
+       0.0s
+    ========================= */
+
+    const playPromise =
+        introEngine.play();
+
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(
+            function() {
+
+                console.log(
+                    "Audio playback was blocked."
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       ENGINE BUILD UP
+       0 → 1.6s
+    ========================= */
+
+    let volume = 0;
+
+    fadeInTimer =
+        setInterval(
+            function() {
+
+                volume += 0.025;
+
+                if (
+                    volume >= 0.80
+                ) {
+
+                    volume = 0.80;
+
+                    clearInterval(
+                        fadeInTimer
+                    );
+
+                }
+
+                introEngine.volume =
+                    volume;
+
+            },
+            50
+        );
+
+
+    /* =========================
+       LOGO IMPACT
+       1.8s
+    ========================= */
+
+    setTimeout(
+        function() {
+
+            const logo =
+                document.querySelector(
+                    ".intro-logo"
+                );
+
+            if (logo) {
+
+                logo.classList.add(
+                    "intro-impact"
+                );
+
+            }
+
+        },
+        1800
+    );
+
+
+    /* =========================
+       ENGINE PEAK
+       2.5s
+    ========================= */
+
+    setTimeout(
+        function() {
+
+            introEngine.volume =
+                0.85;
+
+        },
+        2500
+    );
+
+
+    /* =========================
+       TITLE IMPACT
+       2.8s
+    ========================= */
+
+    setTimeout(
+        function() {
+
+            const title =
+                document.querySelector(
+                    ".intro-title"
+                );
+
+            if (title) {
+
+                title.classList.add(
+                    "intro-impact"
+                );
+
+            }
+
+        },
+        2800
+    );
+
+
+    /* =========================
+       ENGINE FADE
+       3.3s → 4.2s
+    ========================= */
+
+    setTimeout(
+        function() {
+
+            let fadeVolume =
+                introEngine.volume;
+
+            fadeOutTimer =
+                setInterval(
+                    function() {
+
+                        fadeVolume -=
+                            0.035;
+
+                        if (
+                            fadeVolume <= 0
+                        ) {
+
+                            fadeVolume = 0;
+
+                            introEngine.volume =
+                                0;
+
+                            clearInterval(
+                                fadeOutTimer
+                            );
+
+                            introEngine.pause();
+
+                        }
+                        else {
+
+                            introEngine.volume =
+                                fadeVolume;
+
+                        }
+
+                    },
+                    40
+                );
+
+        },
+        3300
+    );
+
+
+    /* =========================
+       END INTRO
+       5.5s
+    ========================= */
+
+    setTimeout(
+        function() {
+
+            intro.classList.add(
+                "hidden"
+            );
+
+        },
+        5500
+    );
+
+}
+
+
+/* =========================
+   TAP TO ENTER
+========================= */
+
+enterIntro.addEventListener(
+    "click",
+    function(e) {
+
+        e.stopPropagation();
+
+        startIntro();
+
+    }
+);
+
+
+/* =========================
+   TAP INTRO BACKGROUND
+========================= */
+
+intro.addEventListener(
+    "click",
+    function(e) {
+
+        if (
+            e.target === intro ||
+            e.target.classList.contains(
+                "intro-bg"
+            )
+        ) {
+
+            startIntro();
+
+        }
+
+    }
+);
+
+
 /* =========================
    SCROLL REVEAL
 ========================= */
+
 const revealElements =
-    document.querySelectorAll(".reveal");
+    document.querySelectorAll(
+        ".reveal"
+    );
+
 const observer =
     new IntersectionObserver(
         (entries) => {
+
             entries.forEach(
                 (entry) => {
+
                     if (
                         entry.isIntersecting
                     ) {
+
                         entry.target
                             .classList
                             .add("show");
+
                     }
+
                 }
             );
+
         },
         {
             threshold: 0.15
         }
     );
+
+
 revealElements.forEach(
     (element) => {
-        observer.observe(element);
+
+        observer.observe(
+            element
+        );
+
     }
 );
+
+
 /* =========================
    CURSOR LIGHT
 ========================= */
+
 const cursorLight =
     document.getElementById(
         "cursorLight"
     );
+
 document.addEventListener(
     "mousemove",
     function(e) {
+
         cursorLight.style.left =
             e.clientX + "px";
+
         cursorLight.style.top =
             e.clientY + "px";
+
     }
 );
+
+
 /* =========================
    HERO PARALLAX
 ========================= */
+
 const heroImage =
     document.getElementById(
         "heroImage"
     );
+
 window.addEventListener(
     "scroll",
     function() {
+
         const scrollPosition =
             window.scrollY;
+
         if (
             scrollPosition <
             window.innerHeight
         ) {
+
             heroImage.style.transform =
                 "scale(1.03) translateY(" +
                 (scrollPosition * 0.12) +
                 "px)";
+
         }
+
     }
 );
+
+
+/* =========================
+   FULLSCREEN PHOTO VIEWER
+========================= */
+
+const galleryImages =
+    Array.from(
+        document.querySelectorAll(
+            ".gallery-item img"
+        )
+    );
+
+const photoViewer =
+    document.getElementById(
+        "photoViewer"
+    );
+
+const viewerImage =
+    document.getElementById(
+        "viewerImage"
+    );
+
+const viewerClose =
+    document.getElementById(
+        "viewerClose"
+    );
+
+const viewerPrev =
+    document.getElementById(
+        "viewerPrev"
+    );
+
+const viewerNext =
+    document.getElementById(
+        "viewerNext"
+    );
+
+const viewerCounter =
+    document.getElementById(
+        "viewerCounter"
+    );
+
+let currentImage = 0;
+
+
+/* OPEN VIEWER */
+
+function openViewer(index) {
+
+    currentImage = index;
+
+    updateViewer();
+
+    photoViewer.classList.add(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* UPDATE VIEWER */
+
+function updateViewer() {
+
+    const image =
+        galleryImages[currentImage];
+
+    viewerImage.src =
+        image.src;
+
+    viewerImage.alt =
+        image.alt;
+
+    viewerCounter.textContent =
+        (currentImage + 1) +
+        " / " +
+        galleryImages.length;
+
+}
+
+
+/* CLOSE VIEWER */
+
+function closeViewer() {
+
+    photoViewer.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* NEXT */
+
+function nextImage() {
+
+    currentImage =
+        (currentImage + 1) %
+        galleryImages.length;
+
+    updateViewer();
+
+}
+
+
+/* PREVIOUS */
+
+function previousImage() {
+
+    currentImage =
+        (currentImage - 1 +
+            galleryImages.length) %
+        galleryImages.length;
+
+    updateViewer();
+
+}
+
+
+/* GALLERY CLICK */
+
+galleryImages.forEach(
+    (image, index) => {
+
+        image.addEventListener(
+            "click",
+            function() {
+
+                openViewer(index);
+
+            }
+        );
+
+    }
+);
+
+
+/* BUTTONS */
+
+viewerClose.addEventListener(
+    "click",
+    closeViewer
+);
+
+viewerNext.addEventListener(
+    "click",
+    nextImage
+);
+
+viewerPrev.addEventListener(
+    "click",
+    previousImage
+);
+
+
+/* BACKGROUND CLICK */
+
+photoViewer.addEventListener(
+    "click",
+    function(e) {
+
+        if (
+            e.target === photoViewer
+        ) {
+
+            closeViewer();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   KEYBOARD CONTROLS
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            !photoViewer.classList
+                .contains("active")
+        ) {
+            return;
+        }
+
+
+        if (e.key === "Escape") {
+
+            closeViewer();
+
+        }
+
+
+        if (e.key === "ArrowRight") {
+
+            nextImage();
+
+        }
+
+
+        if (e.key === "ArrowLeft") {
+
+            previousImage();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   MOBILE SWIPE
+========================= */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+photoViewer.addEventListener(
+    "touchstart",
+    function(e) {
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+photoViewer.addEventListener(
+    "touchend",
+    function(e) {
+
+        touchEndX =
+            e.changedTouches[0].screenX;
+
+        handleSwipe();
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+function handleSwipe() {
+
+    const distance =
+        touchEndX -
+        touchStartX;
+
+
+    if (
+        Math.abs(distance) < 50
+    ) {
+        return;
+    }
+
+
+    if (distance < 0) {
+
+        nextImage();
+
+    }
+    else {
+
+        previousImage();
+
+    }
+
+}
+
 </script>
+
 </body>
 </html>
