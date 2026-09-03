@@ -24,10 +24,6 @@ body{
     overflow-x:hidden;
 }
 
-/* ==================================================
-   GLOBAL TEXTURE
-================================================== */
-
 body::before{
     content:"";
     position:fixed;
@@ -35,7 +31,6 @@ body::before{
     z-index:200;
     pointer-events:none;
     opacity:.035;
-
     background-image:
         repeating-radial-gradient(
             circle at 20% 30%,
@@ -43,6 +38,7 @@ body::before{
             transparent 1px 5px
         );
 }
+
 
 /* ==================================================
    START SCREEN
@@ -70,8 +66,6 @@ body::before{
     visibility:hidden;
     pointer-events:none;
 }
-
-/* CAR BEHIND XANNY1616 */
 
 .start-car{
     position:absolute;
@@ -107,8 +101,6 @@ body::before{
             0 45px 90px rgba(0,0,0,.95)
         );
 }
-
-/* CHERRY RED LIGHT */
 
 .start-overlay{
     position:absolute;
@@ -154,7 +146,6 @@ body::before{
 
 #startScreen::after{
     content:"";
-
     position:absolute;
     inset:0;
 
@@ -167,8 +158,6 @@ body::before{
 
     pointer-events:none;
 }
-
-/* START CONTENT */
 
 .start-content{
     position:relative;
@@ -229,8 +218,6 @@ body::before{
 
     color:#aaa;
 }
-
-/* CLASSY START BUTTON */
 
 #startMachine{
     position:relative;
@@ -309,8 +296,6 @@ body::before{
     width:70%;
 }
 
-/* ENTRY EXIT */
-
 #startScreen.hidden .start-car{
     transform:
         translate(-50%,-50%)
@@ -326,8 +311,6 @@ body::before{
 
     opacity:0;
 }
-
-/* START BOTTOM */
 
 .start-bottom{
     position:absolute;
@@ -347,6 +330,7 @@ body::before{
 
     letter-spacing:.3em;
 }
+
 
 /* ==================================================
    HEADER
@@ -408,20 +392,13 @@ header{
     color:#fff;
 }
 
-/* ==================================================
-   GLOBAL
-================================================== */
-
-section{
-    position:relative;
-}
-
 .label{
     font-size:9px;
     letter-spacing:.35em;
     text-transform:uppercase;
     color:#777;
 }
+
 
 /* ==================================================
    INTRO
@@ -445,17 +422,28 @@ section{
         #030303;
 }
 
+/* UPDATED — FITS PHONE + LAPTOP */
+
 .intro-title{
     font-size:
-        clamp(55px,15vw,220px);
+        clamp(38px,10vw,145px);
 
     font-weight:900;
 
-    letter-spacing:-.08em;
+    letter-spacing:-.075em;
 
     line-height:.8;
 
     white-space:nowrap;
+
+    width:100%;
+    max-width:100%;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    transform-origin:center;
 }
 
 .intro-title span{
@@ -465,15 +453,41 @@ section{
         letterIn 1.2s cubic-bezier(.16,1,.3,1) both;
 }
 
-.intro-title span:nth-child(1){animation-delay:.05s}
-.intro-title span:nth-child(2){animation-delay:.10s}
-.intro-title span:nth-child(3){animation-delay:.15s}
-.intro-title span:nth-child(4){animation-delay:.20s}
-.intro-title span:nth-child(5){animation-delay:.25s}
-.intro-title span:nth-child(6){animation-delay:.30s}
-.intro-title span:nth-child(7){animation-delay:.35s}
-.intro-title span:nth-child(8){animation-delay:.40s}
-.intro-title span:nth-child(9){animation-delay:.45s}
+.intro-title span:nth-child(1){
+    animation-delay:.05s;
+}
+
+.intro-title span:nth-child(2){
+    animation-delay:.10s;
+}
+
+.intro-title span:nth-child(3){
+    animation-delay:.15s;
+}
+
+.intro-title span:nth-child(4){
+    animation-delay:.20s;
+}
+
+.intro-title span:nth-child(5){
+    animation-delay:.25s;
+}
+
+.intro-title span:nth-child(6){
+    animation-delay:.30s;
+}
+
+.intro-title span:nth-child(7){
+    animation-delay:.35s;
+}
+
+.intro-title span:nth-child(8){
+    animation-delay:.40s;
+}
+
+.intro-title span:nth-child(9){
+    animation-delay:.45s;
+}
 
 @keyframes letterIn{
     from{
@@ -508,6 +522,7 @@ section{
 
     color:#444;
 }
+
 
 /* ==================================================
    HERO
@@ -561,6 +576,7 @@ section{
 
     line-height:1.9;
 }
+
 
 /* ==================================================
    MANIFESTO
@@ -619,6 +635,7 @@ section{
     color:#666;
 }
 
+
 /* ==================================================
    STATS
 ================================================== */
@@ -664,6 +681,7 @@ section{
 
     text-transform:uppercase;
 }
+
 
 /* ==================================================
    MACHINE
@@ -724,8 +742,6 @@ section{
     right:5vw;
 }
 
-/* MACHINE TITLE */
-
 .machine-title{
     position:absolute;
 
@@ -760,8 +776,6 @@ section{
     color:#850014;
 }
 
-/* MACHINE INFO */
-
 .machine-info{
     position:absolute;
 
@@ -783,8 +797,6 @@ section{
     line-height:1.8;
 }
 
-/* COUNTER */
-
 .machine-counter{
     position:absolute;
 
@@ -803,6 +815,7 @@ section{
 
     writing-mode:vertical-rl;
 }
+
 
 /* ==================================================
    CAR SCENE
@@ -860,10 +873,6 @@ section{
         );
 }
 
-/* ==================================================
-   CAR FRAME
-================================================== */
-
 .car-frame{
     position:relative;
 
@@ -904,8 +913,6 @@ section{
         0 0 110px
         rgba(120,0,18,var(--redGlow,.2));
 }
-
-/* ACTUAL PHOTO */
 
 .car-image{
     width:100%;
@@ -950,8 +957,6 @@ section{
         filter;
 }
 
-/* RED ATMOSPHERE */
-
 .car-frame::before{
     content:"";
 
@@ -981,8 +986,6 @@ section{
 
     mix-blend-mode:screen;
 }
-
-/* LIGHT SWEEP */
 
 .car-frame::after{
     content:"";
@@ -1015,8 +1018,6 @@ section{
     filter:blur(8px);
 }
 
-/* SHADOW */
-
 .car-shadow{
     position:absolute;
 
@@ -1040,6 +1041,7 @@ section{
 
     z-index:-1;
 }
+
 
 /* ==================================================
    CONTROLS
@@ -1092,6 +1094,7 @@ section{
     border-color:#850014;
     color:#fff;
 }
+
 
 /* ==================================================
    TECHNICAL
@@ -1158,6 +1161,7 @@ section{
 
     line-height:1.9;
 }
+
 
 /* ==================================================
    GALLERY
@@ -1232,6 +1236,7 @@ section{
     filter:brightness(.8);
 }
 
+
 /* ==================================================
    FINAL STATEMENT
 ================================================== */
@@ -1282,6 +1287,7 @@ section{
 
     letter-spacing:.25em;
 }
+
 
 /* ==================================================
    SOCIAL
@@ -1335,6 +1341,7 @@ section{
     color:#fff;
 }
 
+
 /* ==================================================
    FOOTER
 ================================================== */
@@ -1355,6 +1362,7 @@ footer{
     text-transform:uppercase;
 }
 
+
 /* ==================================================
    MOBILE
 ================================================== */
@@ -1369,9 +1377,19 @@ footer{
         display:none;
     }
 
+
+    /* FIXED INTRO SIZE */
+
     .intro-title{
-        font-size:19vw;
+        font-size:13.5vw;
+
+        letter-spacing:-.09em;
+
+        transform:scaleX(.94);
+
+        transform-origin:center;
     }
+
 
     .stats{
         grid-template-columns:
@@ -1430,7 +1448,8 @@ footer{
         gap:15px;
     }
 
-    /* START SCREEN MOBILE */
+
+    /* START SCREEN */
 
     .start-car{
         width:125vw;
@@ -1453,10 +1472,50 @@ footer{
     }
 }
 
+
+/* ==================================================
+   VERY SMALL PHONES
+================================================== */
+
+@media(max-width:430px){
+
+    .intro-title{
+        font-size:12.8vw;
+
+        letter-spacing:-.10em;
+
+        transform:scaleX(.92);
+    }
+
+}
+
+
+/* ==================================================
+   EXTRA SMALL PHONES
+================================================== */
+
+@media(max-width:360px){
+
+    .intro-title{
+        font-size:12.2vw;
+
+        letter-spacing:-.105em;
+
+        transform:scaleX(.90);
+    }
+
+}
+
+
+/* ==================================================
+   JAVASCRIPT
+================================================== */
+
 </style>
 </head>
 
 <body>
+
 
 <!-- ==================================================
      START MACHINE SCREEN
@@ -1465,13 +1524,17 @@ footer{
 <div id="startScreen">
 
     <div class="start-car">
+
         <img
             src="car15.jpeg"
             alt="XANNY1616 car"
         >
+
     </div>
 
+
     <div class="start-overlay"></div>
+
 
     <div class="start-content">
 
@@ -1479,14 +1542,16 @@ footer{
             XANNY1616 / AUTOMOTIVE
         </div>
 
-        <!-- EXACT XANNY1616 -->
+
         <h1>
             XANNY<span>1616</span>
         </h1>
 
+
         <p>
             ENTER THE MACHINE
         </p>
+
 
         <button id="startMachine">
             START MACHINE
@@ -1494,9 +1559,17 @@ footer{
 
     </div>
 
+
     <div class="start-bottom">
-        <span>EST. 2026</span>
-        <span>01 / 01</span>
+
+        <span>
+            EST. 2026
+        </span>
+
+        <span>
+            01 / 01
+        </span>
+
     </div>
 
 </div>
@@ -1511,6 +1584,7 @@ footer{
     <div class="logo">
         XANNY<span>1616</span>
     </div>
+
 
     <nav class="nav">
 
@@ -1551,6 +1625,7 @@ footer{
 
     </div>
 
+
     <div class="intro-bottom">
 
         <span>
@@ -1576,6 +1651,7 @@ footer{
         THE MACHINE / THE EXPERIENCE
     </div>
 
+
     <h1 class="hero-title">
 
         BUILT<br>
@@ -1590,6 +1666,7 @@ footer{
         </span>
 
     </h1>
+
 
     <p class="hero-sub">
 
@@ -1646,6 +1723,7 @@ footer{
 
     </div>
 
+
     <div class="stat">
 
         <div class="stat-number">
@@ -1658,6 +1736,7 @@ footer{
 
     </div>
 
+
     <div class="stat">
 
         <div class="stat-number">
@@ -1669,6 +1748,7 @@ footer{
         </div>
 
     </div>
+
 
     <div class="stat">
 
@@ -1696,6 +1776,7 @@ footer{
 
     <div class="machine-sticky">
 
+
         <div class="machine-title">
 
             <div class="small">
@@ -1718,9 +1799,11 @@ footer{
         <div class="machine-info">
 
             <p>
+
                 Precision in darkness.
                 Every angle designed to move
                 with the camera.
+
             </p>
 
         </div>
@@ -1766,6 +1849,7 @@ footer{
                 ENGINE
             </button>
 
+
             <button
                 class="control"
                 id="revBtn"
@@ -1775,10 +1859,6 @@ footer{
 
         </div>
 
-
-        <div class="machine-scroll">
-            SCROLL TO TRANSFORM
-        </div>
 
     </div>
 
@@ -1792,6 +1872,7 @@ footer{
 <section class="technical">
 
     <div class="tech-grid">
+
 
         <div class="tech-image">
 
@@ -1809,6 +1890,7 @@ footer{
                 ENGINEERED / NOT DECORATED
             </div>
 
+
             <h2 class="tech-title">
 
                 FORM<br>
@@ -1818,6 +1900,7 @@ footer{
                 FORCE.
 
             </h2>
+
 
             <p class="tech-copy">
 
@@ -1861,6 +1944,7 @@ footer{
             </h2>
 
         </div>
+
 
         <div class="label">
             001 — 015
@@ -1946,6 +2030,7 @@ footer{
         XANNY1616 / FINAL STATEMENT
     </div>
 
+
     <h2>
 
         NOT JUST<br>
@@ -1956,6 +2041,7 @@ footer{
         A PRESENCE.
 
     </h2>
+
 
     <p>
         DESIGNED IN BLACK / DEFINED IN CHERRY
@@ -2016,7 +2102,7 @@ footer{
 </footer>
 
 
-<!-- ENGINE AUDIO -->
+<!-- ENGINE -->
 
 <audio
     id="engineAudio"
@@ -2038,12 +2124,8 @@ const startMachine =
     document.getElementById("startMachine");
 
 
-/*
-   The page cannot scroll until
-   START MACHINE is pressed.
-*/
-
-document.body.style.overflowY = "hidden";
+document.body.style.overflowY =
+    "hidden";
 
 
 startMachine.addEventListener(
@@ -2053,6 +2135,7 @@ startMachine.addEventListener(
         startScreen.classList.add(
             "hidden"
         );
+
 
         setTimeout(
             ()=>{
@@ -2069,7 +2152,7 @@ startMachine.addEventListener(
 
 
 /* ==================================================
-   CAR ELEMENTS
+   CAR
 ================================================== */
 
 const machine =
@@ -2084,6 +2167,11 @@ const carFrame =
 const carImage =
     document.getElementById("carImage");
 
+
+/* ==================================================
+   CONTROLS
+================================================== */
+
 const engineBtn =
     document.getElementById("engineBtn");
 
@@ -2095,7 +2183,7 @@ const engineAudio =
 
 
 /* ==================================================
-   SCROLL PROGRESS
+   SCROLL
 ================================================== */
 
 let targetProgress = 0;
@@ -2108,12 +2196,15 @@ function updateScroll(){
     const rect =
         machine.getBoundingClientRect();
 
+
     const total =
         machine.offsetHeight -
         window.innerHeight;
 
+
     let progress =
         -rect.top / total;
+
 
     progress =
         Math.max(
@@ -2123,6 +2214,7 @@ function updateScroll(){
                 progress
             )
         );
+
 
     targetProgress =
         progress;
@@ -2135,10 +2227,12 @@ window.addEventListener(
     {passive:true}
 );
 
+
 window.addEventListener(
     "resize",
     updateScroll
 );
+
 
 updateScroll();
 
@@ -2162,7 +2256,7 @@ function easeInOut(p){
 
 
 /* ==================================================
-   CINEMATIC CAR TRANSFORMATION
+   CINEMATIC CAR MOTION
 ================================================== */
 
 function render(){
@@ -2180,7 +2274,7 @@ function render(){
         );
 
 
-    /* MAIN CAMERA */
+    /* CAMERA */
 
     const sceneY =
         160 -
@@ -2226,7 +2320,7 @@ function render(){
         p * .16;
 
 
-    /* PHOTO ITSELF */
+    /* PHOTO */
 
     const imageX =
         -42 +
@@ -2260,12 +2354,11 @@ function render(){
         p * .18;
 
 
-    /* RED LIGHT SWEEP */
+    /* RED LIGHT */
 
     const shineX =
         -35 +
         p * 170;
-
 
     const glowX =
         25 +
@@ -2295,8 +2388,6 @@ function render(){
         p * .35;
 
 
-    /* APPLY CAMERA */
-
     carFloat.style.setProperty(
         "--sceneY",
         sceneY+"px"
@@ -2322,8 +2413,6 @@ function render(){
         sceneScale
     );
 
-
-    /* APPLY FRAME */
 
     carFrame.style.setProperty(
         "--frameX",
@@ -2351,8 +2440,6 @@ function render(){
     );
 
 
-    /* APPLY PHOTO */
-
     carImage.style.setProperty(
         "--imageX",
         imageX+"px"
@@ -2374,8 +2461,6 @@ function render(){
     );
 
 
-    /* PHOTO LIGHTING */
-
     carImage.style.setProperty(
         "--imageBrightness",
         brightness
@@ -2391,8 +2476,6 @@ function render(){
         saturation
     );
 
-
-    /* RED ATMOSPHERE */
 
     carFrame.style.setProperty(
         "--shineX",
@@ -2414,8 +2497,6 @@ function render(){
         glowOpacity
     );
 
-
-    /* SHADOW */
 
     const shadow =
         carFrame.querySelector(
@@ -2444,6 +2525,7 @@ function render(){
     );
 }
 
+
 render();
 
 
@@ -2460,6 +2542,7 @@ window.addEventListener(
             window.innerWidth -
             .5;
 
+
         const y =
             event.clientY /
             window.innerHeight -
@@ -2470,6 +2553,7 @@ window.addEventListener(
             "--mouseX",
             (x*4)+"deg"
         );
+
 
         carFloat.style.setProperty(
             "--mouseY",
@@ -2494,7 +2578,9 @@ engineBtn.addEventListener(
         if(!engineOn){
 
             try{
+
                 await engineAudio.play();
+
             }catch(error){}
 
 
@@ -2547,6 +2633,7 @@ function createRev(){
     oscillator =
         audioContext.createOscillator();
 
+
     gainNode =
         audioContext.createGain();
 
@@ -2554,8 +2641,10 @@ function createRev(){
     oscillator.type =
         "sawtooth";
 
+
     oscillator.frequency.value =
         90;
+
 
     gainNode.gain.value =
         0;
@@ -2564,6 +2653,7 @@ function createRev(){
     oscillator.connect(
         gainNode
     );
+
 
     gainNode.connect(
         audioContext.destination
@@ -2652,6 +2742,12 @@ function revEngine(){
         );
 
 }
+
+
+revBtn.addEventListener(
+    "click",
+    revEngine
+);
 
 
 /* ==================================================
