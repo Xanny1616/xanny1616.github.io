@@ -7,7 +7,6 @@
 <title>XANNY1616 — Automotive</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 *{
     margin:0;
@@ -16,68 +15,326 @@
 }
 
 html{
+    background:#030303;
     scroll-behavior:smooth;
-    background:#050505;
 }
 
 body{
-    background:#050505;
-    color:#f4f4f4;
-    font-family:Inter,Arial,sans-serif;
+    background:#030303;
+    color:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
     overflow-x:hidden;
 }
 
-/* =========================
-   GLOBAL CHERRY TEXTURE
-========================= */
+/* ==================================================
+   GLOBAL TEXTURE
+================================================== */
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:100;
-    opacity:.045;
+    z-index:200;
+
+    opacity:.035;
 
     background-image:
         repeating-radial-gradient(
             circle at 20% 30%,
-            #ffffff 0 1px,
-            transparent 1px 4px
+            #fff 0 1px,
+            transparent 1px 5px
         );
-
-    mix-blend-mode:screen;
 }
 
-body::after{
-    content:"";
+
+/* ==================================================
+   START MACHINE SCREEN
+================================================== */
+
+#startScreen{
     position:fixed;
     inset:0;
-    pointer-events:none;
-    z-index:-1;
 
-    background:
-        radial-gradient(
-            circle at 80% 15%,
-            rgba(110,0,15,.22),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 15% 75%,
-            rgba(85,0,12,.18),
-            transparent 32%
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:#030303;
+
+    transition:
+        opacity 1s cubic-bezier(.16,1,.3,1),
+        visibility 1s;
+}
+
+#startScreen.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+/* CAR BEHIND TITLE */
+
+.start-car{
+    position:absolute;
+
+    width:min(850px,75vw);
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-48%)
+        scale(.92);
+
+    opacity:.30;
+
+    filter:
+        brightness(.45)
+        contrast(1.18)
+        saturate(.82);
+
+    transition:
+        transform 1.6s cubic-bezier(.16,1,.3,1),
+        opacity 1s;
+}
+
+.start-car img{
+    width:100%;
+    display:block;
+
+    filter:
+        drop-shadow(
+            0 40px 90px rgba(0,0,0,.95)
         );
 }
 
-/* =========================
+
+/* CHERRY RED ATMOSPHERE */
+
+.start-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 55%,
+            rgba(130,0,20,.43),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(95,0,15,.30),
+            transparent 48%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.90),
+            rgba(0,0,0,.28),
+            rgba(0,0,0,.90)
+        );
+
+    pointer-events:none;
+}
+
+
+#startScreen::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.78),
+            transparent 32%,
+            transparent 68%,
+            rgba(0,0,0,.9)
+        );
+
+    pointer-events:none;
+}
+
+
+/* START CONTENT */
+
+.start-content{
+    position:relative;
+    z-index:10;
+
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    transition:
+        transform .8s cubic-bezier(.16,1,.3,1),
+        opacity .7s;
+}
+
+.start-label{
+    margin-bottom:25px;
+
+    font-size:9px;
+    letter-spacing:.45em;
+
+    color:#777;
+}
+
+.start-content h1{
+    font-size:clamp(65px,14vw,190px);
+
+    font-weight:900;
+
+    line-height:.8;
+
+    letter-spacing:-.085em;
+
+    color:#f5f5f5;
+
+    text-shadow:
+        0 20px 70px rgba(0,0,0,.85);
+}
+
+.start-content h1 span{
+    color:#8d0018;
+}
+
+.start-content p{
+    margin-top:38px;
+
+    font-size:8px;
+
+    letter-spacing:.45em;
+
+    color:#777;
+}
+
+
+/* START BUTTON */
+
+#startMachine{
+    margin-top:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:45px;
+
+    min-width:230px;
+
+    padding:17px 20px;
+
+    border:1px solid rgba(255,255,255,.23);
+
+    background:rgba(0,0,0,.38);
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:9px;
+
+    letter-spacing:.3em;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(14px);
+
+    transition:
+        background .35s,
+        border-color .35s,
+        transform .35s;
+}
+
+#startMachine i{
+    font-style:normal;
+
+    font-size:15px;
+
+    color:#a0001b;
+
+    transition:transform .35s;
+}
+
+#startMachine:hover{
+    background:#850014;
+
+    border-color:#850014;
+
+    transform:translateY(-3px);
+}
+
+#startMachine:hover i{
+    color:#fff;
+
+    transform:translate(4px,-4px);
+}
+
+
+/* START BOTTOM */
+
+.start-bottom{
+    position:absolute;
+
+    bottom:30px;
+
+    left:5vw;
+    right:5vw;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#444;
+
+    font-size:8px;
+
+    letter-spacing:.3em;
+}
+
+
+/* ENTRY EXIT */
+
+#startScreen.hidden .start-car{
+    transform:
+        translate(-50%,-48%)
+        scale(1.15);
+
+    opacity:0;
+}
+
+#startScreen.hidden .start-content{
+    transform:
+        translateY(-30px)
+        scale(.98);
+
+    opacity:0;
+}
+
+
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 header{
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
+
     z-index:50;
 
     padding:28px 5vw;
@@ -86,20 +343,23 @@ header{
     justify-content:space-between;
     align-items:center;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.07);
 
-    backdrop-filter:blur(16px);
-    background:rgba(5,5,5,.55);
+    background:rgba(3,3,3,.55);
+
+    backdrop-filter:blur(18px);
 }
 
 .logo{
     font-size:14px;
+
     font-weight:800;
+
     letter-spacing:.35em;
 }
 
 .logo span{
-    color:#8d0015;
+    color:#8d0018;
 }
 
 .nav{
@@ -108,11 +368,16 @@ header{
 }
 
 .nav a{
-    color:#aaa;
+    color:#777;
+
     text-decoration:none;
-    font-size:10px;
-    letter-spacing:.22em;
+
+    font-size:9px;
+
+    letter-spacing:.25em;
+
     text-transform:uppercase;
+
     transition:.3s;
 }
 
@@ -120,58 +385,66 @@ header{
     color:#fff;
 }
 
-/* =========================
-   GENERAL
-========================= */
+
+/* ==================================================
+   GLOBAL
+================================================== */
 
 section{
     position:relative;
 }
 
 .label{
-    font-size:10px;
+    font-size:9px;
+
     letter-spacing:.35em;
+
     text-transform:uppercase;
+
     color:#777;
 }
 
-.line{
-    height:1px;
-    width:100%;
-    background:rgba(255,255,255,.12);
-}
 
-/* =========================
+/* ==================================================
    INTRO
-========================= */
+================================================== */
 
 .intro{
     height:100vh;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
 
     background:
         radial-gradient(
             circle at 50% 45%,
-            rgba(90,0,12,.22),
+            rgba(110,0,18,.20),
             transparent 35%
         ),
-        #050505;
+        #030303;
 }
 
 .intro-title{
     font-size:clamp(55px,15vw,220px);
+
     font-weight:900;
+
     letter-spacing:-.08em;
+
     line-height:.8;
+
     white-space:nowrap;
 }
 
 .intro-title span{
     display:inline-block;
-    animation:letterIn 1.2s cubic-bezier(.16,1,.3,1) both;
+
+    animation:
+        letterIn 1.2s cubic-bezier(.16,1,.3,1) both;
 }
 
 .intro-title span:nth-child(1){animation-delay:.05s}
@@ -182,50 +455,67 @@ section{
 .intro-title span:nth-child(6){animation-delay:.30s}
 .intro-title span:nth-child(7){animation-delay:.35s}
 .intro-title span:nth-child(8){animation-delay:.40s}
+.intro-title span:nth-child(9){animation-delay:.45s}
 
 @keyframes letterIn{
+
     from{
         opacity:0;
-        transform:translateY(100px) rotate(8deg);
+
+        transform:
+            translateY(100px)
+            rotate(8deg);
     }
+
     to{
         opacity:1;
-        transform:translateY(0) rotate(0);
+
+        transform:
+            translateY(0)
+            rotate(0);
     }
 }
 
 .intro-bottom{
     position:absolute;
+
     bottom:35px;
+
     left:5vw;
     right:5vw;
 
     display:flex;
     justify-content:space-between;
 
-    font-size:9px;
+    font-size:8px;
+
     letter-spacing:.25em;
-    color:#555;
+
+    color:#444;
 }
 
-/* =========================
+
+/* ==================================================
    HERO
-========================= */
+================================================== */
 
 .hero{
     min-height:100vh;
+
     padding:150px 5vw 80px;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
 
     background:
         linear-gradient(
-            120deg,
-            #050505 0%,
-            #090607 55%,
-            #160308 100%
+            125deg,
+            #030303,
+            #090304,
+            #150307
         );
 }
 
@@ -235,50 +525,63 @@ section{
 
 .hero-title{
     font-size:clamp(60px,12vw,180px);
+
     font-weight:800;
+
     line-height:.82;
+
     letter-spacing:-.075em;
-    max-width:1100px;
 }
 
 .hero-title .red{
-    color:#850014;
+    color:#8d0018;
 }
 
 .hero-sub{
     margin-top:55px;
+
     max-width:430px;
-    color:#888;
-    font-size:13px;
-    line-height:1.8;
+
+    color:#777;
+
+    font-size:12px;
+
+    line-height:1.9;
 }
 
-/* =========================
+
+/* ==================================================
    MANIFESTO
-========================= */
+================================================== */
 
 .manifesto{
     padding:160px 0;
+
     overflow:hidden;
 
     background:
         radial-gradient(
             ellipse at 50% 50%,
-            rgba(110,0,15,.15),
+            rgba(115,0,18,.15),
             transparent 45%
         ),
-        #050505;
+        #030303;
 }
 
 .manifesto-line{
     white-space:nowrap;
+
     font-size:clamp(55px,11vw,160px);
+
     font-weight:800;
+
     letter-spacing:-.07em;
+
     line-height:.85;
 
-    border-top:1px solid rgba(255,255,255,.09);
-    border-bottom:1px solid rgba(255,255,255,.09);
+    border-top:1px solid rgba(255,255,255,.08);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
 
     padding:18px 0;
 }
@@ -289,7 +592,8 @@ section{
 
 .manifesto-line:nth-child(2){
     transform:translateX(7%);
-    color:#820015;
+
+    color:#850014;
 }
 
 .manifesto-line:nth-child(3){
@@ -298,87 +602,105 @@ section{
 
 .manifesto-line:nth-child(4){
     transform:translateX(10%);
+
     color:#666;
 }
 
-/* =========================
+
+/* ==================================================
    STATS
-========================= */
+================================================== */
 
 .stats{
     padding:100px 5vw;
 
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:20px;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid rgba(255,255,255,.08);
 }
 
 .stat{
     padding:25px 0;
-    border-top:1px solid rgba(255,255,255,.12);
+
+    border-top:
+        1px solid rgba(255,255,255,.12);
 }
 
 .stat-number{
     font-size:clamp(40px,6vw,90px);
+
     font-weight:700;
+
     letter-spacing:-.06em;
 }
 
 .stat-text{
     margin-top:12px;
+
     color:#666;
-    font-size:9px;
+
+    font-size:8px;
+
     letter-spacing:.2em;
+
     text-transform:uppercase;
 }
 
+
 /* ==================================================
-   MACHINE SECTION
-   THIS IS THE IMPORTANT PART
+   MACHINE
 ================================================== */
 
 .machine{
     height:220vh;
+
     position:relative;
 
     background:
         radial-gradient(
             ellipse at 50% 45%,
-            rgba(100,0,15,.28),
+            rgba(115,0,18,.28),
             transparent 38%
         ),
-        #030303;
+        #020202;
 }
-
-/*
-   Sticky viewport.
-   Text stays locked while car transforms.
-*/
 
 .machine-sticky{
     position:sticky;
+
     top:0;
 
     height:100vh;
+
     overflow:hidden;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 }
-
-/* Decorative vertical lines */
 
 .machine-sticky::before,
 .machine-sticky::after{
     content:"";
+
     position:absolute;
+
     top:0;
     bottom:0;
+
     width:1px;
-    background:rgba(255,255,255,.07);
+
+    background:
+        rgba(255,255,255,.06);
+
     z-index:1;
 }
 
@@ -390,13 +712,14 @@ section{
     right:5vw;
 }
 
-/* =========================
-   MACHINE TEXT
-========================= */
+
+/* MACHINE TITLE */
 
 .machine-title{
     position:absolute;
+
     top:11vh;
+
     left:5vw;
 
     z-index:10;
@@ -406,7 +729,9 @@ section{
 
 .machine-title .small{
     font-size:9px;
+
     letter-spacing:.35em;
+
     color:#777;
 }
 
@@ -414,8 +739,11 @@ section{
     margin-top:12px;
 
     font-size:clamp(55px,9vw,135px);
+
     line-height:.82;
+
     letter-spacing:-.07em;
+
     font-weight:800;
 }
 
@@ -423,14 +751,18 @@ section{
     color:#850014;
 }
 
-/* Right information */
+
+/* MACHINE INFO */
 
 .machine-info{
     position:absolute;
+
     right:5vw;
+
     bottom:11vh;
 
     width:220px;
+
     z-index:10;
 
     pointer-events:none;
@@ -438,32 +770,56 @@ section{
 
 .machine-info p{
     color:#777;
+
     font-size:10px;
-    line-height:1.7;
+
+    line-height:1.8;
 }
 
-/* =========================
+
+/* MACHINE COUNTER */
+
+.machine-counter{
+    position:absolute;
+
+    top:50%;
+    left:5vw;
+
+    transform:translateY(-50%);
+
+    z-index:10;
+
+    font-size:8px;
+
+    letter-spacing:.3em;
+
+    color:#444;
+
+    writing-mode:vertical-rl;
+}
+
+
+/* ==================================================
    CAR SCENE
-========================= */
+================================================== */
 
 .car-scene{
     position:absolute;
 
     width:min(1100px,82vw);
+
     height:600px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     perspective:1600px;
 
     z-index:5;
 }
-
-/*
-  Main 3D movement.
-*/
 
 .car-float{
     position:relative;
@@ -475,69 +831,83 @@ section{
     transform:
         translate3d(
             var(--sceneX,0px),
-            var(--sceneY,150px),
-            var(--sceneZ,-300px)
+            var(--sceneY,160px),
+            var(--sceneZ,-320px)
         )
+
         rotateX(
             calc(
-                var(--sceneRotateX,20deg)
-                + var(--mouseY,0deg)
+                var(--sceneRotateX,19deg)
+                +
+                var(--mouseY,0deg)
             )
         )
+
         rotateY(
             calc(
-                var(--sceneRotateY,-16deg)
-                + var(--mouseX,0deg)
+                var(--sceneRotateY,-15deg)
+                +
+                var(--mouseX,0deg)
             )
         )
-        scale(var(--sceneScale,.62));
 
-    transition:filter .2s linear;
+        scale(
+            var(--sceneScale,.62)
+        );
 }
 
-/*
-  SECOND layer.
-  This makes the actual photograph transform.
-*/
+
+/* ==================================================
+   CAR FRAME
+================================================== */
 
 .car-frame{
     position:relative;
 
     width:100%;
+
     aspect-ratio:16/9;
 
     overflow:hidden;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     transform-style:preserve-3d;
 
     transform:
         translate3d(
-            var(--frameX,0px),
-            var(--frameY,0px),
+            var(--frameX,-18px),
+            var(--frameY,18px),
             0
         )
-        rotateZ(var(--frameRotateZ,-2deg))
-        rotateX(var(--frameRotateX,8deg))
-        scale(var(--frameScale,.86));
 
-    box-shadow:
-        0 50px 120px rgba(0,0,0,.8),
-        0 0 100px rgba(110,0,15,var(--redGlow,.18));
+        rotateZ(
+            var(--frameRotateZ,-2.2deg)
+        )
+
+        rotateX(
+            var(--frameRotateX,7deg)
+        )
+
+        scale(
+            var(--frameScale,.84)
+        );
 
     background:#080808;
+
+    box-shadow:
+        0 50px 120px rgba(0,0,0,.85),
+        0 0 110px
+        rgba(120,0,18,var(--redGlow,.2));
 }
 
-/*
-  Actual photo.
 
-  This is what creates the "photo itself is moving"
-  feeling instead of simply sliding the whole car.
-*/
+/* ACTUAL PHOTO */
 
 .car-image{
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -546,45 +916,74 @@ section{
 
     transform:
         translate3d(
-            var(--imageX,-35px),
-            var(--imageY,20px),
+            var(--imageX,-42px),
+            var(--imageY,25px),
             0
         )
-        scale(var(--imageScale,1.18))
-        rotateZ(var(--imageRotate,-1deg));
+
+        scale(
+            var(--imageScale,1.22)
+        )
+
+        rotateZ(
+            var(--imageRotate,-1.2deg)
+        );
 
     transform-origin:center center;
 
     filter:
-        brightness(var(--imageBrightness,.78))
-        contrast(var(--imageContrast,1.12))
-        saturate(var(--imageSaturation,.92));
+        brightness(
+            var(--imageBrightness,.70)
+        )
 
-    will-change:transform,filter;
+        contrast(
+            var(--imageContrast,1.18)
+        )
+
+        saturate(
+            var(--imageSaturation,.85)
+        );
+
+    will-change:
+        transform,
+        filter;
 }
 
-/* Cinematic red atmosphere */
+
+/* RED ATMOSPHERE */
 
 .car-frame::before{
     content:"";
 
     position:absolute;
+
     inset:-20%;
 
     z-index:2;
+
     pointer-events:none;
 
     background:
         radial-gradient(
-            ellipse at var(--glowX,50%) var(--glowY,50%),
-            rgba(130,0,18,var(--glowOpacity,.22)),
+            ellipse at
+            var(--glowX,25%)
+            var(--glowY,65%),
+
+            rgba(
+                135,
+                0,
+                20,
+                var(--glowOpacity,.20)
+            ),
+
             transparent 42%
         );
 
     mix-blend-mode:screen;
 }
 
-/* Moving light sweep */
+
+/* LIGHT SWEEP */
 
 .car-frame::after{
     content:"";
@@ -596,9 +995,11 @@ section{
 
     width:22%;
 
-    left:var(--shineX,-30%);
+    left:
+        var(--shineX,-35%);
 
     z-index:4;
+
     pointer-events:none;
 
     background:
@@ -606,7 +1007,7 @@ section{
             90deg,
             transparent,
             rgba(255,255,255,.08),
-            rgba(130,0,18,.16),
+            rgba(140,0,20,.16),
             transparent
         );
 
@@ -615,79 +1016,51 @@ section{
     filter:blur(8px);
 }
 
-/* =========================
+
+/* ==================================================
    SHADOW
-========================= */
+================================================== */
 
 .car-shadow{
     position:absolute;
 
     left:50%;
+
     bottom:-55px;
 
     width:70%;
+
     height:50px;
 
     transform:
         translateX(-50%)
-        scaleX(var(--shadowScale,1))
-        scaleY(var(--shadowY,.8));
+        scaleX(var(--shadowScale,.65))
+        scaleY(var(--shadowY,1));
 
     background:#000;
 
     filter:blur(25px);
 
-    opacity:var(--shadowOpacity,.7);
+    opacity:
+        var(--shadowOpacity,.65);
 
     z-index:-1;
 }
 
-/* =========================
-   MACHINE LABELS
-========================= */
 
-.machine-counter{
-    position:absolute;
-    top:50%;
-    left:5vw;
-
-    transform:translateY(-50%);
-
-    z-index:10;
-
-    font-size:9px;
-    letter-spacing:.3em;
-    color:#555;
-
-    writing-mode:vertical-rl;
-}
-
-.machine-scroll{
-    position:absolute;
-    bottom:35px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:10;
-
-    font-size:8px;
-    letter-spacing:.3em;
-    color:#555;
-
-    text-transform:uppercase;
-}
-
-/* =========================
+/* ==================================================
    CONTROLS
-========================= */
+================================================== */
 
 .machine-controls{
     position:absolute;
+
     bottom:8vh;
+
     left:5vw;
 
     display:flex;
+
     gap:8px;
 
     z-index:20;
@@ -698,13 +1071,16 @@ section{
 
     padding:14px 18px;
 
-    border:1px solid rgba(255,255,255,.15);
+    border:
+        1px solid rgba(255,255,255,.15);
 
-    background:rgba(0,0,0,.4);
+    background:
+        rgba(0,0,0,.4);
 
     color:#aaa;
 
-    font-size:9px;
+    font-size:8px;
+
     letter-spacing:.25em;
 
     cursor:pointer;
@@ -716,18 +1092,22 @@ section{
 
 .control:hover{
     border-color:#850014;
+
     color:#fff;
 }
 
 .control.active{
     background:#850014;
+
     border-color:#850014;
+
     color:#fff;
 }
 
-/* =========================
+
+/* ==================================================
    TECHNICAL
-========================= */
+================================================== */
 
 .technical{
     padding:180px 5vw;
@@ -735,15 +1115,18 @@ section{
     background:
         linear-gradient(
             140deg,
-            #030303,
-            #0b0305,
-            #030303
+            #020202,
+            #0c0305,
+            #020202
         );
 }
 
 .tech-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:8vw;
 
     align-items:center;
@@ -751,18 +1134,24 @@ section{
 
 .tech-image{
     overflow:hidden;
-    border:1px solid rgba(255,255,255,.1);
+
+    border:
+        1px solid rgba(255,255,255,.1);
 }
 
 .tech-image img{
     width:100%;
+
     display:block;
 }
 
 .tech-title{
     font-size:clamp(55px,8vw,120px);
+
     font-weight:800;
+
     line-height:.85;
+
     letter-spacing:-.07em;
 }
 
@@ -772,16 +1161,20 @@ section{
 
 .tech-copy{
     margin-top:35px;
+
     max-width:400px;
 
     color:#777;
+
     font-size:12px;
+
     line-height:1.9;
 }
 
-/* =========================
+
+/* ==================================================
    GALLERY
-========================= */
+================================================== */
 
 .gallery{
     padding:160px 5vw;
@@ -791,7 +1184,9 @@ section{
 
 .gallery-head{
     display:flex;
+
     justify-content:space-between;
+
     align-items:end;
 
     margin-bottom:70px;
@@ -799,8 +1194,11 @@ section{
 
 .gallery-title{
     font-size:clamp(60px,9vw,130px);
+
     font-weight:800;
+
     letter-spacing:-.07em;
+
     line-height:.8;
 }
 
@@ -810,13 +1208,18 @@ section{
 
 .gallery-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:15px;
 }
 
 .gallery-item{
     position:relative;
+
     overflow:hidden;
+
     background:#090909;
 }
 
@@ -826,21 +1229,26 @@ section{
 
 .gallery-item img{
     width:100%;
+
     display:block;
 
     transition:
-        transform 1.2s cubic-bezier(.16,1,.3,1),
+        transform 1.2s
+        cubic-bezier(.16,1,.3,1),
+
         filter .7s;
 }
 
 .gallery-item:hover img{
     transform:scale(1.035);
+
     filter:brightness(.8);
 }
 
-/* =========================
+
+/* ==================================================
    FINAL STATEMENT
-========================= */
+================================================== */
 
 .statement{
     min-height:90vh;
@@ -848,7 +1256,9 @@ section{
     padding:120px 5vw;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
 
     background:
@@ -881,27 +1291,35 @@ section{
 
     color:#666;
 
-    font-size:10px;
+    font-size:9px;
+
     letter-spacing:.25em;
 }
 
-/* =========================
+
+/* ==================================================
    SOCIAL
-========================= */
+================================================== */
 
 .social{
     padding:100px 5vw;
 
-    border-top:1px solid rgba(255,255,255,.08);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid rgba(255,255,255,.08);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
 .social h3{
     font-size:clamp(30px,5vw,65px);
+
     letter-spacing:-.05em;
 }
 
@@ -911,12 +1329,15 @@ section{
 
 .social a{
     color:#aaa;
+
     text-decoration:none;
 
-    font-size:10px;
+    font-size:9px;
+
     letter-spacing:.25em;
 
-    border-bottom:1px solid #850014;
+    border-bottom:
+        1px solid #850014;
 
     padding-bottom:8px;
 
@@ -927,27 +1348,31 @@ section{
     color:#fff;
 }
 
-/* =========================
+
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 footer{
     padding:35px 5vw;
 
     display:flex;
+
     justify-content:space-between;
 
     color:#444;
 
     font-size:8px;
+
     letter-spacing:.25em;
 
     text-transform:uppercase;
 }
 
-/* =========================
+
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media(max-width:800px){
 
@@ -964,7 +1389,8 @@ footer{
     }
 
     .stats{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .machine{
@@ -973,29 +1399,30 @@ footer{
 
     .machine-title{
         top:14vh;
+
         left:7vw;
     }
 
-    .machine-info{
-        display:none;
-    }
-
+    .machine-info,
     .machine-counter{
         display:none;
     }
 
     .car-scene{
         width:105vw;
+
         height:500px;
     }
 
     .machine-controls{
         left:7vw;
+
         bottom:8vh;
     }
 
     .control{
         min-width:90px;
+
         padding:12px;
     }
 
@@ -1013,58 +1440,153 @@ footer{
 
     .social{
         flex-direction:column;
+
         align-items:flex-start;
+
         gap:35px;
     }
 
     footer{
         flex-direction:column;
+
         gap:15px;
     }
+
+    .start-car{
+        width:115vw;
+
+        opacity:.25;
+    }
+
+    .start-content h1{
+        font-size:20vw;
+    }
+
+    #startMachine{
+        min-width:205px;
+
+        gap:30px;
+    }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- ==================================================
+     START MACHINE
+================================================== -->
+
+<div id="startScreen">
+
+    <div class="start-car">
+        <img
+            src="car15.jpeg"
+            alt="XANNY1616 car"
+        >
+    </div>
+
+    <div class="start-overlay"></div>
+
+    <div class="start-content">
+
+        <div class="start-label">
+            XANNY1616 / AUTOMOTIVE
+        </div>
+
+        <h1>
+            XANNY<span>1616</span>
+        </h1>
+
+        <p>
+            ENTER THE MACHINE
+        </p>
+
+        <button id="startMachine">
+            <span>START MACHINE</span>
+            <i>↗</i>
+        </button>
+
+    </div>
+
+    <div class="start-bottom">
+        <span>EST. 2026</span>
+        <span>01 / 01</span>
+    </div>
+
+</div>
+
+
+<!-- ==================================================
      HEADER
-========================= -->
+================================================== -->
 
 <header>
+
     <div class="logo">
         XANNY<span>1616</span>
     </div>
 
     <nav class="nav">
-        <a href="#machine">Machine</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+
+        <a href="#machine">
+            Machine
+        </a>
+
+        <a href="#gallery">
+            Gallery
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
     </nav>
+
 </header>
 
 
-<!-- =========================
+<!-- ==================================================
      INTRO
-========================= -->
+================================================== -->
 
 <section class="intro">
 
     <div class="intro-title">
-        <span>X</span><span>A</span><span>N</span><span>N</span><span>Y</span><span>1</span><span>6</span><span>1</span><span>6</span>
+
+        <span>X</span>
+        <span>A</span>
+        <span>N</span>
+        <span>N</span>
+        <span>Y</span>
+        <span>1</span>
+        <span>6</span>
+        <span>1</span>
+        <span>6</span>
+
     </div>
 
     <div class="intro-bottom">
-        <span>AUTOMOTIVE / 001</span>
-        <span>EST. 2026</span>
+
+        <span>
+            AUTOMOTIVE / 001
+        </span>
+
+        <span>
+            EST. 2026
+        </span>
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      HERO
-========================= -->
+================================================== -->
 
 <section class="hero">
 
@@ -1073,22 +1595,35 @@ footer{
     </div>
 
     <h1 class="hero-title">
+
         BUILT<br>
-        <span class="red">TO</span><br>
-        BE <span class="red">SEEN.</span>
+
+        <span class="red">
+            TO
+        </span><br>
+
+        BE
+        <span class="red">
+            SEEN.
+        </span>
+
     </h1>
 
     <p class="hero-sub">
-        A visual study of machines, movement and obsession.
-        Designed in darkness. Defined by detail.
+
+        A visual study of machines,
+        movement and obsession.
+        Designed in darkness.
+        Defined by detail.
+
     </p>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      MANIFESTO
-========================= -->
+================================================== -->
 
 <section class="manifesto">
 
@@ -1111,69 +1646,133 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      STATS
-========================= -->
+================================================== -->
 
 <section class="stats">
 
     <div class="stat">
-        <div class="stat-number">01</div>
-        <div class="stat-text">Machine</div>
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-text">
+            Machine
+        </div>
+
     </div>
 
     <div class="stat">
-        <div class="stat-number">16</div>
-        <div class="stat-text">Identity</div>
+
+        <div class="stat-number">
+            16
+        </div>
+
+        <div class="stat-text">
+            Identity
+        </div>
+
     </div>
 
     <div class="stat">
-        <div class="stat-number">4K</div>
-        <div class="stat-text">Detail</div>
+
+        <div class="stat-number">
+            4K
+        </div>
+
+        <div class="stat-text">
+            Detail
+        </div>
+
     </div>
 
     <div class="stat">
-        <div class="stat-number">∞</div>
-        <div class="stat-text">Obsession</div>
+
+        <div class="stat-number">
+            ∞
+        </div>
+
+        <div class="stat-text">
+            Obsession
+        </div>
+
     </div>
 
 </section>
 
 
-<!-- =================================================
+<!-- ==================================================
      MACHINE
-================================================= -->
+================================================== -->
 
-<section class="machine" id="machine">
+<section
+    class="machine"
+    id="machine"
+>
 
     <div class="machine-sticky">
 
+
         <div class="machine-title">
-            <div class="small">XANNY1616 / MACHINE 001</div>
+
+            <div class="small">
+
+                XANNY1616 /
+                MACHINE 001
+
+            </div>
 
             <h2>
+
                 THE<br>
-                <span>MACHINE.</span>
+
+                <span>
+                    MACHINE.
+                </span>
+
             </h2>
+
         </div>
+
 
         <div class="machine-counter">
+
             SCROLL / EXPERIENCE
+
         </div>
 
+
         <div class="machine-info">
+
             <p>
+
                 Precision in darkness.
                 Every angle designed to move
                 with the camera.
+
             </p>
+
         </div>
 
-        <div class="car-scene" id="carScene">
 
-            <div class="car-float" id="carFloat">
+        <!-- CAR -->
 
-                <div class="car-frame" id="carFrame">
+        <div
+            class="car-scene"
+            id="carScene"
+        >
+
+            <div
+                class="car-float"
+                id="carFloat"
+            >
+
+                <div
+                    class="car-frame"
+                    id="carFrame"
+                >
 
                     <img
                         src="car15.jpeg"
@@ -1190,20 +1789,32 @@ footer{
 
         </div>
 
+
+        <!-- CONTROLS -->
+
         <div class="machine-controls">
 
-            <button class="control" id="engineBtn">
+            <button
+                class="control"
+                id="engineBtn"
+            >
                 ENGINE
             </button>
 
-            <button class="control" id="revBtn">
+            <button
+                class="control"
+                id="revBtn"
+            >
                 REV
             </button>
 
         </div>
 
+
         <div class="machine-scroll">
+
             SCROLL TO TRANSFORM
+
         </div>
 
     </div>
@@ -1211,34 +1822,53 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      TECHNICAL
-========================= -->
+================================================== -->
 
 <section class="technical">
 
     <div class="tech-grid">
 
+
         <div class="tech-image">
-            <img src="car5.jpeg" alt="Automotive detail">
+
+            <img
+                src="car5.jpeg"
+                alt="Automotive detail"
+            >
+
         </div>
+
 
         <div>
 
             <div class="label">
-                ENGINEERED / NOT DECORATED
+
+                ENGINEERED /
+                NOT DECORATED
+
             </div>
 
             <h2 class="tech-title">
+
                 FORM<br>
-                <span>FOLLOWS</span><br>
+
+                <span>
+                    FOLLOWS
+                </span><br>
+
                 FORCE.
+
             </h2>
 
             <p class="tech-copy">
+
                 Every surface exists for a reason.
                 Every line has intention.
-                Every detail becomes part of the machine.
+                Every detail becomes part
+                of the machine.
+
             </p>
 
         </div>
@@ -1248,21 +1878,33 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      GALLERY
-========================= -->
+================================================== -->
 
-<section class="gallery" id="gallery">
+<section
+    class="gallery"
+    id="gallery"
+>
 
     <div class="gallery-head">
 
         <div>
-            <div class="label">THE ARCHIVE</div>
+
+            <div class="label">
+                THE ARCHIVE
+            </div>
 
             <h2 class="gallery-title">
+
                 VISUAL<br>
-                <span>MEMORY.</span>
+
+                <span>
+                    MEMORY.
+                </span>
+
             </h2>
+
         </div>
 
         <div class="label">
@@ -1273,6 +1915,7 @@ footer{
 
 
     <div class="gallery-grid">
+
 
         <div class="gallery-item">
             <img src="car1.jpeg" alt="">
@@ -1334,90 +1977,170 @@ footer{
             <img src="car15.jpeg" alt="">
         </div>
 
+
     </div>
 
 </section>
 
 
-<!-- =========================
-     FINAL
-========================= -->
+<!-- ==================================================
+     FINAL STATEMENT
+================================================== -->
 
 <section class="statement">
 
     <div class="label">
-        XANNY1616 / FINAL STATEMENT
+
+        XANNY1616 /
+        FINAL STATEMENT
+
     </div>
 
     <h2>
+
         NOT JUST<br>
-        A <span>CAR.</span><br>
+
+        A
+        <span>
+            CAR.
+        </span><br>
+
         A PRESENCE.
+
     </h2>
 
     <p>
-        DESIGNED IN BLACK / DEFINED IN CHERRY
+
+        DESIGNED IN BLACK /
+        DEFINED IN CHERRY
+
     </p>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      SOCIAL
-========================= -->
+================================================== -->
 
-<section class="social" id="contact">
+<section
+    class="social"
+    id="contact"
+>
 
     <h3>
+
         FOLLOW<br>
-        <span>THE MACHINE.</span>
+
+        <span>
+            THE MACHINE.
+        </span>
+
     </h3>
+
 
     <a
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
         rel="noopener"
     >
-        INSTAGRAM / @XANNY1616
+
+        INSTAGRAM /
+        @XANNY1616
+
     </a>
 
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      FOOTER
-========================= -->
+================================================== -->
 
 <footer>
 
-    <span>© 2026 XANNY1616</span>
+    <span>
+        © 2026 XANNY1616
+    </span>
 
-    <span>BUILT TO BE SEEN</span>
+    <span>
+        BUILT TO BE SEEN
+    </span>
 
-    <span>001 / 001</span>
+    <span>
+        001 / 001
+    </span>
 
 </footer>
 
 
-<audio id="engineAudio" src="engine.mp3" loop></audio>
+<!-- ENGINE -->
+
+<audio
+    id="engineAudio"
+    src="engine.mp3"
+    loop
+></audio>
 
 
 <script>
 
 /* ==================================================
-   ELEMENTS
+   START MACHINE
 ================================================== */
 
-const machine = document.querySelector(".machine");
-const carScene = document.getElementById("carScene");
-const carFloat = document.getElementById("carFloat");
-const carFrame = document.getElementById("carFrame");
-const carImage = document.getElementById("carImage");
+const startScreen =
+    document.getElementById("startScreen");
 
-const engineBtn = document.getElementById("engineBtn");
-const revBtn = document.getElementById("revBtn");
+const startMachine =
+    document.getElementById("startMachine");
 
-const engineAudio = document.getElementById("engineAudio");
+
+/*
+   Prevent the website underneath from
+   scrolling before START MACHINE.
+*/
+
+document.body.style.overflowY = "hidden";
+
+
+startMachine.addEventListener("click",()=>{
+
+    startScreen.classList.add("hidden");
+
+    setTimeout(()=>{
+
+        document.body.style.overflowY = "auto";
+
+    },900);
+
+});
+
+
+/* ==================================================
+   CAR ELEMENTS
+================================================== */
+
+const machine =
+    document.querySelector(".machine");
+
+const carFloat =
+    document.getElementById("carFloat");
+
+const carFrame =
+    document.getElementById("carFrame");
+
+const carImage =
+    document.getElementById("carImage");
+
+const engineBtn =
+    document.getElementById("engineBtn");
+
+const revBtn =
+    document.getElementById("revBtn");
+
+const engineAudio =
+    document.getElementById("engineAudio");
 
 
 /* ==================================================
@@ -1425,25 +2148,32 @@ const engineAudio = document.getElementById("engineAudio");
 ================================================== */
 
 let targetProgress = 0;
+
 let currentProgress = 0;
+
 
 function updateScroll(){
 
-    const rect = machine.getBoundingClientRect();
+    const rect =
+        machine.getBoundingClientRect();
 
-    /*
-       Machine starts transforming when the section
-       enters the viewport.
-    */
+    const total =
+        machine.offsetHeight -
+        window.innerHeight;
 
-    const total = machine.offsetHeight - window.innerHeight;
+    let progress =
+        -rect.top / total;
 
-    let progress = -rect.top / total;
+    progress =
+        Math.max(
+            0,
+            Math.min(1,progress)
+        );
 
-    progress = Math.max(0, Math.min(1, progress));
-
-    targetProgress = progress;
+    targetProgress =
+        progress;
 }
+
 
 window.addEventListener(
     "scroll",
@@ -1460,162 +2190,175 @@ updateScroll();
 
 
 /* ==================================================
-   SMOOTH CINEMATIC MOTION
+   EASING
 ================================================== */
 
 function easeInOut(p){
 
     return p < .5
 
-        ? 4 * p * p * p
+        ? 4*p*p*p
 
-        : 1 - Math.pow(-2 * p + 2,3) / 2;
+        : 1 -
+          Math.pow(
+              -2*p+2,
+              3
+          ) / 2;
 }
 
+
+/* ==================================================
+   CINEMATIC CAR TRANSFORMATION
+================================================== */
 
 function render(){
 
     currentProgress +=
-        (targetProgress - currentProgress) * .075;
+        (
+            targetProgress -
+            currentProgress
+        ) * .075;
 
-    const p = easeInOut(currentProgress);
+
+    const p =
+        easeInOut(currentProgress);
 
 
-    /*
-       ============================================
-       MAIN 3D CAMERA MOVEMENT
-       ============================================
-    */
+    /* CAMERA */
 
     const sceneY =
-        160 - p * 160;
+        160 -
+        p * 160;
 
     const sceneZ =
-        -320 + p * 320;
+        -320 +
+        p * 320;
 
     const sceneRotateX =
-        19 - p * 19;
+        19 -
+        p * 19;
 
     const sceneRotateY =
-        -15 + p * 15;
+        -15 +
+        p * 15;
 
     const sceneScale =
-        .62 + p * .38;
+        .62 +
+        p * .38;
 
 
-    /*
-       ============================================
-       ACTUAL PHOTO TRANSFORMATION
-       ============================================
-    */
+    /* FRAME */
 
     const frameX =
-        -18 + p * 18;
+        -18 +
+        p * 18;
 
     const frameY =
-        18 - p * 18;
+        18 -
+        p * 18;
 
     const frameRotateZ =
-        -2.2 + p * 2.2;
+        -2.2 +
+        p * 2.2;
 
     const frameRotateX =
-        7 - p * 7;
+        7 -
+        p * 7;
 
     const frameScale =
-        .84 + p * .16;
+        .84 +
+        p * .16;
 
 
-    /*
-       Internal photo movement.
-       This is what makes the PHOTO itself
-       feel like it is changing.
-    */
+    /* ACTUAL PHOTO */
 
     const imageX =
-        -42 + p * 42;
+        -42 +
+        p * 42;
 
     const imageY =
-        25 - p * 25;
+        25 -
+        p * 25;
 
     const imageScale =
-        1.22 - p * .22;
+        1.22 -
+        p * .22;
 
     const imageRotate =
-        -1.2 + p * 1.2;
+        -1.2 +
+        p * 1.2;
 
 
-    /*
-       Cinematic lighting changes.
-    */
+    /* IMAGE LIGHT */
 
     const brightness =
-        .70 + p * .25;
+        .70 +
+        p * .25;
 
     const contrast =
-        1.18 - p * .08;
+        1.18 -
+        p * .08;
 
     const saturation =
-        .85 + p * .18;
+        .85 +
+        p * .18;
 
 
-    /*
-       Moving shine across the photo.
-    */
+    /* RED LIGHT */
 
     const shineX =
-        -35 + p * 170;
+        -35 +
+        p * 170;
 
-
-    /*
-       Red atmosphere.
-    */
 
     const glowX =
-        25 + p * 55;
+        25 +
+        p * 55;
 
     const glowY =
-        65 - p * 30;
+        65 -
+        p * 30;
 
     const glowOpacity =
-        .10 + p * .22;
+        .10 +
+        p * .22;
 
 
-    /*
-       Shadow follows camera distance.
-    */
+    /* SHADOW */
 
     const shadowScale =
-        .65 + p * .55;
+        .65 +
+        p * .55;
 
     const shadowY =
-        1.1 - p * .3;
+        1.1 -
+        p * .3;
 
     const shadowOpacity =
-        .45 + p * .35;
+        .45 +
+        p * .35;
 
 
-    /*
-       Apply main scene.
-    */
+    /* APPLY */
 
     carFloat.style.setProperty(
         "--sceneY",
-        sceneY + "px"
+        sceneY+"px"
     );
 
     carFloat.style.setProperty(
         "--sceneZ",
-        sceneZ + "px"
+        sceneZ+"px"
     );
 
     carFloat.style.setProperty(
         "--sceneRotateX",
-        sceneRotateX + "deg"
+        sceneRotateX+"deg"
     );
 
     carFloat.style.setProperty(
         "--sceneRotateY",
-        sceneRotateY + "deg"
+        sceneRotateY+"deg"
     );
 
     carFloat.style.setProperty(
@@ -1624,28 +2367,24 @@ function render(){
     );
 
 
-    /*
-       Apply FRAME movement.
-    */
-
     carFrame.style.setProperty(
         "--frameX",
-        frameX + "px"
+        frameX+"px"
     );
 
     carFrame.style.setProperty(
         "--frameY",
-        frameY + "px"
+        frameY+"px"
     );
 
     carFrame.style.setProperty(
         "--frameRotateZ",
-        frameRotateZ + "deg"
+        frameRotateZ+"deg"
     );
 
     carFrame.style.setProperty(
         "--frameRotateX",
-        frameRotateX + "deg"
+        frameRotateX+"deg"
     );
 
     carFrame.style.setProperty(
@@ -1654,18 +2393,14 @@ function render(){
     );
 
 
-    /*
-       Apply IMAGE movement.
-    */
-
     carImage.style.setProperty(
         "--imageX",
-        imageX + "px"
+        imageX+"px"
     );
 
     carImage.style.setProperty(
         "--imageY",
-        imageY + "px"
+        imageY+"px"
     );
 
     carImage.style.setProperty(
@@ -1675,13 +2410,9 @@ function render(){
 
     carImage.style.setProperty(
         "--imageRotate",
-        imageRotate + "deg"
+        imageRotate+"deg"
     );
 
-
-    /*
-       Image lighting.
-    */
 
     carImage.style.setProperty(
         "--imageBrightness",
@@ -1699,18 +2430,19 @@ function render(){
     );
 
 
-    /*
-       Red glow.
-    */
+    carFrame.style.setProperty(
+        "--shineX",
+        shineX+"%"
+    );
 
     carFrame.style.setProperty(
         "--glowX",
-        glowX + "%"
+        glowX+"%"
     );
 
     carFrame.style.setProperty(
         "--glowY",
-        glowY + "%"
+        glowY+"%"
     );
 
     carFrame.style.setProperty(
@@ -1719,22 +2451,11 @@ function render(){
     );
 
 
-    /*
-       Shine.
-    */
-
-    carFrame.style.setProperty(
-        "--shineX",
-        shineX + "%"
-    );
-
-
-    /*
-       Shadow.
-    */
-
     const shadow =
-        carFrame.querySelector(".car-shadow");
+        carFrame.querySelector(
+            ".car-shadow"
+        );
+
 
     shadow.style.setProperty(
         "--shadowScale",
@@ -1759,34 +2480,43 @@ render();
 
 
 /* ==================================================
-   MOUSE PARALLAX
+   MOUSE 3D TILT
 ================================================== */
 
-let mouseX = 0;
-let mouseY = 0;
+window.addEventListener(
+    "mousemove",
+    (event)=>{
 
-window.addEventListener("mousemove",(event)=>{
+        const x =
+            event.clientX /
+            window.innerWidth -
+            .5;
 
-    const x =
-        (event.clientX / window.innerWidth - .5);
+        const y =
+            event.clientY /
+            window.innerHeight -
+            .5;
 
-    const y =
-        (event.clientY / window.innerHeight - .5);
 
-    mouseX = x * 4;
-    mouseY = -y * 3;
+        const mouseX =
+            x * 4;
 
-    carFloat.style.setProperty(
-        "--mouseX",
-        mouseX + "deg"
-    );
+        const mouseY =
+            -y * 3;
 
-    carFloat.style.setProperty(
-        "--mouseY",
-        mouseY + "deg"
-    );
 
-});
+        carFloat.style.setProperty(
+            "--mouseX",
+            mouseX+"deg"
+        );
+
+        carFloat.style.setProperty(
+            "--mouseY",
+            mouseY+"deg"
+        );
+
+    }
+);
 
 
 /* ==================================================
@@ -1795,37 +2525,52 @@ window.addEventListener("mousemove",(event)=>{
 
 let engineOn = false;
 
-engineBtn.addEventListener("click",async()=>{
 
-    if(!engineOn){
+engineBtn.addEventListener(
+    "click",
+    async()=>{
 
-        try{
-            await engineAudio.play();
-        }catch(e){}
+        if(!engineOn){
 
-        engineOn = true;
+            try{
 
-        engineBtn.classList.add("active");
+                await engineAudio.play();
 
-    }else{
+            }catch(error){}
 
-        engineAudio.pause();
 
-        engineOn = false;
+            engineOn = true;
 
-        engineBtn.classList.remove("active");
+            engineBtn.classList.add(
+                "active"
+            );
+
+        }else{
+
+            engineAudio.pause();
+
+            engineOn = false;
+
+            engineBtn.classList.remove(
+                "active"
+            );
+
+        }
+
     }
-
-});
+);
 
 
 /* ==================================================
-   REV
+   REV AUDIO
 ================================================== */
 
 let audioContext = null;
+
 let oscillator = null;
+
 let gainNode = null;
+
 
 function createRev(){
 
@@ -1836,7 +2581,9 @@ function createRev(){
                 window.AudioContext ||
                 window.webkitAudioContext
             )();
+
     }
+
 
     oscillator =
         audioContext.createOscillator();
@@ -1844,115 +2591,107 @@ function createRev(){
     gainNode =
         audioContext.createGain();
 
-    oscillator.type = "sawtooth";
 
-    oscillator.frequency.value = 90;
+    oscillator.type =
+        "sawtooth";
 
-    gainNode.gain.value = 0;
+    oscillator.frequency.value =
+        90;
 
-    oscillator.connect(gainNode);
+    gainNode.gain.value =
+        0;
+
+
+    oscillator.connect(
+        gainNode
+    );
 
     gainNode.connect(
         audioContext.destination
     );
 
+
     oscillator.start();
+
 }
 
 
 function revEngine(){
 
     if(!audioContext){
+
         createRev();
+
     }
 
-    if(audioContext.state === "suspended"){
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
         audioContext.resume();
+
     }
 
-    const now = audioContext.currentTime;
 
-    /*
-       RPM rise.
-    */
-
-    oscillator.frequency.cancelScheduledValues(now);
-
-    oscillator.frequency.setValueAtTime(
-        85,
-        now
-    );
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        260,
-        now + .35
-    );
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        110,
-        now + 1.25
-    );
+    const now =
+        audioContext.currentTime;
 
 
-    /*
-       Volume rise and fall.
-    */
-
-    gainNode.gain.cancelScheduledValues(now);
-
-    gainNode.gain.setValueAtTime(
-        .001,
-        now
-    );
-
-    gainNode.gain.exponentialRampToValueAtTime(
-        .22,
-        now + .12
-    );
-
-    gainNode.gain.exponentialRampToValueAtTime(
-        .001,
-        now + 1.3
-    );
+    oscillator.frequency
+        .cancelScheduledValues(now);
 
 
-    /*
-       Visual REV effect.
+    oscillator.frequency
+        .setValueAtTime(
+            85,
+            now
+        );
 
-       IMPORTANT:
-       This is only activated when
-       pressing REV. Normal scrolling
-       does NOT shake the car.
-    */
 
-    carFloat.animate(
-        [
-            {
-                transform:carFloat.style.transform
-            },
-            {
-                transform:
-                    "translate3d(0,-5px,0) " +
-                    "rotateX(1deg) " +
-                    "rotateY(-1deg) " +
-                    "scale(1.015)"
-            },
-            {
-                transform:
-                    "translate3d(0,0,0) " +
-                    "rotateX(0deg) " +
-                    "rotateY(0deg) " +
-                    "scale(1)"
-            }
-        ],
-        {
-            duration:1300,
-            easing:"cubic-bezier(.16,1,.3,1)"
-        }
-    );
+    oscillator.frequency
+        .exponentialRampToValueAtTime(
+            260,
+            now + .35
+        );
+
+
+    oscillator.frequency
+        .exponentialRampToValueAtTime(
+            110,
+            now + 1.25
+        );
+
+
+    gainNode.gain
+        .cancelScheduledValues(now);
+
+
+    gainNode.gain
+        .setValueAtTime(
+            .001,
+            now
+        );
+
+
+    gainNode.gain
+        .exponentialRampToValueAtTime(
+            .22,
+            now + .12
+        );
+
+
+    gainNode.gain
+        .exponentialRampToValueAtTime(
+            .001,
+            now + 1.3
+        );
 
 }
 
+
+/* REV BUTTON */
 
 revBtn.addEventListener(
     "click",
@@ -1964,32 +2703,31 @@ revBtn.addEventListener(
    KEYBOARD
 ================================================== */
 
-window.addEventListener("keydown",(event)=>{
+window.addEventListener(
+    "keydown",
+    (event)=>{
 
-    if(event.key.toLowerCase() === "e"){
-        engineBtn.click();
+        if(
+            event.key.toLowerCase()
+            === "e"
+        ){
+
+            engineBtn.click();
+
+        }
+
+
+        if(
+            event.key.toLowerCase()
+            === "r"
+        ){
+
+            revEngine();
+
+        }
+
     }
-
-    if(event.key.toLowerCase() === "r"){
-        revEngine();
-    }
-
-});
-
-
-/* ==================================================
-   IMAGE FALLBACK
-================================================== */
-
-document.querySelectorAll("img").forEach(img=>{
-
-    img.addEventListener("error",()=>{
-
-        img.style.background="#090909";
-
-    });
-
-});
+);
 
 </script>
 
