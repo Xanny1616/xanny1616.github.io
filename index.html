@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>XANNY1616 — Automotive</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -22,7 +20,7 @@ html{
 body{
     background:#030303;
     color:#f5f5f5;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
 
@@ -34,9 +32,8 @@ body::before{
     content:"";
     position:fixed;
     inset:0;
-    pointer-events:none;
     z-index:200;
-
+    pointer-events:none;
     opacity:.035;
 
     background-image:
@@ -47,15 +44,13 @@ body::before{
         );
 }
 
-
 /* ==================================================
-   START MACHINE SCREEN
+   START SCREEN
 ================================================== */
 
 #startScreen{
     position:fixed;
     inset:0;
-
     z-index:9999;
 
     display:flex;
@@ -63,12 +58,11 @@ body::before{
     justify-content:center;
 
     overflow:hidden;
-
     background:#030303;
 
     transition:
-        opacity 1s cubic-bezier(.16,1,.3,1),
-        visibility 1s;
+        opacity 1.1s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
 }
 
 #startScreen.hidden{
@@ -77,93 +71,102 @@ body::before{
     pointer-events:none;
 }
 
-
-/* CAR BEHIND TITLE */
+/* CAR BEHIND XANNY1616 */
 
 .start-car{
     position:absolute;
 
-    width:min(850px,75vw);
+    width:min(1050px,92vw);
 
     left:50%;
-    top:50%;
+    top:53%;
 
     transform:
-        translate(-50%,-48%)
-        scale(.92);
+        translate(-50%,-50%)
+        scale(.94);
 
-    opacity:.30;
+    opacity:.52;
 
     filter:
-        brightness(.45)
+        brightness(.48)
         contrast(1.18)
-        saturate(.82);
+        saturate(.78);
 
     transition:
-        transform 1.6s cubic-bezier(.16,1,.3,1),
-        opacity 1s;
+        transform 1.8s cubic-bezier(.16,1,.3,1),
+        opacity 1.1s;
 }
 
 .start-car img{
     width:100%;
+    height:auto;
     display:block;
 
     filter:
         drop-shadow(
-            0 40px 90px rgba(0,0,0,.95)
+            0 45px 90px rgba(0,0,0,.95)
         );
 }
 
-
-/* CHERRY RED ATMOSPHERE */
+/* CHERRY RED LIGHT */
 
 .start-overlay{
     position:absolute;
     inset:0;
 
     background:
-
         radial-gradient(
             ellipse at 50% 55%,
-            rgba(130,0,20,.43),
-            transparent 34%
+            rgba(135,0,22,.45),
+            transparent 40%
         ),
-
         radial-gradient(
-            ellipse at 50% 100%,
-            rgba(95,0,15,.30),
+            ellipse at 50% 90%,
+            rgba(95,0,15,.32),
             transparent 48%
         ),
-
         linear-gradient(
             90deg,
-            rgba(0,0,0,.90),
-            rgba(0,0,0,.28),
-            rgba(0,0,0,.90)
+            rgba(0,0,0,.70),
+            rgba(0,0,0,.10),
+            rgba(0,0,0,.70)
         );
 
     pointer-events:none;
 }
 
-
 #startScreen::before{
     content:"";
-
     position:absolute;
     inset:0;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.78),
-            transparent 32%,
-            transparent 68%,
-            rgba(0,0,0,.9)
+            rgba(0,0,0,.82),
+            transparent 30%,
+            transparent 65%,
+            rgba(0,0,0,.88)
         );
 
     pointer-events:none;
 }
 
+#startScreen::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,.72) 100%
+        );
+
+    pointer-events:none;
+}
 
 /* START CONTENT */
 
@@ -171,14 +174,16 @@ body::before{
     position:relative;
     z-index:10;
 
-    text-align:center;
+    width:100%;
 
     display:flex;
     flex-direction:column;
     align-items:center;
 
+    text-align:center;
+
     transition:
-        transform .8s cubic-bezier(.16,1,.3,1),
+        transform .85s cubic-bezier(.16,1,.3,1),
         opacity .7s;
 }
 
@@ -186,59 +191,63 @@ body::before{
     margin-bottom:25px;
 
     font-size:9px;
-    letter-spacing:.45em;
+    letter-spacing:.48em;
 
-    color:#777;
+    color:#aaa;
 }
 
 .start-content h1{
-    font-size:clamp(65px,14vw,190px);
+    display:block;
+
+    font-size:
+        clamp(55px,13vw,180px);
 
     font-weight:900;
 
-    line-height:.8;
+    line-height:.82;
 
     letter-spacing:-.085em;
 
-    color:#f5f5f5;
+    white-space:nowrap;
+
+    color:#fff;
 
     text-shadow:
-        0 20px 70px rgba(0,0,0,.85);
+        0 15px 60px rgba(0,0,0,.95);
 }
 
 .start-content h1 span{
-    color:#8d0018;
+    color:#8e0018;
 }
 
 .start-content p{
-    margin-top:38px;
+    margin-top:34px;
 
     font-size:8px;
 
-    letter-spacing:.45em;
+    letter-spacing:.5em;
 
-    color:#777;
+    color:#aaa;
 }
 
-
-/* START BUTTON */
+/* CLASSY START BUTTON */
 
 #startMachine{
-    margin-top:25px;
+    position:relative;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    margin-top:28px;
 
-    gap:45px;
+    min-width:240px;
 
-    min-width:230px;
+    padding:17px 28px;
 
-    padding:17px 20px;
+    border:
+        1px solid rgba(255,255,255,.32);
 
-    border:1px solid rgba(255,255,255,.23);
+    outline:none;
 
-    background:rgba(0,0,0,.38);
+    background:
+        rgba(8,8,8,.48);
 
     color:#fff;
 
@@ -246,82 +255,98 @@ body::before{
 
     font-size:9px;
 
-    letter-spacing:.3em;
+    font-weight:500;
+
+    letter-spacing:.38em;
 
     cursor:pointer;
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(16px);
 
     transition:
-        background .35s,
-        border-color .35s,
-        transform .35s;
+        background .4s ease,
+        border-color .4s ease,
+        letter-spacing .4s ease,
+        box-shadow .4s ease,
+        transform .4s ease;
 }
 
-#startMachine i{
-    font-style:normal;
+#startMachine::before{
+    content:"";
 
-    font-size:15px;
+    position:absolute;
 
-    color:#a0001b;
+    left:50%;
+    bottom:-1px;
 
-    transition:transform .35s;
+    width:0;
+    height:1px;
+
+    transform:translateX(-50%);
+
+    background:#a0001b;
+
+    transition:
+        width .45s cubic-bezier(.16,1,.3,1);
 }
 
 #startMachine:hover{
-    background:#850014;
+    background:
+        rgba(120,0,18,.28);
 
-    border-color:#850014;
+    border-color:
+        rgba(160,0,27,.8);
 
-    transform:translateY(-3px);
+    letter-spacing:.46em;
+
+    box-shadow:
+        0 0 40px rgba(120,0,18,.20);
+
+    transform:translateY(-2px);
 }
 
-#startMachine:hover i{
-    color:#fff;
-
-    transform:translate(4px,-4px);
+#startMachine:hover::before{
+    width:70%;
 }
-
-
-/* START BOTTOM */
-
-.start-bottom{
-    position:absolute;
-
-    bottom:30px;
-
-    left:5vw;
-    right:5vw;
-
-    display:flex;
-    justify-content:space-between;
-
-    color:#444;
-
-    font-size:8px;
-
-    letter-spacing:.3em;
-}
-
 
 /* ENTRY EXIT */
 
 #startScreen.hidden .start-car{
     transform:
-        translate(-50%,-48%)
-        scale(1.15);
+        translate(-50%,-50%)
+        scale(1.12);
 
     opacity:0;
 }
 
 #startScreen.hidden .start-content{
     transform:
-        translateY(-30px)
+        translateY(-25px)
         scale(.98);
 
     opacity:0;
 }
 
+/* START BOTTOM */
+
+.start-bottom{
+    position:absolute;
+
+    left:5vw;
+    right:5vw;
+    bottom:30px;
+
+    display:flex;
+    justify-content:space-between;
+
+    z-index:10;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:.3em;
+}
 
 /* ==================================================
    HEADER
@@ -343,18 +368,18 @@ header{
     justify-content:space-between;
     align-items:center;
 
-    border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 
-    background:rgba(3,3,3,.55);
+    background:
+        rgba(3,3,3,.55);
 
     backdrop-filter:blur(18px);
 }
 
 .logo{
     font-size:14px;
-
     font-weight:800;
-
     letter-spacing:.35em;
 }
 
@@ -369,11 +394,9 @@ header{
 
 .nav a{
     color:#777;
-
     text-decoration:none;
 
     font-size:9px;
-
     letter-spacing:.25em;
 
     text-transform:uppercase;
@@ -385,7 +408,6 @@ header{
     color:#fff;
 }
 
-
 /* ==================================================
    GLOBAL
 ================================================== */
@@ -396,14 +418,10 @@ section{
 
 .label{
     font-size:9px;
-
     letter-spacing:.35em;
-
     text-transform:uppercase;
-
     color:#777;
 }
-
 
 /* ==================================================
    INTRO
@@ -413,7 +431,6 @@ section{
     height:100vh;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -429,7 +446,8 @@ section{
 }
 
 .intro-title{
-    font-size:clamp(55px,15vw,220px);
+    font-size:
+        clamp(55px,15vw,220px);
 
     font-weight:900;
 
@@ -458,10 +476,8 @@ section{
 .intro-title span:nth-child(9){animation-delay:.45s}
 
 @keyframes letterIn{
-
     from{
         opacity:0;
-
         transform:
             translateY(100px)
             rotate(8deg);
@@ -469,7 +485,6 @@ section{
 
     to{
         opacity:1;
-
         transform:
             translateY(0)
             rotate(0);
@@ -494,7 +509,6 @@ section{
     color:#444;
 }
 
-
 /* ==================================================
    HERO
 ================================================== */
@@ -505,9 +519,7 @@ section{
     padding:150px 5vw 80px;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
 
     background:
@@ -524,7 +536,8 @@ section{
 }
 
 .hero-title{
-    font-size:clamp(60px,12vw,180px);
+    font-size:
+        clamp(60px,12vw,180px);
 
     font-weight:800;
 
@@ -549,7 +562,6 @@ section{
     line-height:1.9;
 }
 
-
 /* ==================================================
    MANIFESTO
 ================================================== */
@@ -571,7 +583,8 @@ section{
 .manifesto-line{
     white-space:nowrap;
 
-    font-size:clamp(55px,11vw,160px);
+    font-size:
+        clamp(55px,11vw,160px);
 
     font-weight:800;
 
@@ -579,9 +592,11 @@ section{
 
     line-height:.85;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid rgba(255,255,255,.08);
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 
     padding:18px 0;
 }
@@ -592,7 +607,6 @@ section{
 
 .manifesto-line:nth-child(2){
     transform:translateX(7%);
-
     color:#850014;
 }
 
@@ -602,10 +616,8 @@ section{
 
 .manifesto-line:nth-child(4){
     transform:translateX(10%);
-
     color:#666;
 }
-
 
 /* ==================================================
    STATS
@@ -633,7 +645,8 @@ section{
 }
 
 .stat-number{
-    font-size:clamp(40px,6vw,90px);
+    font-size:
+        clamp(40px,6vw,90px);
 
     font-weight:700;
 
@@ -651,7 +664,6 @@ section{
 
     text-transform:uppercase;
 }
-
 
 /* ==================================================
    MACHINE
@@ -712,14 +724,12 @@ section{
     right:5vw;
 }
 
-
 /* MACHINE TITLE */
 
 .machine-title{
     position:absolute;
 
     top:11vh;
-
     left:5vw;
 
     z-index:10;
@@ -729,16 +739,15 @@ section{
 
 .machine-title .small{
     font-size:9px;
-
     letter-spacing:.35em;
-
     color:#777;
 }
 
 .machine-title h2{
     margin-top:12px;
 
-    font-size:clamp(55px,9vw,135px);
+    font-size:
+        clamp(55px,9vw,135px);
 
     line-height:.82;
 
@@ -751,14 +760,12 @@ section{
     color:#850014;
 }
 
-
 /* MACHINE INFO */
 
 .machine-info{
     position:absolute;
 
     right:5vw;
-
     bottom:11vh;
 
     width:220px;
@@ -776,8 +783,7 @@ section{
     line-height:1.8;
 }
 
-
-/* MACHINE COUNTER */
+/* COUNTER */
 
 .machine-counter{
     position:absolute;
@@ -798,7 +804,6 @@ section{
     writing-mode:vertical-rl;
 }
 
-
 /* ==================================================
    CAR SCENE
 ================================================== */
@@ -813,7 +818,6 @@ section{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     perspective:1600px;
@@ -855,7 +859,6 @@ section{
             var(--sceneScale,.62)
         );
 }
-
 
 /* ==================================================
    CAR FRAME
@@ -902,12 +905,10 @@ section{
         rgba(120,0,18,var(--redGlow,.2));
 }
 
-
 /* ACTUAL PHOTO */
 
 .car-image{
     width:100%;
-
     height:100%;
 
     object-fit:cover;
@@ -949,7 +950,6 @@ section{
         filter;
 }
 
-
 /* RED ATMOSPHERE */
 
 .car-frame::before{
@@ -981,7 +981,6 @@ section{
 
     mix-blend-mode:screen;
 }
-
 
 /* LIGHT SWEEP */
 
@@ -1016,20 +1015,15 @@ section{
     filter:blur(8px);
 }
 
-
-/* ==================================================
-   SHADOW
-================================================== */
+/* SHADOW */
 
 .car-shadow{
     position:absolute;
 
     left:50%;
-
     bottom:-55px;
 
     width:70%;
-
     height:50px;
 
     transform:
@@ -1047,7 +1041,6 @@ section{
     z-index:-1;
 }
 
-
 /* ==================================================
    CONTROLS
 ================================================== */
@@ -1056,7 +1049,6 @@ section{
     position:absolute;
 
     bottom:8vh;
-
     left:5vw;
 
     display:flex;
@@ -1092,18 +1084,14 @@ section{
 
 .control:hover{
     border-color:#850014;
-
     color:#fff;
 }
 
 .control.active{
     background:#850014;
-
     border-color:#850014;
-
     color:#fff;
 }
-
 
 /* ==================================================
    TECHNICAL
@@ -1141,12 +1129,12 @@ section{
 
 .tech-image img{
     width:100%;
-
     display:block;
 }
 
 .tech-title{
-    font-size:clamp(55px,8vw,120px);
+    font-size:
+        clamp(55px,8vw,120px);
 
     font-weight:800;
 
@@ -1171,7 +1159,6 @@ section{
     line-height:1.9;
 }
 
-
 /* ==================================================
    GALLERY
 ================================================== */
@@ -1193,7 +1180,8 @@ section{
 }
 
 .gallery-title{
-    font-size:clamp(60px,9vw,130px);
+    font-size:
+        clamp(60px,9vw,130px);
 
     font-weight:800;
 
@@ -1235,7 +1223,6 @@ section{
     transition:
         transform 1.2s
         cubic-bezier(.16,1,.3,1),
-
         filter .7s;
 }
 
@@ -1244,7 +1231,6 @@ section{
 
     filter:brightness(.8);
 }
-
 
 /* ==================================================
    FINAL STATEMENT
@@ -1273,7 +1259,8 @@ section{
 .statement h2{
     max-width:1200px;
 
-    font-size:clamp(55px,10vw,150px);
+    font-size:
+        clamp(55px,10vw,150px);
 
     line-height:.82;
 
@@ -1296,7 +1283,6 @@ section{
     letter-spacing:.25em;
 }
 
-
 /* ==================================================
    SOCIAL
 ================================================== */
@@ -1318,7 +1304,8 @@ section{
 }
 
 .social h3{
-    font-size:clamp(30px,5vw,65px);
+    font-size:
+        clamp(30px,5vw,65px);
 
     letter-spacing:-.05em;
 }
@@ -1348,7 +1335,6 @@ section{
     color:#fff;
 }
 
-
 /* ==================================================
    FOOTER
 ================================================== */
@@ -1368,7 +1354,6 @@ footer{
 
     text-transform:uppercase;
 }
-
 
 /* ==================================================
    MOBILE
@@ -1399,7 +1384,6 @@ footer{
 
     .machine-title{
         top:14vh;
-
         left:7vw;
     }
 
@@ -1410,19 +1394,16 @@ footer{
 
     .car-scene{
         width:105vw;
-
         height:500px;
     }
 
     .machine-controls{
         left:7vw;
-
         bottom:8vh;
     }
 
     .control{
         min-width:90px;
-
         padding:12px;
     }
 
@@ -1440,44 +1421,45 @@ footer{
 
     .social{
         flex-direction:column;
-
         align-items:flex-start;
-
         gap:35px;
     }
 
     footer{
         flex-direction:column;
-
         gap:15px;
     }
 
-    .start-car{
-        width:115vw;
+    /* START SCREEN MOBILE */
 
-        opacity:.25;
+    .start-car{
+        width:125vw;
+        top:54%;
+        opacity:.40;
     }
 
     .start-content h1{
-        font-size:20vw;
+        font-size:19vw;
+        letter-spacing:-.09em;
+    }
+
+    .start-label{
+        font-size:7px;
     }
 
     #startMachine{
-        min-width:205px;
-
-        gap:30px;
+        min-width:210px;
+        padding:16px 20px;
     }
 }
 
 </style>
 </head>
 
-
 <body>
 
-
 <!-- ==================================================
-     START MACHINE
+     START MACHINE SCREEN
 ================================================== -->
 
 <div id="startScreen">
@@ -1497,6 +1479,7 @@ footer{
             XANNY1616 / AUTOMOTIVE
         </div>
 
+        <!-- EXACT XANNY1616 -->
         <h1>
             XANNY<span>1616</span>
         </h1>
@@ -1506,8 +1489,7 @@ footer{
         </p>
 
         <button id="startMachine">
-            <span>START MACHINE</span>
-            <i>↗</i>
+            START MACHINE
         </button>
 
     </div>
@@ -1714,50 +1696,35 @@ footer{
 
     <div class="machine-sticky">
 
-
         <div class="machine-title">
 
             <div class="small">
-
-                XANNY1616 /
-                MACHINE 001
-
+                XANNY1616 / MACHINE 001
             </div>
 
             <h2>
-
                 THE<br>
-
-                <span>
-                    MACHINE.
-                </span>
-
+                <span>MACHINE.</span>
             </h2>
 
         </div>
 
 
         <div class="machine-counter">
-
             SCROLL / EXPERIENCE
-
         </div>
 
 
         <div class="machine-info">
 
             <p>
-
                 Precision in darkness.
                 Every angle designed to move
                 with the camera.
-
             </p>
 
         </div>
 
-
-        <!-- CAR -->
 
         <div
             class="car-scene"
@@ -1790,8 +1757,6 @@ footer{
         </div>
 
 
-        <!-- CONTROLS -->
-
         <div class="machine-controls">
 
             <button
@@ -1812,9 +1777,7 @@ footer{
 
 
         <div class="machine-scroll">
-
             SCROLL TO TRANSFORM
-
         </div>
 
     </div>
@@ -1830,7 +1793,6 @@ footer{
 
     <div class="tech-grid">
 
-
         <div class="tech-image">
 
             <img
@@ -1844,19 +1806,14 @@ footer{
         <div>
 
             <div class="label">
-
-                ENGINEERED /
-                NOT DECORATED
-
+                ENGINEERED / NOT DECORATED
             </div>
 
             <h2 class="tech-title">
 
                 FORM<br>
 
-                <span>
-                    FOLLOWS
-                </span><br>
+                <span>FOLLOWS</span><br>
 
                 FORCE.
 
@@ -1899,9 +1856,7 @@ footer{
 
                 VISUAL<br>
 
-                <span>
-                    MEMORY.
-                </span>
+                <span>MEMORY.</span>
 
             </h2>
 
@@ -1915,7 +1870,6 @@ footer{
 
 
     <div class="gallery-grid">
-
 
         <div class="gallery-item">
             <img src="car1.jpeg" alt="">
@@ -1977,7 +1931,6 @@ footer{
             <img src="car15.jpeg" alt="">
         </div>
 
-
     </div>
 
 </section>
@@ -1990,10 +1943,7 @@ footer{
 <section class="statement">
 
     <div class="label">
-
-        XANNY1616 /
-        FINAL STATEMENT
-
+        XANNY1616 / FINAL STATEMENT
     </div>
 
     <h2>
@@ -2001,19 +1951,14 @@ footer{
         NOT JUST<br>
 
         A
-        <span>
-            CAR.
-        </span><br>
+        <span>CAR.</span><br>
 
         A PRESENCE.
 
     </h2>
 
     <p>
-
-        DESIGNED IN BLACK /
-        DEFINED IN CHERRY
-
+        DESIGNED IN BLACK / DEFINED IN CHERRY
     </p>
 
 </section>
@@ -2032,9 +1977,7 @@ footer{
 
         FOLLOW<br>
 
-        <span>
-            THE MACHINE.
-        </span>
+        <span>THE MACHINE.</span>
 
     </h3>
 
@@ -2045,8 +1988,7 @@ footer{
         rel="noopener"
     >
 
-        INSTAGRAM /
-        @XANNY1616
+        INSTAGRAM / @XANNY1616
 
     </a>
 
@@ -2074,7 +2016,7 @@ footer{
 </footer>
 
 
-<!-- ENGINE -->
+<!-- ENGINE AUDIO -->
 
 <audio
     id="engineAudio"
@@ -2097,24 +2039,33 @@ const startMachine =
 
 
 /*
-   Prevent the website underneath from
-   scrolling before START MACHINE.
+   The page cannot scroll until
+   START MACHINE is pressed.
 */
 
 document.body.style.overflowY = "hidden";
 
 
-startMachine.addEventListener("click",()=>{
+startMachine.addEventListener(
+    "click",
+    ()=>{
 
-    startScreen.classList.add("hidden");
+        startScreen.classList.add(
+            "hidden"
+        );
 
-    setTimeout(()=>{
+        setTimeout(
+            ()=>{
 
-        document.body.style.overflowY = "auto";
+                document.body.style.overflowY =
+                    "auto";
 
-    },900);
+            },
+            950
+        );
 
-});
+    }
+);
 
 
 /* ==================================================
@@ -2167,7 +2118,10 @@ function updateScroll(){
     progress =
         Math.max(
             0,
-            Math.min(1,progress)
+            Math.min(
+                1,
+                progress
+            )
         );
 
     targetProgress =
@@ -2221,10 +2175,12 @@ function render(){
 
 
     const p =
-        easeInOut(currentProgress);
+        easeInOut(
+            currentProgress
+        );
 
 
-    /* CAMERA */
+    /* MAIN CAMERA */
 
     const sceneY =
         160 -
@@ -2270,7 +2226,7 @@ function render(){
         p * .16;
 
 
-    /* ACTUAL PHOTO */
+    /* PHOTO ITSELF */
 
     const imageX =
         -42 +
@@ -2289,7 +2245,7 @@ function render(){
         p * 1.2;
 
 
-    /* IMAGE LIGHT */
+    /* LIGHT */
 
     const brightness =
         .70 +
@@ -2304,7 +2260,7 @@ function render(){
         p * .18;
 
 
-    /* RED LIGHT */
+    /* RED LIGHT SWEEP */
 
     const shineX =
         -35 +
@@ -2339,7 +2295,7 @@ function render(){
         p * .35;
 
 
-    /* APPLY */
+    /* APPLY CAMERA */
 
     carFloat.style.setProperty(
         "--sceneY",
@@ -2367,6 +2323,8 @@ function render(){
     );
 
 
+    /* APPLY FRAME */
+
     carFrame.style.setProperty(
         "--frameX",
         frameX+"px"
@@ -2393,6 +2351,8 @@ function render(){
     );
 
 
+    /* APPLY PHOTO */
+
     carImage.style.setProperty(
         "--imageX",
         imageX+"px"
@@ -2414,6 +2374,8 @@ function render(){
     );
 
 
+    /* PHOTO LIGHTING */
+
     carImage.style.setProperty(
         "--imageBrightness",
         brightness
@@ -2429,6 +2391,8 @@ function render(){
         saturation
     );
 
+
+    /* RED ATMOSPHERE */
 
     carFrame.style.setProperty(
         "--shineX",
@@ -2450,6 +2414,8 @@ function render(){
         glowOpacity
     );
 
+
+    /* SHADOW */
 
     const shadow =
         carFrame.querySelector(
@@ -2473,14 +2439,16 @@ function render(){
     );
 
 
-    requestAnimationFrame(render);
+    requestAnimationFrame(
+        render
+    );
 }
 
 render();
 
 
 /* ==================================================
-   MOUSE 3D TILT
+   MOUSE PARALLAX
 ================================================== */
 
 window.addEventListener(
@@ -2498,21 +2466,14 @@ window.addEventListener(
             .5;
 
 
-        const mouseX =
-            x * 4;
-
-        const mouseY =
-            -y * 3;
-
-
         carFloat.style.setProperty(
             "--mouseX",
-            mouseX+"deg"
+            (x*4)+"deg"
         );
 
         carFloat.style.setProperty(
             "--mouseY",
-            mouseY+"deg"
+            (-y*3)+"deg"
         );
 
     }
@@ -2533,9 +2494,7 @@ engineBtn.addEventListener(
         if(!engineOn){
 
             try{
-
                 await engineAudio.play();
-
             }catch(error){}
 
 
@@ -2562,7 +2521,7 @@ engineBtn.addEventListener(
 
 
 /* ==================================================
-   REV AUDIO
+   REV
 ================================================== */
 
 let audioContext = null;
@@ -2640,7 +2599,9 @@ function revEngine(){
 
 
     oscillator.frequency
-        .cancelScheduledValues(now);
+        .cancelScheduledValues(
+            now
+        );
 
 
     oscillator.frequency
@@ -2665,7 +2626,9 @@ function revEngine(){
 
 
     gainNode.gain
-        .cancelScheduledValues(now);
+        .cancelScheduledValues(
+            now
+        );
 
 
     gainNode.gain
@@ -2689,14 +2652,6 @@ function revEngine(){
         );
 
 }
-
-
-/* REV BUTTON */
-
-revBtn.addEventListener(
-    "click",
-    revEngine
-);
 
 
 /* ==================================================
