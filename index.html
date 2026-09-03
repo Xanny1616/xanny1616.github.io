@@ -1,1472 +1,1547 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XANNY1616 — DRIVE DIFFERENT</title>
+<!DOCTYPEhtml>
 
+<htmllang=“en”>
+
+<head>
+<metacharset="UTF-8">
+<metaname="viewport"content="width=device-width,initial-scale=1.0">
+<title>XANNY1616—DRIVEDIFFERENT</title>
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
-
 body{
-  background:#050505;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
+background:#050505;
+color:#fff;
+font-family:Arial,Helvetica,sans-serif;
+overflow-x:hidden;
 }
-
-/* =========================
-   CINEMATIC INTRO
-========================= */
-
+/*=========================
+CINEMATICINTRO
+=========================*/
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:#020202;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  transition:
-    opacity 1.2s ease,
-    visibility 1.2s ease;
+position:fixed;
+inset:0;
+z-index:99999;
+background:#020202;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+transition:opacity1.2sease,visibility1.2sease;
 }
-
 #intro.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+opacity:0;
+visibility:hidden;
+pointer-events:none;
 }
-
 .intro-noise{
-  position:absolute;
-  inset:-50%;
-  opacity:.06;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:noiseMove .2s steps(2) infinite;
+position:absolute;
+inset:-50%;
+opacity:.055;
+background-image:url("data:image/svg+xml,%3CsvgviewBox='00180180'xmlns='http://www.w3.org/2000/svg'%3E%3Cfilterid='n'%3E%3CfeTurbulencetype='fractalNoise'baseFrequency='.9'numOctaves='4'stitchTiles='stitch'/%3E%3C/filter%3E%3Crectwidth='100%25'height='100%25'filter='url(%23n)'/%3E%3C/svg%3E");
+animation:noiseMove.2ssteps(2)infinite;
 }
-
-@keyframes noiseMove{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(2%, -1%)}
-  50%{transform:translate(-1%, 2%)}
-  75%{transform:translate(1%, 1%)}
-  100%{transform:translate(-2%, -2%)}
+@keyframesnoiseMove{
+0%{transform:translate(0,0)}
+25%{transform:translate(2%,-1%)}
+50%{transform:translate(-1%,2%)}
+75%{transform:translate(1%,1%)}
+100%{transform:translate(-2%,-2%)}
 }
-
 .intro-light{
-  position:absolute;
-  width:55vw;
-  height:55vw;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.08),transparent 65%);
-  filter:blur(30px);
-  animation:introGlow 4s ease-in-out infinite alternate;
+position:absolute;
+width:55vw;
+height:55vw;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,255,255,.08),transparent65%);
+filter:blur(30px);
+animation:introGlow4sease-in-outinfinitealternate;
 }
-
-@keyframes introGlow{
-  from{
-    transform:scale(.85);
-    opacity:.3;
-  }
-  to{
-    transform:scale(1.15);
-    opacity:.7;
-  }
+@keyframesintroGlow{
+from{
+transform:scale(.85);
+opacity:.3;
 }
-
+to{
+transform:scale(1.15);
+opacity:.7;
+}
+}
 .intro-content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:20px;
+position:relative;
+z-index:2;
+text-align:center;
+padding:20px;
 }
-
 .intro-small{
-  font-size:10px;
-  letter-spacing:7px;
-  color:#777;
-  margin-bottom:22px;
-  text-transform:uppercase;
+font-size:10px;
+letter-spacing:7px;
+color:#777;
+margin-bottom:22px;
 }
-
 .intro-title{
-  font-size:clamp(55px,12vw,150px);
-  font-weight:900;
-  letter-spacing:-5px;
-  line-height:.85;
+font-size:clamp(55px,12vw,150px);
+font-weight:900;
+letter-spacing:-5px;
+line-height:.85;
 }
-
 .intro-sub{
-  margin-top:25px;
-  font-size:11px;
-  letter-spacing:5px;
-  color:#888;
+margin-top:25px;
+font-size:11px;
+letter-spacing:5px;
+color:#888;
 }
-
 .enter-btn{
-  margin-top:50px;
-  position:relative;
-  background:transparent;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.35);
-  padding:18px 38px;
-  font-size:11px;
-  letter-spacing:4px;
-  cursor:pointer;
-  overflow:hidden;
-  transition:.4s ease;
+margin-top:50px;
+position:relative;
+background:transparent;
+color:#fff;
+border:1pxsolidrgba(255,255,255,.35);
+padding:18px38px;
+font-size:11px;
+letter-spacing:4px;
+cursor:pointer;
+overflow:hidden;
+transition:.4sease;
 }
-
-.enter-btn span{
-  position:relative;
-  z-index:2;
+.enter-btnspan{
+position:relative;
+z-index:2;
 }
-
 .enter-btn::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:#fff;
-  transform:translateX(-101%);
-  transition:.4s ease;
+content:"";
+position:absolute;
+inset:0;
+background:#fff;
+transform:translateX(-101%);
+transition:.4sease;
 }
-
 .enter-btn:hover{
-  color:#000;
+color:#000;
 }
-
 .enter-btn:hover::before{
-  transform:translateX(0);
+transform:translateX(0);
 }
-
 .intro-bottom{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:8px;
-  letter-spacing:4px;
-  color:#444;
-  white-space:nowrap;
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+font-size:8px;
+letter-spacing:4px;
+color:#444;
+white-space:nowrap;
 }
-
-/* =========================
-   NAV
-========================= */
-
+/*=========================
+NAV
+=========================*/
 nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:80px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 5%;
-  z-index:1000;
-  background:linear-gradient(to bottom,rgba(0,0,0,.75),transparent);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:05%;
+z-index:1000;
+background:linear-gradient(tobottom,rgba(0,0,0,.8),transparent);
 }
-
 .logo{
-  font-size:14px;
-  font-weight:bold;
-  letter-spacing:4px;
+font-size:14px;
+font-weight:bold;
+letter-spacing:4px;
 }
-
 .nav-links{
-  display:flex;
-  gap:30px;
-  align-items:center;
+display:flex;
+gap:30px;
+align-items:center;
 }
-
-.nav-links a{
-  color:#aaa;
-  text-decoration:none;
-  font-size:10px;
-  letter-spacing:2px;
-  transition:.3s;
+.nav-linksa{
+color:#aaa;
+text-decoration:none;
+font-size:10px;
+letter-spacing:2px;
+transition:.3s;
 }
-
-.nav-links a:hover{
-  color:#fff;
+.nav-linksa:hover{
+color:#fff;
 }
-
 .insta{
-  border:1px solid #555;
-  padding:10px 15px;
+border:1pxsolid#555;
+padding:10px15px;
 }
-
-/* =========================
-   HERO
-========================= */
-
+/*=========================
+HERO
+=========================*/
 .hero{
-  height:100vh;
-  min-height:650px;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  padding:0 6% 8%;
-  background:
-    linear-gradient(to top,#050505 0%,transparent 45%),
-    linear-gradient(to bottom,rgba(0,0,0,.3),transparent 40%),
-    url("car1.jpeg") center/cover no-repeat;
+height:100vh;
+min-height:650px;
+position:relative;
+display:flex;
+align-items:flex-end;
+padding:06%8%;
+background:
+linear-gradient(totop,#0505050%,transparent45%),
+linear-gradient(tobottom,rgba(0,0,0,.3),transparent40%),
+url("car1.jpeg")center/coverno-repeat;
 }
-
 .hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    rgba(0,0,0,.65),
-    transparent 60%
-  );
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,rgba(0,0,0,.65),transparent60%);
 }
-
 .hero-content{
-  position:relative;
-  z-index:2;
+position:relative;
+z-index:2;
 }
-
 .hero-label{
-  font-size:10px;
-  letter-spacing:6px;
-  color:#aaa;
-  margin-bottom:20px;
+font-size:10px;
+letter-spacing:6px;
+color:#aaa;
+margin-bottom:20px;
 }
-
-.hero h1{
-  font-size:clamp(65px,12vw,170px);
-  line-height:.8;
-  letter-spacing:-7px;
-  font-weight:900;
+.heroh1{
+font-size:clamp(65px,12vw,170px);
+line-height:.8;
+letter-spacing:-7px;
+font-weight:900;
 }
-
-.hero p{
-  margin-top:30px;
-  font-size:12px;
-  letter-spacing:7px;
-  color:#aaa;
+.herop{
+margin-top:30px;
+font-size:12px;
+letter-spacing:7px;
+color:#aaa;
 }
-
 .scroll{
-  position:absolute;
-  bottom:35px;
-  right:6%;
-  z-index:3;
-  font-size:8px;
-  letter-spacing:3px;
-  color:#888;
-  writing-mode:vertical-rl;
+position:absolute;
+bottom:35px;
+right:6%;
+z-index:3;
+font-size:8px;
+letter-spacing:3px;
+color:#888;
+writing-mode:vertical-rl;
 }
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
+/*=========================
+GENERAL
+=========================*/
 section{
-  padding:140px 6%;
+padding:140px6%;
 }
-
 .section-label{
-  font-size:9px;
-  letter-spacing:5px;
-  color:#777;
-  margin-bottom:25px;
+font-size:9px;
+letter-spacing:5px;
+color:#777;
+margin-bottom:25px;
 }
-
 .section-title{
-  font-size:clamp(45px,7vw,100px);
-  line-height:.9;
-  letter-spacing:-4px;
+font-size:clamp(45px,7vw,100px);
+line-height:.9;
+letter-spacing:-4px;
 }
-
 .section-text{
-  max-width:600px;
-  color:#999;
-  line-height:1.8;
-  font-size:14px;
-  margin-top:35px;
+max-width:600px;
+color:#999;
+line-height:1.8;
+font-size:14px;
+margin-top:35px;
 }
-
-/* =========================
-   SPECS
-========================= */
-
+/*=========================
+SPECS
+=========================*/
 .specs{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  margin-top:80px;
-  border-top:1px solid #222;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+margin-top:80px;
+border-top:1pxsolid#222;
 }
-
 .spec{
-  padding:30px 20px 30px 0;
-  border-bottom:1px solid #222;
+padding:30px20px30px0;
+border-bottom:1pxsolid#222;
 }
-
-.spec h3{
-  font-size:10px;
-  letter-spacing:3px;
-  color:#666;
-  margin-bottom:12px;
+.spech3{
+font-size:10px;
+letter-spacing:3px;
+color:#666;
+margin-bottom:12px;
 }
-
-.spec p{
-  font-size:25px;
+.specp{
+font-size:25px;
 }
-
-/* =========================
-   MACHINE CONTROL
-========================= */
-
+/*=========================
+MACHINE
+=========================*/
 .machine{
-  position:relative;
-  overflow:hidden;
-  background:#020202;
+background:#020202;
+overflow:hidden;
+perspective:1600px;
 }
-
 .machine-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
-  margin-bottom:55px;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:30px;
+margin-bottom:70px;
 }
-
 .machine-title{
-  font-size:clamp(50px,8vw,110px);
-  line-height:.8;
-  letter-spacing:-5px;
+font-size:clamp(50px,8vw,110px);
+line-height:.8;
+letter-spacing:-5px;
 }
-
 .machine-sub{
-  max-width:300px;
-  color:#777;
-  font-size:11px;
-  line-height:1.7;
-  text-align:right;
+max-width:300px;
+color:#777;
+font-size:11px;
+line-height:1.7;
+text-align:right;
 }
-
-.car-stage{
-  position:relative;
-  width:100%;
-  max-width:1300px;
-  margin:auto;
-  overflow:hidden;
-  background:#080808;
-  border:1px solid #151515;
+/*THE3DSCENE*/
+.car-scene{
+width:100%;
+max-width:1350px;
+height:min(70vw,760px);
+min-height:430px;
+margin:auto;
+perspective:1400px;
+perspective-origin:50%50%;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
 }
-
-.car-stage img{
-  width:100%;
-  display:block;
-  transition:
-    transform .35s ease,
-    filter .35s ease;
+/*floatingframe*/
+.car-float{
+width:100%;
+position:relative;
+transform-style:preserve-3d;
+--scrollY:0px;
+--scrollRotateX:0deg;
+--scrollRotateY:0deg;
+--mouseX:0deg;
+--mouseY:0deg;
+transform:
+translate3d(0,var(--scrollY),0)
+rotateX(calc(var(--scrollRotateX)+var(--mouseY)))
+rotateY(calc(var(--scrollRotateY)+var(--mouseX)))
+rotateZ(0deg)
+scale(var(--scrollScale,1));
+transition:filter.4sease;
+will-change:transform;
 }
-
-.car-stage.active img{
-  transform:scale(1.015);
+.car-frame{
+position:relative;
+width:100%;
+transform-style:preserve-3d;
 }
-
-.car-stage.shake img{
-  animation:carShake .35s ease;
+/*cinematicshadowunderneath*/
+.car-shadow{
+position:absolute;
+left:8%;
+right:8%;
+bottom:-4%;
+height:18%;
+background:radial-gradient(
+ellipse,
+rgba(0,0,0,.9),
+transparent70%
+);
+filter:blur(25px);
+transform:translateZ(-100px);
+pointer-events:none;
 }
-
-@keyframes carShake{
-  0%,100%{transform:translateX(0)}
-  20%{transform:translateX(-5px)}
-  40%{transform:translateX(5px)}
-  60%{transform:translateX(-3px)}
-  80%{transform:translateX(3px)}
+/*actualcarphoto*/
+#carImage{
+width:100%;
+display:block;
+position:relative;
+z-index:2;
+transform:translateZ(45px);
+filter:
+brightness(.82)
+contrast(1.08)
+saturate(.9);
+user-select:none;
+-webkit-user-drag:none;
+will-change:transform,filter;
 }
-
+/*cinematicedgeglow*/
+.car-frame::before{
+content:"";
+position:absolute;
+inset:-2%;
+z-index:1;
+pointer-events:none;
+background:
+radial-gradient(
+circleatvar(--lightX,50%)var(--lightY,50%),
+rgba(255,255,255,.14),
+transparent28%
+);
+mix-blend-mode:screen;
+transform:translateZ(80px);
+opacity:.65;
+}
+/*glass-likecinematiclayer*/
+.car-frame::after{
+content:"";
+position:absolute;
+inset:0;
+z-index:4;
+pointer-events:none;
+background:
+linear-gradient(
+105deg,
+transparent20%,
+rgba(255,255,255,.06)48%,
+transparent62%
+);
+transform:
+translateX(var(--shineX,-60%))
+translateZ(100px);
+transition:transform.15slinear;
+mix-blend-mode:screen;
+}
+/*scrollstatus*/
+.scroll-status{
+position:absolute;
+bottom:20px;
+left:25px;
+z-index:10;
+font-size:8px;
+letter-spacing:3px;
+color:#666;
+transform:translateZ(150px);
+}
+/*RPM*/
 .rpm{
-  position:absolute;
-  top:25px;
-  right:25px;
-  z-index:3;
-  text-align:right;
-  font-family:monospace;
+position:absolute;
+top:25px;
+right:25px;
+z-index:10;
+text-align:right;
+font-family:monospace;
+transform:translateZ(150px);
 }
-
 .rpm-label{
-  font-size:8px;
-  letter-spacing:3px;
-  color:#888;
+font-size:8px;
+letter-spacing:3px;
+color:#888;
 }
-
 #rpmValue{
-  font-size:32px;
-  letter-spacing:2px;
+font-size:32px;
+letter-spacing:2px;
 }
-
+/*controls*/
 .controls{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-  padding:30px;
-  border:1px solid #151515;
-  border-top:0;
-  background:#070707;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+padding:30px;
+border:1pxsolid#151515;
+background:#070707;
+max-width:1350px;
+margin:auto;
 }
-
 .control-btn{
-  min-width:145px;
-  padding:17px 25px;
-  background:#0b0b0b;
-  border:1px solid #333;
-  color:#aaa;
-  cursor:pointer;
-  font-size:9px;
-  letter-spacing:3px;
-  transition:.3s;
+min-width:145px;
+padding:17px25px;
+background:#0b0b0b;
+border:1pxsolid#333;
+color:#aaa;
+cursor:pointer;
+font-size:9px;
+letter-spacing:3px;
+transition:.3s;
 }
-
 .control-btn:hover{
-  border-color:#fff;
-  color:#fff;
+border-color:#fff;
+color:#fff;
 }
-
 .control-btn.on{
-  background:#fff;
-  color:#000;
-  border-color:#fff;
+background:#fff;
+color:#000;
+border-color:#fff;
 }
-
-/* =========================
-   CINEMATIC IMAGE
-========================= */
-
+/*enginerunningatmosphere*/
+.machine.engine-running.car-frame{
+animation:engineFloat3sease-in-outinfinite;
+}
+@keyframesengineFloat{
+0%,100%{
+filter:brightness(1);
+}
+50%{
+filter:brightness(1.05);
+}
+}
+/*revshake*/
+.car-scene.rev-shake.car-float{
+animation:revShake.32sease;
+}
+@keyframesrevShake{
+0%,100%{
+margin-left:0;
+}
+20%{
+margin-left:-5px;
+}
+40%{
+margin-left:5px;
+}
+60%{
+margin-left:-3px;
+}
+80%{
+margin-left:3px;
+}
+}
+/*=========================
+CINEMATICIMAGE
+=========================*/
 .cinematic-image{
-  padding:0 6% 140px;
+padding:06%140px;
+overflow:hidden;
 }
-
-.cinematic-image img{
-  width:100%;
-  max-height:85vh;
-  object-fit:cover;
-  display:block;
-  filter:brightness(.75);
+.cinematic-imageimg{
+width:100%;
+max-height:85vh;
+object-fit:cover;
+display:block;
+filter:brightness(.75);
+transform:scale(1.02);
 }
-
-/* =========================
-   GALLERY
-========================= */
-
+/*=========================
+GALLERY
+=========================*/
 .gallery{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-  margin-top:80px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+margin-top:80px;
 }
-
 .gallery-item{
-  overflow:hidden;
-  background:#080808;
+overflow:hidden;
+background:#080808;
+transform-style:preserve-3d;
+perspective:1000px;
 }
-
 .gallery-item:nth-child(even){
-  margin-top:100px;
+margin-top:100px;
 }
-
-.gallery-item img{
-  width:100%;
-  display:block;
-  transition:transform .8s cubic-bezier(.2,.7,.2,1);
+.gallery-itemimg{
+width:100%;
+display:block;
+transition:transform.8scubic-bezier(.2,.7,.2,1);
 }
-
-.gallery-item:hover img{
-  transform:scale(1.05);
+.gallery-item:hoverimg{
+transform:scale(1.05);
 }
-
-/* =========================
-   FINAL
-========================= */
-
+/*=========================
+FINAL
+=========================*/
 .final{
-  min-height:80vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
+min-height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden;
 }
-
-.final h2{
-  font-size:clamp(55px,12vw,170px);
-  letter-spacing:-7px;
-  line-height:.8;
+.finalh2{
+font-size:clamp(55px,12vw,170px);
+letter-spacing:-7px;
+line-height:.8;
 }
-
-.final p{
-  margin-top:30px;
-  color:#666;
-  font-size:9px;
-  letter-spacing:5px;
+.finalp{
+margin-top:30px;
+color:#666;
+font-size:9px;
+letter-spacing:5px;
 }
-
-/* =========================
-   INSTAGRAM
-========================= */
-
+/*=========================
+INSTAGRAM
+=========================*/
 .instagram{
-  text-align:center;
-  border-top:1px solid #151515;
+text-align:center;
+border-top:1pxsolid#151515;
 }
-
-.instagram a{
-  display:inline-block;
-  margin-top:30px;
-  color:#fff;
-  text-decoration:none;
-  border:1px solid #333;
-  padding:16px 30px;
-  font-size:10px;
-  letter-spacing:3px;
+.instagrama{
+display:inline-block;
+margin-top:30px;
+color:#fff;
+text-decoration:none;
+border:1pxsolid#333;
+padding:16px30px;
+font-size:10px;
+letter-spacing:3px;
 }
-
-/* =========================
-   FOOTER
-========================= */
-
+/*=========================
+FOOTER
+=========================*/
 footer{
-  padding:35px 6%;
-  border-top:1px solid #151515;
-  display:flex;
-  justify-content:space-between;
-  color:#444;
-  font-size:8px;
-  letter-spacing:3px;
+padding:35px6%;
+border-top:1pxsolid#151515;
+display:flex;
+justify-content:space-between;
+color:#444;
+font-size:8px;
+letter-spacing:3px;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-
+/*=========================
+MOBILE
+=========================*/
 @media(max-width:800px){
-
-  nav{
-    height:65px;
-    padding:0 5%;
-  }
-
-  .nav-links{
-    gap:12px;
-  }
-
-  .nav-links a:not(.insta){
-    display:none;
-  }
-
-  .hero{
-    min-height:600px;
-    padding:0 6% 12%;
-  }
-
-  .hero h1{
-    letter-spacing:-4px;
-  }
-
-  section{
-    padding:100px 6%;
-  }
-
-  .specs{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .machine-head{
-    display:block;
-  }
-
-  .machine-sub{
-    text-align:left;
-    margin-top:25px;
-  }
-
-  .gallery{
-    grid-template-columns:1fr;
-    gap:15px;
-  }
-
-  .gallery-item:nth-child(even){
-    margin-top:0;
-  }
-
-  .controls{
-    padding:20px 10px;
-  }
-
-  .control-btn{
-    min-width:120px;
-    flex:1;
-  }
-
-  footer{
-    flex-direction:column;
-    gap:10px;
-  }
-
-  .intro-title{
-    letter-spacing:-3px;
-  }
-
-  .intro-small{
-    letter-spacing:4px;
-  }
+nav{
+height:65px;
+padding:05%;
+}
+.nav-links{
+gap:12px;
+}
+.nav-linksa:not(.insta){
+display:none;
+}
+.hero{
+min-height:600px;
+padding:06%12%;
+}
+.heroh1{
+letter-spacing:-4px;
+}
+section{
+padding:100px6%;
+}
+.specs{
+grid-template-columns:repeat(2,1fr);
+}
+.machine-head{
+display:block;
+}
+.machine-sub{
+text-align:left;
+margin-top:25px;
+}
+.car-scene{
+height:80vw;
+min-height:300px;
+}
+.rpm{
+top:15px;
+right:15px;
+}
+#rpmValue{
+font-size:23px;
+}
+.controls{
+padding:20px10px;
+}
+.control-btn{
+min-width:120px;
+flex:1;
+}
+.gallery{
+grid-template-columns:1fr;
+gap:15px;
+}
+.gallery-item:nth-child(even){
+margin-top:0;
+}
+footer{
+flex-direction:column;
+gap:10px;
+}
+.intro-title{
+letter-spacing:-3px;
+}
+.intro-small{
+letter-spacing:4px;
+}
+}
+/*reducedmotion*/
+@media(prefers-reduced-motion:reduce){
+*,
+*::before,
+*::after{
+animation-duration:.01ms!important;
+animation-iteration-count:1!important;
+scroll-behavior:auto!important;
+}
 }
 </style>
 </head>
-
 <body>
+<!--=========================
+INTRO
+=========================-->
 
-<!-- =========================
-     CINEMATIC INTRO
-========================= -->
+<divid=“intro”>
 
-<div id="intro">
+<divclass=“intro-noise”>
+<divclass=“intro-light”>
 
-  <div class="intro-noise"></div>
-  <div class="intro-light"></div>
+<divclass=“intro-content”>
 
-  <div class="intro-content">
-
-    <div class="intro-small">
-      AUTOMOTIVE / VISUALS
-    </div>
-
-    <div class="intro-title">
-      XANNY1616
-    </div>
-
-    <div class="intro-sub">
-      DRIVE DIFFERENT.
-    </div>
-
-    <button class="enter-btn" id="enterBtn">
-      <span>ENTER THE MACHINE</span>
-    </button>
-
-  </div>
-
-  <div class="intro-bottom">
-    EXPERIENCE / THE / MACHINE
-  </div>
+<divclass=“intro-small”>
+AUTOMOTIVE/VISUALS
 
 </div>
 
+<divclass=“intro-title”>
+XANNY1616
 
-<!-- =========================
-     NAV
-========================= -->
+</div>
 
+<divclass=“intro-sub”>
+DRIVEDIFFERENT.
+
+</div>
+
+<buttonclass=“enter-btn”id=“enterBtn”>
+ENTERTHEMACHINE
+</div>
+
+<divclass=“intro-bottom”>
+EXPERIENCE/THE/MACHINE
+
+</div>
+</div>
+<!--=========================
+NAV
+=========================-->
 <nav>
 
-  <div class="logo">
-    XANNY1616
-  </div>
-
-  <div class="nav-links">
-    <a href="#about">ABOUT</a>
-    <a href="#gallery">GALLERY</a>
-    <a
-      class="insta"
-      href="https://www.instagram.com/xanny1616/"
-      target="_blank"
-    >
-      INSTAGRAM
-    </a>
-  </div>
-
-</nav>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<header class="hero">
-
-  <div class="hero-content">
-
-    <div class="hero-label">
-      XANNY1616 / AUTOMOTIVE
-    </div>
-
-    <h1>
-      XANNY
-    </h1>
-
-    <p>
-      DRIVE DIFFERENT
-    </p>
-
-  </div>
-
-  <div class="scroll">
-    SCROLL TO EXPLORE
-  </div>
-
-</header>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section id="about">
-
-  <div class="section-label">
-    01 / ABOUT
-  </div>
-
-  <h2 class="section-title">
-    THE<br>
-    MACHINE.
-  </h2>
-
-  <p class="section-text">
-    Built for the road ahead. A machine isn't just something you drive.
-    It's something you feel. Every line, every sound and every movement
-    creates its own character.
-  </p>
-
-  <div class="specs">
-
-    <div class="spec">
-      <h3>IDENTITY</h3>
-      <p>XANNY1616</p>
-    </div>
-
-    <div class="spec">
-      <h3>STYLE</h3>
-      <p>AGGRESSIVE</p>
-    </div>
-
-    <div class="spec">
-      <h3>DRIVE</h3>
-      <p>PURE</p>
-    </div>
-
-    <div class="spec">
-      <h3>MISSION</h3>
-      <p>ROAD</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MACHINE CONTROL
-========================= -->
-
-<section class="machine">
-
-  <div class="machine-head">
-
-    <div>
-      <div class="section-label">
-        02 / INTERACTION
-      </div>
-
-      <h2 class="machine-title">
-        WAKE<br>
-        THE MACHINE.
-      </h2>
-    </div>
-
-    <div class="machine-sub">
-      Start the engine. Hit the horn. Give it some revs.
-      The machine responds to you.
-    </div>
-
-  </div>
-
-
-  <div class="car-stage" id="carStage">
-
-    <img
-      src="car15.jpeg"
-      id="carImage"
-      alt="XANNY1616 car"
-    >
-
-    <div class="rpm">
-
-      <div class="rpm-label">
-        RPM
-      </div>
-
-      <div id="rpmValue">
-        0800
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="controls">
-
-    <button class="control-btn" id="engineBtn">
-      ENGINE
-    </button>
-
-    <button class="control-btn" id="hornBtn">
-      HORN
-    </button>
-
-    <button class="control-btn" id="revBtn">
-      REV
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CINEMATIC IMAGE
-========================= -->
-
-<div class="cinematic-image">
-
-  <img
-    src="car2.jpeg"
-    alt="XANNY1616"
-  >
+<divclass=“logo”>
+XANNY1616
 
 </div>
 
+<divclass=“nav-links”>
+<ahref=”#about”>ABOUT
+<ahref=”#gallery”>GALLERY
 
-<!-- =========================
-     GALLERY
-========================= -->
+<a
+class=“insta”
+href=“https://www.instagram.com/xanny1616/”
+target=”_blank”
+rel=“noopener”
 
-<section id="gallery">
+INSTAGRAM
+</div>
+</nav>
+<!--=========================
+HERO
+=========================-->
 
-  <div class="section-label">
-    03 / GALLERY
-  </div>
+<headerclass=“hero”>
 
-  <h2 class="section-title">
-    THE<br>
-    DETAILS.
-  </h2>
+<divclass=“hero-content”>
 
-  <div class="gallery">
+<divclass=“hero-label”>
+XANNY1616/AUTOMOTIVE
 
-    <div class="gallery-item">
-      <img src="car1.jpeg" alt="">
-    </div>
+</div>
+<h1>
+XANNY
+</h1>
+<p>
+DRIVEDIFFERENT
+</p>
+</div>
 
-    <div class="gallery-item">
-      <img src="car2.jpeg" alt="">
-    </div>
+<divclass=“scroll”>
+SCROLLTOEXPLORE
 
-    <div class="gallery-item">
-      <img src="car3.jpeg" alt="">
-    </div>
+</div>
+</header>
+<!--=========================
+ABOUT
+=========================-->
 
-    <div class="gallery-item">
-      <img src="car4.jpeg" alt="">
-    </div>
+<sectionid=“about”>
 
-    <div class="gallery-item">
-      <img src="car5.jpeg" alt="">
-    </div>
+<divclass=“section-label”>
+01/ABOUT
 
-    <div class="gallery-item">
-      <img src="car6.jpeg" alt="">
-    </div>
+</div>
 
-    <div class="gallery-item">
-      <img src="car7.jpeg" alt="">
-    </div>
+<h2class=“section-title”>
+THE
+MACHINE.
 
-    <div class="gallery-item">
-      <img src="car8.jpeg" alt="">
-    </div>
+</h2>
 
-    <div class="gallery-item">
-      <img src="car9.jpeg" alt="">
-    </div>
+<pclass=“section-text”>
+Builtfortheroadahead.Amachineisn’tjustsomethingyoudrive.
+It’ssomethingyoufeel.Everyline,everysoundandeverymovement
+createsitsowncharacter.
 
-    <div class="gallery-item">
-      <img src="car10.jpeg" alt="">
-    </div>
+</p>
 
-    <div class="gallery-item">
-      <img src="car11.jpeg" alt="">
-    </div>
+<divclass=“specs”>
 
-    <div class="gallery-item">
-      <img src="car12.jpeg" alt="">
-    </div>
+<divclass=“spec”>
 
-    <div class="gallery-item">
-      <img src="car13.jpeg" alt="">
-    </div>
+<h3>IDENTITY</h3>
+<p>XANNY1616</p>
+</div>
 
-    <div class="gallery-item">
-      <img src="car14.jpeg" alt="">
-    </div>
+<divclass=“spec”>
 
-    <div class="gallery-item">
-      <img src="car15.jpeg" alt="">
-    </div>
+<h3>STYLE</h3>
+<p>AGGRESSIVE</p>
+</div>
 
-  </div>
+<divclass=“spec”>
 
+<h3>DRIVE</h3>
+<p>PURE</p>
+</div>
+
+<divclass=“spec”>
+
+<h3>MISSION</h3>
+<p>ROAD</p>
+</div>
+</div>
 </section>
+<!--=========================
+MACHINE
+=========================-->
 
+<sectionclass=“machine”id=“machine”>
 
-<!-- =========================
-     FINAL
-========================= -->
+<divclass=“machine-head”>
 
-<section class="final">
+<div>
 
-  <div>
+<divclass=“section-label”>
+02/INTERACTION
 
-    <h2>
-      DRIVE<br>
-      DIFFERENT.
-    </h2>
+</div>
 
-    <p>
-      XANNY1616 / END OF THE ROAD
-    </p>
+<h2class=“machine-title”>
+WAKE
+THEMACHINE.
 
-  </div>
+</h2>
+</div>
 
+<divclass=“machine-sub”>
+Scrollintothemachine.Moveyourcursoraroundthecar.
+Starttheengineandgiveitsomerevs.
+
+</div>
+</div>
+
+<divclass=“car-scene”id=“carScene”>
+
+<divclass=“car-float”id=“carFloat”>
+
+<divclass=“car-frame”>
+
+<divclass=“car-shadow”>
+
+<img
+src=“car15.jpeg”
+id=“carImage”
+alt=“XANNY1616car”
+draggable=“false”
+
+<divclass=“rpm”>
+
+<divclass=“rpm-label”>
+RPM
+
+</div>
+
+<divid=“rpmValue”>
+0800
+
+</div>
+</div>
+
+<divclass=“scroll-status”>
+SCROLL/FEELTHEMACHINE
+
+</div>
+</div>
+</div>
+</div>
+
+<divclass=“controls”>
+
+<buttonclass=“control-btn”id=“engineBtn”>
+ENGINE
+<buttonclass=“control-btn”id=“revBtn”>
+REV
+</div>
 </section>
+<!--=========================
+CINEMATICIMAGE
+=========================-->
 
+<divclass=“cinematic-image”>
 
-<!-- =========================
-     INSTAGRAM
-========================= -->
+<img
+src=“car2.jpeg”
+alt=“XANNY1616”
 
-<section class="instagram">
+</div>
+<!--=========================
+GALLERY
+=========================-->
 
-  <div class="section-label">
-    FOLLOW THE MACHINE
-  </div>
+<sectionid=“gallery”>
 
-  <h2 class="section-title">
-    @XANNY1616
-  </h2>
+<divclass=“section-label”>
+03/GALLERY
 
-  <a
-    href="https://www.instagram.com/xanny1616/"
-    target="_blank"
-  >
-    OPEN INSTAGRAM
-  </a>
+</div>
 
+<h2class=“section-title”>
+THE
+DETAILS.
+
+</h2>
+
+<divclass=“gallery”>
+
+<divclass=“gallery-item”>
+<imgsrc=“car1.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car2.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car3.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car4.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car5.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car6.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car7.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car8.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car9.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car10.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car11.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car12.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car13.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car14.jpeg”alt=””>
+
+</div>
+
+<divclass=“gallery-item”>
+<imgsrc=“car15.jpeg”alt=””>
+
+</div>
+</div>
 </section>
+<!--=========================
+FINAL
+=========================-->
 
+<sectionclass=“final”>
 
+<div>
+<h2>
+DRIVE<br>
+DIFFERENT.
+</h2>
+<p>
+XANNY1616/ENDOFTHEROAD
+</p>
+</div>
+</section>
+<!--=========================
+INSTAGRAM
+=========================-->
+
+<sectionclass=“instagram”>
+
+<divclass=“section-label”>
+FOLLOWTHEMACHINE
+
+</div>
+
+<h2class=“section-title”>
+@XANNY1616
+
+</h2>
+
+<a
+href=“https://www.instagram.com/xanny1616/”
+target=”_blank”
+rel=“noopener”
+
+OPENINSTAGRAM
+</section>
 <footer>
-
-  <span>
-    © XANNY1616
-  </span>
-
-  <span>
-    DRIVE DIFFERENT
-  </span>
-
+<span>
+©XANNY1616
+</span>
+<span>
+DRIVEDIFFERENT
+</span>
 </footer>
-
-
-<!-- =========================
-     AUDIO
-========================= -->
-
 <script>
-
-const intro = document.getElementById("intro");
-const enterBtn = document.getElementById("enterBtn");
-
-const engineBtn = document.getElementById("engineBtn");
-const hornBtn = document.getElementById("hornBtn");
-const revBtn = document.getElementById("revBtn");
-
-const carStage = document.getElementById("carStage");
-const rpmValue = document.getElementById("rpmValue");
-
-let engineRunning = false;
-let audioContext;
-let idleOscillator;
-let idleGain;
-
-
-/* =========================
-   CINEMATIC ENTER
-========================= */
-
-enterBtn.addEventListener("click", () => {
-
-  // Small cinematic click / ignition sound
-  try{
-
-    audioContext =
-      audioContext ||
-      new (window.AudioContext || window.webkitAudioContext)();
-
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(
-      55,
-      audioContext.currentTime
-    );
-
-    osc.frequency.exponentialRampToValueAtTime(
-      180,
-      audioContext.currentTime + .25
-    );
-
-    gain.gain.setValueAtTime(
-      .0001,
-      audioContext.currentTime
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      .15,
-      audioContext.currentTime + .04
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      .0001,
-      audioContext.currentTime + .45
-    );
-
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
-
-    osc.start();
-    osc.stop(audioContext.currentTime + .5);
-
-  }catch(e){}
-
-  enterBtn.disabled = true;
-
-  intro.classList.add("hide");
-
-  setTimeout(() => {
-    window.scrollTo({
-      top:0,
-      behavior:"instant"
-    });
-  },100);
-
+/*=========================
+INTRO
+=========================*/
+constintro=document.getElementById("intro");
+constenterBtn=document.getElementById("enterBtn");
+enterBtn.addEventListener("click",()=>{
+try{
+constctx=
+new(window.AudioContext||window.webkitAudioContext)();
+constosc=ctx.createOscillator();
+constgain=ctx.createGain();
+osc.type="sine";
+osc.frequency.setValueAtTime(
+45,
+ctx.currentTime
+);
+osc.frequency.exponentialRampToValueAtTime(
+140,
+ctx.currentTime+.3
+);
+gain.gain.setValueAtTime(
+.0001,
+ctx.currentTime
+);
+gain.gain.exponentialRampToValueAtTime(
+.12,
+ctx.currentTime+.05
+);
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+ctx.currentTime+.5
+);
+osc.connect(gain);
+gain.connect(ctx.destination);
+osc.start();
+osc.stop(ctx.currentTime+.55);
+}catch(e){}
+enterBtn.disabled=true;
+intro.classList.add("hide");
 });
-
-
-/* =========================
-   ENGINE
-========================= */
-
-const engineAudio = new Audio("engine.mp3");
-
-engineAudio.loop = true;
-engineAudio.preload = "auto";
-engineAudio.volume = .7;
-
-
-engineBtn.addEventListener("click", () => {
-
-  audioContext =
-    audioContext ||
-    new (window.AudioContext || window.webkitAudioContext)();
-
-  if(audioContext.state === "suspended"){
-    audioContext.resume();
-  }
-
-
-  if(!engineRunning){
-
-    engineRunning = true;
-
-    engineBtn.classList.add("on");
-    engineBtn.textContent = "ENGINE ON";
-
-    engineAudio.currentTime = 0;
-
-    engineAudio.play().catch(() => {});
-
-
-    /* idle vibration sound */
-
-    idleOscillator =
-      audioContext.createOscillator();
-
-    idleGain =
-      audioContext.createGain();
-
-    idleOscillator.type = "sine";
-
-    idleOscillator.frequency.value = 48;
-
-    idleGain.gain.value = .025;
-
-    idleOscillator.connect(idleGain);
-    idleGain.connect(audioContext.destination);
-
-    idleOscillator.start();
-
-    carStage.classList.add("active");
-
-  }else{
-
-    engineRunning = false;
-
-    engineBtn.classList.remove("on");
-    engineBtn.textContent = "ENGINE";
-
-    engineAudio.pause();
-    engineAudio.currentTime = 0;
-
-    if(idleOscillator){
-      try{
-        idleOscillator.stop();
-      }catch(e){}
-      idleOscillator = null;
-    }
-
-    carStage.classList.remove("active");
-
-    rpmValue.textContent = "0800";
-
-  }
-
-});
-
-
-/* =========================
-   HORN
-========================= */
-
-function playHorn(){
-
-  audioContext =
-    audioContext ||
-    new (window.AudioContext || window.webkitAudioContext)();
-
-  if(audioContext.state === "suspended"){
-    audioContext.resume();
-  }
-
-  const now = audioContext.currentTime;
-
-  const gain =
-    audioContext.createGain();
-
-  const filter =
-    audioContext.createBiquadFilter();
-
-  filter.type = "lowpass";
-  filter.frequency.value = 1600;
-
-  gain.gain.setValueAtTime(.0001,now);
-
-  gain.gain.exponentialRampToValueAtTime(
-    .32,
-    now + .025
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    .0001,
-    now + .55
-  );
-
-  filter.connect(gain);
-  gain.connect(audioContext.destination);
-
-
-  const osc1 =
-    audioContext.createOscillator();
-
-  const osc2 =
-    audioContext.createOscillator();
-
-
-  osc1.type = "sawtooth";
-  osc2.type = "sawtooth";
-
-  osc1.frequency.value = 360;
-  osc2.frequency.value = 470;
-
-  osc1.connect(filter);
-  osc2.connect(filter);
-
-  osc1.start(now);
-  osc2.start(now);
-
-  osc1.stop(now + .6);
-  osc2.stop(now + .6);
-
-
-  carStage.classList.remove("shake");
-
-  void carStage.offsetWidth;
-
-  carStage.classList.add("shake");
-
+/*=========================
+MACHINEELEMENTS
+=========================*/
+constmachine=
+document.getElementById("machine");
+constcarScene=
+document.getElementById("carScene");
+constcarFloat=
+document.getElementById("carFloat");
+constcarFrame=
+document.querySelector(".car-frame");
+constcarImage=
+document.getElementById("carImage");
+constrpmValue=
+document.getElementById("rpmValue");
+constengineBtn=
+document.getElementById("engineBtn");
+constrevBtn=
+document.getElementById("revBtn");
+/*=========================
+SCROLL3DANIMATION
+=========================*/
+letscrollTarget=0;
+letscrollCurrent=0;
+functionupdateScrollTarget(){
+constrect=
+carScene.getBoundingClientRect();
+constviewport=
+window.innerHeight;
+/*
+Progress:
+0=machinebelowscreen
+1=machinecentered
+2=machineleavingscreen
+*/
+constraw=
+(viewport-rect.top)/
+(viewport+rect.height);
+scrollTarget=
+Math.max(
+0,
+Math.min(1,raw)
+);
 }
-
-
-hornBtn.addEventListener("click",playHorn);
-
-
-/* =========================
-   REV
-========================= */
-
-function revEngine(){
-
-  audioContext =
-    audioContext ||
-    new (window.AudioContext || window.webkitAudioContext)();
-
-  if(audioContext.state === "suspended"){
-    audioContext.resume();
-  }
-
-  const now = audioContext.currentTime;
-
-  const duration = 1.3;
-
-  const osc =
-    audioContext.createOscillator();
-
-  const gain =
-    audioContext.createGain();
-
-  const filter =
-    audioContext.createBiquadFilter();
-
-
-  osc.type = "sawtooth";
-
-  osc.frequency.setValueAtTime(
-    90,
-    now
-  );
-
-  osc.frequency.exponentialRampToValueAtTime(
-    600,
-    now + .7
-  );
-
-  osc.frequency.exponentialRampToValueAtTime(
-    120,
-    now + duration
-  );
-
-
-  filter.type = "lowpass";
-
-  filter.frequency.setValueAtTime(
-    900,
-    now
-  );
-
-  filter.frequency.exponentialRampToValueAtTime(
-    2600,
-    now + .7
-  );
-
-  filter.frequency.exponentialRampToValueAtTime(
-    1000,
-    now + duration
-  );
-
-
-  gain.gain.setValueAtTime(
-    .0001,
-    now
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    .22,
-    now + .08
-  );
-
-  gain.gain.setValueAtTime(
-    .22,
-    now + .65
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    .0001,
-    now + duration
-  );
-
-
-  osc.connect(filter);
-  filter.connect(gain);
-  gain.connect(audioContext.destination);
-
-  osc.start(now);
-  osc.stop(now + duration);
-
-
-  /* RPM animation */
-
-  const start = performance.now();
-
-  function animateRPM(time){
-
-    const progress =
-      Math.min(
-        (time - start) / 700,
-        1
-      );
-
-    const eased =
-      1 - Math.pow(1-progress,3);
-
-    const rpm =
-      Math.floor(
-        800 + eased * 6700
-      );
-
-    rpmValue.textContent =
-      String(rpm).padStart(4,"0");
-
-    if(progress < 1){
-
-      requestAnimationFrame(animateRPM);
-
-    }else{
-
-      const dropStart =
-        performance.now();
-
-      function dropRPM(t){
-
-        const p =
-          Math.min(
-            (t-dropStart)/550,
-            1
-          );
-
-        const rpm =
-          Math.floor(
-            7500 - p * 6400
-          );
-
-        rpmValue.textContent =
-          String(rpm).padStart(4,"0");
-
-        if(p < 1){
-          requestAnimationFrame(dropRPM);
-        }else{
-          rpmValue.textContent = "1100";
-        }
-
-      }
-
-      requestAnimationFrame(dropRPM);
-
-    }
-
-  }
-
-  requestAnimationFrame(animateRPM);
-
-
-  carStage.classList.remove("shake");
-
-  void carStage.offsetWidth;
-
-  carStage.classList.add("shake");
-
+window.addEventListener(
+"scroll",
+updateScrollTarget,
+{passive:true}
+);
+window.addEventListener(
+"resize",
+updateScrollTarget
+);
+updateScrollTarget();
+/*=========================
+SMOOTHRENDERLOOP
+=========================*/
+functionrender(){
+scrollCurrent+=
+(scrollTarget-scrollCurrent)*.075;
+/*
+CARENTERSFROMBELOW
+ANDFLOATSFORWARD
+*/
+constcentered=
+scrollCurrent;
+consttranslateY=
+90-centered*90;
+constrotateX=
+13-centered*18;
+constrotateY=
+-10+centered*20;
+constscale=
+.82+centered*.18;
+carFloat.style.setProperty(
+"--scrollY",
+`${translateY}px`
+);
+carFloat.style.setProperty(
+"--scrollRotateX",
+`${rotateX}deg`
+);
+carFloat.style.setProperty(
+"--scrollRotateY",
+`${rotateY}deg`
+);
+carFloat.style.setProperty(
+"--scrollScale",
+scale
+);
+requestAnimationFrame(render);
 }
-
-
-revBtn.addEventListener("click",() => {
-
-  if(!engineRunning){
-
-    engineBtn.click();
-
-  }
-
-  revEngine();
-
+render();
+/*=========================
+MOUSE3DTILT
+=========================*/
+letmouseX=0;
+letmouseY=0;
+lettargetMouseX=0;
+lettargetMouseY=0;
+carScene.addEventListener("mousemove",(event)=>{
+constrect=
+carScene.getBoundingClientRect();
+constx=
+(event.clientX-rect.left)/
+rect.width;
+consty=
+(event.clientY-rect.top)/
+rect.height;
+targetMouseX=
+(x-.5)*10;
+targetMouseY=
+(.5-y)*7;
+/*cinematiclight*/
+constlightX=
+Math.round(x*100);
+constlightY=
+Math.round(y*100);
+carFrame.style.setProperty(
+"--lightX",
+`${lightX}%`
+);
+carFrame.style.setProperty(
+"--lightY",
+`${lightY}%`
+);
+constshine=
+-70+x*150;
+carFrame.style.setProperty(
+"--shineX",
+`${shine}%`
+);
 });
-
-
-/* =========================
-   KEYBOARD CONTROLS
-========================= */
-
-document.addEventListener("keydown",(event) => {
-
-  if(event.key.toLowerCase() === "e"){
-    engineBtn.click();
-  }
-
-  if(event.key.toLowerCase() === "h"){
-    playHorn();
-  }
-
-  if(event.key.toLowerCase() === "r"){
-    revEngine();
-  }
-
+carScene.addEventListener("mouseleave",()=>{
+targetMouseX=0;
+targetMouseY=0;
+carFrame.style.setProperty(
+"--lightX",
+"50%"
+);
+carFrame.style.setProperty(
+"--lightY",
+"50%"
+);
+carFrame.style.setProperty(
+"--shineX",
+"-70%"
+);
 });
-
-
-/* =========================
-   IMAGE FALLBACK
-========================= */
-
-document
-  .getElementById("carImage")
-  .addEventListener("error",function(){
-
-    this.style.display = "none";
-
-    carStage.innerHTML += `
-      <div style="
-        padding:100px 20px;
-        text-align:center;
-        color:#666;
-        font-size:10px;
-        letter-spacing:3px;
-      ">
-        car15.jpeg NOT FOUND
-      </div>
-    `;
-
-  });
-
+functionmouseRender(){
+mouseX+=
+(targetMouseX-mouseX)*.08;
+mouseY+=
+(targetMouseY-mouseY)*.08;
+carFloat.style.setProperty(
+"--mouseX",
+`${mouseX}deg`
+);
+carFloat.style.setProperty(
+"--mouseY",
+`${mouseY}deg`
+);
+requestAnimationFrame(mouseRender);
+}
+mouseRender();
+/*=========================
+TOUCHTILT
+=========================*/
+window.addEventListener(
+"deviceorientation",
+(event)=>{
+if(event.gamma==null){
+return;
+}
+targetMouseX=
+Math.max(
+-6,
+Math.min(
+6,
+event.gamma/5
+)
+);
+targetMouseY=
+Math.max(
+-5,
+Math.min(
+5,
+-(event.beta-45)/10
+)
+);
+},
+true
+);
+/*=========================
+ENGINE
+=========================*/
+letengineRunning=false;
+letaudioContext;
+letidleOscillator;
+letidleGain;
+constengineAudio=
+newAudio("engine.mp3");
+engineAudio.loop=true;
+engineAudio.preload="auto";
+engineAudio.volume=.7;
+engineBtn.addEventListener("click",()=>{
+audioContext=
+audioContext||
+new(
+window.AudioContext||
+window.webkitAudioContext
+)();
+if(audioContext.state==="suspended"){
+audioContext.resume();
+}
+if(!engineRunning){
+engineRunning=true;
+engineBtn.classList.add("on");
+engineBtn.textContent=
+"ENGINEON";
+machine.classList.add(
+"engine-running"
+);
+engineAudio.currentTime=0;
+engineAudio.play().catch(()=>{});
+idleOscillator=
+audioContext.createOscillator();
+idleGain=
+audioContext.createGain();
+idleOscillator.type=
+"sine";
+idleOscillator.frequency.value=
+48;
+idleGain.gain.value=
+.025;
+idleOscillator.connect(
+idleGain
+);
+idleGain.connect(
+audioContext.destination
+);
+idleOscillator.start();
+}else{
+engineRunning=false;
+engineBtn.classList.remove("on");
+engineBtn.textContent=
+"ENGINE";
+machine.classList.remove(
+"engine-running"
+);
+engineAudio.pause();
+engineAudio.currentTime=0;
+if(idleOscillator){
+try{
+idleOscillator.stop();
+}catch(e){}
+idleOscillator=null;
+}
+rpmValue.textContent=
+"0800";
+}
+});
+/*=========================
+REV
+=========================*/
+functionrevEngine(){
+audioContext=
+audioContext||
+new(
+window.AudioContext||
+window.webkitAudioContext
+)();
+if(audioContext.state==="suspended"){
+audioContext.resume();
+}
+constnow=
+audioContext.currentTime;
+constduration=1.3;
+constosc=
+audioContext.createOscillator();
+constgain=
+audioContext.createGain();
+constfilter=
+audioContext.createBiquadFilter();
+osc.type=
+"sawtooth";
+osc.frequency.setValueAtTime(
+90,
+now
+);
+osc.frequency.exponentialRampToValueAtTime(
+600,
+now+.7
+);
+osc.frequency.exponentialRampToValueAtTime(
+120,
+now+duration
+);
+filter.type=
+"lowpass";
+filter.frequency.setValueAtTime(
+900,
+now
+);
+filter.frequency.exponentialRampToValueAtTime(
+2600,
+now+.7
+);
+filter.frequency.exponentialRampToValueAtTime(
+1000,
+now+duration
+);
+gain.gain.setValueAtTime(
+.0001,
+now
+);
+gain.gain.exponentialRampToValueAtTime(
+.22,
+now+.08
+);
+gain.gain.setValueAtTime(
+.22,
+now+.65
+);
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+now+duration
+);
+osc.connect(filter);
+filter.connect(gain);
+gain.connect(
+audioContext.destination
+);
+osc.start(now);
+osc.stop(
+now+duration
+);
+/*RPM*/
+conststart=
+performance.now();
+functionrise(time){
+constprogress=
+Math.min(
+(time-start)/700,
+1
+);
+consteased=
+1-Math.pow(
+1-progress,
+3
+);
+constrpm=
+Math.floor(
+800+eased*6700
+);
+rpmValue.textContent=
+String(rpm).padStart(4,"0");
+if(progress<1){
+requestAnimationFrame(rise);
+}else{
+constdropStart=
+performance.now();
+functiondrop(time2){
+constp=
+Math.min(
+(time2-dropStart)/550,
+1
+);
+constrpm=
+Math.floor(
+7500-p*6400
+);
+rpmValue.textContent=
+String(rpm).padStart(4,"0");
+if(p<1){
+requestAnimationFrame(drop);
+}else{
+rpmValue.textContent=
+"1100";
+}
+}
+requestAnimationFrame(drop);
+}
+}
+requestAnimationFrame(rise);
+/*shake*/
+carScene.classList.remove(
+"rev-shake"
+);
+voidcarScene.offsetWidth;
+carScene.classList.add(
+"rev-shake"
+);
+}
+revBtn.addEventListener(
+"click",
+()=>{
+if(!engineRunning){
+engineBtn.click();
+}
+revEngine();
+}
+);
+/*=========================
+KEYBOARD
+=========================*/
+document.addEventListener(
+"keydown",
+(event)=>{
+if(
+event.key.toLowerCase()
+==="e"
+){
+engineBtn.click();
+}
+if(
+event.key.toLowerCase()
+==="r"
+){
+revEngine();
+}
+}
+);
+/*=========================
+IMAGEERROR
+=========================*/
+carImage.addEventListener(
+"error",
+function(){
+this.style.display=
+"none";
+carFrame.innerHTML+=`
+<divstyle="
+padding:100px20px;
+text-align:center;
+color:#666;
+font-size:10px;
+letter-spacing:3px;
+">
+car15.jpegNOTFOUND
+</div>
+`;
+}
+);
 </script>
-
 </body>
 </html>
+```
+
+###🔥Thisversionspecificallyrestorestheeffectyouweretalkingabout
+
+WhenyoureachWAKETHEMACHINE,thecar15.jpegisn’tsimplyappearing.
+
+Itstartstilted+smaller+lower,thenasyouscrollintothesectionit:
+
+tilts→floatsupward→rotates→comestowardyou→settlesintoposition.
+
+Thenwhileyou’reoverthecar,movingthemousemakesthecarfloat/tiltin3Dandthecinematiclightmoveswithyourcursor.
+
+IalsoremovedtheHORNcompletely.Only:
+
+ENGINE|REV
+
+Nofakeheadlights,noextramodel,noextradownloads.
