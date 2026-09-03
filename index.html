@@ -1962,6 +1962,23 @@ const engineAudio =
 let engineOn=false;
 
 
+function setEngineState(state){
+
+    engineOn=state;
+
+    if(engineOn){
+
+        engineBtn.classList.add("active");
+
+    }else{
+
+        engineBtn.classList.remove("active");
+
+    }
+
+}
+
+
 engineBtn.addEventListener(
     "click",
     async()=>{
@@ -1969,23 +1986,53 @@ engineBtn.addEventListener(
         if(!engineOn){
 
             try{
+
                 await engineAudio.play();
-            }catch(error){}
 
-            engineOn=true;
+                setEngineState(true);
 
-            engineBtn.classList.add("active");
+            }catch(error){
+
+                setEngineState(false);
+
+            }
 
         }else{
 
             engineAudio.pause();
 
-            engineOn=false;
+            engineAudio.currentTime=0;
 
-            engineBtn.classList.remove("active");
+            setEngineState(false);
 
         }
 
+    }
+);
+
+
+/* =========================================================
+   KEEP BUTTON SYNCED WITH AUDIO
+========================================================= */
+
+engineAudio.addEventListener(
+    "play",
+    ()=>{
+        setEngineState(true);
+    }
+);
+
+engineAudio.addEventListener(
+    "pause",
+    ()=>{
+        setEngineState(false);
+    }
+);
+
+engineAudio.addEventListener(
+    "ended",
+    ()=>{
+        setEngineState(false);
     }
 );
 
