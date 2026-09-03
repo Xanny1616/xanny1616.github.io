@@ -32,21 +32,14 @@ body{
     top:25px;
     right:30px;
     z-index:5000;
-
     text-align:right;
-
     font-size:9px;
     letter-spacing:.18em;
     line-height:1.8;
-
     color:#75656a;
-
     pointer-events:none;
-
     text-transform:uppercase;
-
-    text-shadow:
-        0 0 15px rgba(0,0,0,.9);
+    text-shadow:0 0 15px rgba(0,0,0,.9);
 }
 
 #xannyClock{
@@ -78,7 +71,6 @@ body{
     }
 }
 
-
 /* =========================================================
    CINEMATIC RAIN
 ========================================================= */
@@ -86,32 +78,25 @@ body{
 #rainContainer{
     position:fixed;
     inset:0;
-
     z-index:4000;
-
     pointer-events:none;
-
     overflow:hidden;
-
     opacity:.48;
-
     mix-blend-mode:screen;
 }
 
 .rain-drop{
     position:absolute;
-
     top:-15vh;
-
     width:1px;
-
     height:var(--rain-height);
 
     background:
         linear-gradient(
             to bottom,
             transparent,
-            rgba(190,210,220,.72)
+            rgba(210,225,235,.75),
+            rgba(255,255,255,.08)
         );
 
     opacity:var(--rain-opacity);
@@ -125,6 +110,8 @@ body{
         infinite;
 
     animation-delay:var(--rain-delay);
+
+    filter:blur(.2px);
 }
 
 @keyframes rainFall{
@@ -143,6 +130,87 @@ body{
 
 }
 
+/* =========================================================
+   WATER DROPLETS ON GLASS
+========================================================= */
+
+#rainGlass{
+    position:fixed;
+    inset:0;
+    z-index:4001;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.glass-drop{
+    position:absolute;
+
+    width:var(--glass-size);
+    height:var(--glass-size);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.32),
+            rgba(255,255,255,.10) 35%,
+            transparent 72%
+        );
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,.08);
+
+    opacity:var(--glass-opacity);
+
+    animation:
+        glassMove
+        var(--glass-duration)
+        ease-in-out
+        infinite;
+
+    animation-delay:var(--glass-delay);
+
+    filter:blur(.15px);
+}
+
+@keyframes glassMove{
+
+    0%,100%{
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(
+                var(--glass-x),
+                var(--glass-y),
+                0
+            )
+            scale(1.08);
+    }
+
+}
+
+/* Subtle wet-screen atmosphere */
+
+#rainGlass::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.012),
+            transparent 30%,
+            rgba(130,0,20,.018)
+        );
+
+    pointer-events:none;
+}
 
 /* =========================================================
    GLOBAL CHERRY RED ATMOSPHERE
@@ -154,6 +222,7 @@ body::before{
     inset:0;
     z-index:-10;
     pointer-events:none;
+
     background:
         radial-gradient(
             ellipse at 50% 30%,
@@ -175,6 +244,7 @@ body::before{
     position:fixed;
     inset:0;
     z-index:9999;
+
     background:
         radial-gradient(
             ellipse at center,
@@ -187,6 +257,7 @@ body::before{
     display:flex;
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
 
     transition:
@@ -198,25 +269,31 @@ body::before{
     content:"";
     position:absolute;
     inset:-30%;
+
     background:
         radial-gradient(
             ellipse at center,
             rgba(155,0,25,.22),
             transparent 48%
         );
+
     animation:redPulse 5s ease-in-out infinite;
+
     pointer-events:none;
 }
 
 @keyframes redPulse{
+
     0%,100%{
         transform:scale(.95);
         opacity:.65;
     }
+
     50%{
         transform:scale(1.08);
         opacity:1;
     }
+
 }
 
 #startScreen.hide{
@@ -230,8 +307,13 @@ body::before{
     width:min(1050px,92vw);
     left:50%;
     top:53%;
-    transform:translate(-50%,-50%) scale(.94);
+
+    transform:
+        translate(-50%,-50%)
+        scale(.94);
+
     opacity:.54;
+
     filter:
         brightness(.46)
         contrast(1.18)
@@ -281,6 +363,7 @@ body::before{
     line-height:.78;
     letter-spacing:-.085em;
     font-weight:900;
+
     text-shadow:
         0 0 40px rgba(120,0,18,.20);
 }
@@ -304,10 +387,12 @@ body::before{
     border:1px solid rgba(255,255,255,.30);
 
     color:white;
+
     font-size:10px;
     letter-spacing:.35em;
 
     cursor:pointer;
+
     transition:.35s ease;
 
     box-shadow:
@@ -317,7 +402,9 @@ body::before{
 #startMachine:hover{
     background:#850014;
     border-color:#850014;
+
     transform:translateY(-2px);
+
     box-shadow:
         0 0 45px rgba(133,0,20,.35);
 }
@@ -369,8 +456,10 @@ body::before{
 .intro::before{
     content:"";
     position:absolute;
+
     width:70vw;
     height:70vw;
+
     max-width:900px;
     max-height:900px;
 
@@ -384,6 +473,7 @@ body::before{
         );
 
     filter:blur(35px);
+
     pointer-events:none;
 }
 
@@ -430,10 +520,12 @@ body::before{
 .intro-title span:nth-child(9){animation-delay:.45s}
 
 @keyframes letterIn{
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
 .intro-bottom{
@@ -1251,6 +1343,10 @@ footer{
     #rainContainer{
         opacity:.40;
     }
+
+    #rainGlass{
+        opacity:.85;
+    }
 }
 
 /* =========================================================
@@ -1308,6 +1404,20 @@ footer{
         margin-right:20px;
         line-height:1.8;
     }
+
+    /* Extra iPhone rain optimization */
+
+    .rain-drop{
+        width:.8px;
+    }
+
+    #rainContainer{
+        opacity:.34;
+    }
+
+    .glass-drop{
+        opacity:.45;
+    }
 }
 
 @media(max-width:360px){
@@ -1327,6 +1437,7 @@ footer{
     .start-content h1{
         font-size:18vw;
     }
+
 }
 
 </style>
@@ -1360,6 +1471,7 @@ footer{
 ========================================================= -->
 
 <div id="rainContainer"></div>
+<div id="rainGlass"></div>
 
 
 <!-- =========================================================
@@ -1369,10 +1481,12 @@ footer{
 <div id="startScreen">
 
     <div class="start-car">
+
         <img
             src="car15.jpeg"
             alt="Honda City 2003"
         >
+
     </div>
 
     <div class="start-overlay"></div>
@@ -1412,6 +1526,7 @@ footer{
 <section class="intro">
 
     <div class="intro-title">
+
         <span>X</span>
         <span>A</span>
         <span>N</span>
@@ -1421,11 +1536,14 @@ footer{
         <span>6</span>
         <span>1</span>
         <span>6</span>
+
     </div>
 
     <div class="intro-bottom">
+
         <span>AUTOMOTIVE / 001</span>
         <span>HONDA CITY / 2003</span>
+
     </div>
 
 </section>
@@ -1442,14 +1560,20 @@ footer{
     </div>
 
     <h1 class="hero-title">
+
         BUILT<br>
+
         <span class="red">TO</span><br>
+
         BE <span class="red">SEEN.</span>
+
     </h1>
 
     <p class="hero-sub">
+
         A visual study of machines, movement and obsession.
         Designed in darkness. Defined by detail.
+
     </p>
 
 </section>
@@ -1462,10 +1586,12 @@ footer{
 <section class="manifesto">
 
     <span class="model-small">
+
         XANNY1616 /
         <span class="model-number">01</span>
         &nbsp;&nbsp;
         MODEL IDENTIFICATION
+
     </span>
 
     <div class="manifesto-line">
@@ -1494,23 +1620,54 @@ footer{
 <section class="stats">
 
     <div class="stat">
-        <div class="stat-number">2003</div>
-        <div class="stat-label">MODEL YEAR</div>
+
+        <div class="stat-number">
+            2003
+        </div>
+
+        <div class="stat-label">
+            MODEL YEAR
+        </div>
+
     </div>
 
-    <div class="stat">
-        <div class="stat-number">CITY</div>
-        <div class="stat-label">MODEL</div>
-    </div>
 
     <div class="stat">
-        <div class="stat-number">01</div>
-        <div class="stat-label">MACHINE</div>
+
+        <div class="stat-number">
+            CITY
+        </div>
+
+        <div class="stat-label">
+            MODEL
+        </div>
+
     </div>
 
+
     <div class="stat">
-        <div class="stat-number">1616</div>
-        <div class="stat-label">IDENTITY</div>
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-label">
+            MACHINE
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            1616
+        </div>
+
+        <div class="stat-label">
+            IDENTITY
+        </div>
+
     </div>
 
 </section>
@@ -1529,8 +1686,10 @@ footer{
         </div>
 
         <div class="machine-title">
+
             HONDA CITY<br>
             2003 MODEL
+
         </div>
 
         <div class="machine-scene" id="machineScene">
@@ -1553,14 +1712,19 @@ footer{
         <div class="machine-caption">
 
             <p>
+
                 A machine from another era.
                 Kept alive through obsession,
                 detail and character.
+
             </p>
 
             <div class="controls">
 
-                <button class="control" id="engineBtn">
+                <button
+                    class="control"
+                    id="engineBtn"
+                >
                     ENGINE
                 </button>
 
@@ -1584,40 +1748,54 @@ footer{
     </div>
 
     <h2 class="tech-heading">
+
         BUILT<br>
         DIFFERENT.
+
     </h2>
 
     <div class="tech-grid">
 
         <div class="tech-item">
+
             <span>MODEL</span>
             <strong>Honda City</strong>
+
         </div>
 
         <div class="tech-item">
+
             <span>YEAR</span>
             <strong>2003</strong>
+
         </div>
 
         <div class="tech-item">
+
             <span>IDENTITY</span>
             <strong>XANNY1616</strong>
+
         </div>
 
         <div class="tech-item">
+
             <span>STYLE</span>
             <strong>CLASSIC</strong>
+
         </div>
 
         <div class="tech-item">
+
             <span>CHARACTER</span>
             <strong>TIMELESS</strong>
+
         </div>
 
         <div class="tech-item">
+
             <span>STATUS</span>
             <strong>ONE OF ONE</strong>
+
         </div>
 
     </div>
@@ -1717,8 +1895,10 @@ footer{
     </div>
 
     <h2 class="final-title">
+
         HONDA CITY<br>
         <span>2003.</span>
+
     </h2>
 
     <a
@@ -1770,17 +1950,23 @@ const startScreen =
 const startMachine =
     document.getElementById("startMachine");
 
-startMachine.addEventListener("click",()=>{
+startMachine.addEventListener(
+    "click",
+    ()=>{
 
-    startScreen.classList.add("hide");
+        startScreen.classList.add("hide");
 
-    setTimeout(()=>{
+        setTimeout(
+            ()=>{
 
-        startScreen.style.display="none";
+                startScreen.style.display="none";
 
-    },1200);
+            },
+            1200
+        );
 
-});
+    }
+);
 
 
 /* =========================================================
@@ -1798,7 +1984,6 @@ function updateXannyTime(){
 
     const now = new Date();
 
-
     const time =
         now.toLocaleTimeString(
             "en-IN",
@@ -1810,7 +1995,6 @@ function updateXannyTime(){
             }
         );
 
-
     const date =
         now.toLocaleDateString(
             "en-IN",
@@ -1821,7 +2005,6 @@ function updateXannyTime(){
                 year:"numeric"
             }
         );
-
 
     clockElement.textContent =
         time;
@@ -1895,7 +2078,6 @@ function weatherDescription(code){
 
     };
 
-
     return weatherCodes[code] || "UNKNOWN";
 }
 
@@ -1909,7 +2091,6 @@ async function updateWeather(){
                 "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current=temperature_2m,weather_code&timezone=Asia%2FKolkata"
             );
 
-
         if(!response.ok){
 
             throw new Error(
@@ -1918,26 +2099,21 @@ async function updateWeather(){
 
         }
 
-
         const data =
             await response.json();
-
 
         const temperature =
             Math.round(
                 data.current.temperature_2m
             );
 
-
         const condition =
             weatherDescription(
                 data.current.weather_code
             );
 
-
         weatherElement.textContent =
             `HYDERABAD / ${temperature}°C / ${condition}`;
-
 
     }catch(error){
 
@@ -1952,8 +2128,6 @@ async function updateWeather(){
 updateWeather();
 
 
-/* Refresh weather every 10 minutes */
-
 setInterval(
     updateWeather,
     10 * 60 * 1000
@@ -1961,7 +2135,7 @@ setInterval(
 
 
 /* =========================================================
-   CINEMATIC RAIN GENERATOR
+   CINEMATIC RAIN ENGINE
 ========================================================= */
 
 const rainContainer =
@@ -1969,17 +2143,35 @@ const rainContainer =
         "rainContainer"
     );
 
+const rainGlass =
+    document.getElementById(
+        "rainGlass"
+    );
+
 
 function createRain(){
 
+    const isMobile =
+        window.innerWidth < 600;
+
     const amount =
-        window.innerWidth < 600
-        ? 90
-        : 170;
+        isMobile
+        ? 75
+        : 150;
+
+    const glassAmount =
+        isMobile
+        ? 12
+        : 22;
 
 
     rainContainer.innerHTML="";
+    rainGlass.innerHTML="";
 
+
+    /* -----------------------------------------
+       RAIN STREAKS
+    ----------------------------------------- */
 
     for(
         let i=0;
@@ -1989,7 +2181,6 @@ function createRain(){
 
         const drop =
             document.createElement("div");
-
 
         drop.className =
             "rain-drop";
@@ -2001,13 +2192,13 @@ function createRain(){
 
 
         const opacity =
-            .12+
-            Math.random()*.42;
+            .14+
+            Math.random()*.38;
 
 
         const speed =
-            0.55+
-            Math.random()*0.75;
+            .55+
+            Math.random()*.75;
 
 
         const delay =
@@ -2047,6 +2238,99 @@ function createRain(){
 
 
         rainContainer.appendChild(
+            drop
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       WATER DROPLETS
+    ----------------------------------------- */
+
+    for(
+        let i=0;
+        i<glassAmount;
+        i++
+    ){
+
+        const drop =
+            document.createElement("div");
+
+
+        drop.className =
+            "glass-drop";
+
+
+        const size =
+            Math.random()*12+4;
+
+
+        const opacity =
+            Math.random()*.22+.08;
+
+
+        const duration =
+            Math.random()*5+4;
+
+
+        const delay =
+            -(Math.random()*5);
+
+
+        const moveY =
+            Math.random()*40+20;
+
+
+        const moveX =
+            Math.random()*12-6;
+
+
+        drop.style.left =
+            Math.random()*100+"%";
+
+
+        drop.style.top =
+            Math.random()*100+"%";
+
+
+        drop.style.setProperty(
+            "--glass-size",
+            size+"px"
+        );
+
+
+        drop.style.setProperty(
+            "--glass-opacity",
+            opacity
+        );
+
+
+        drop.style.setProperty(
+            "--glass-duration",
+            duration+"s"
+        );
+
+
+        drop.style.setProperty(
+            "--glass-delay",
+            delay+"s"
+        );
+
+
+        drop.style.setProperty(
+            "--glass-y",
+            moveY+"px"
+        );
+
+
+        drop.style.setProperty(
+            "--glass-x",
+            moveX+"px"
+        );
+
+
+        rainGlass.appendChild(
             drop
         );
 
@@ -2474,7 +2758,9 @@ document.addEventListener(
         if(
             event.key.toLowerCase()==="e"
         ){
+
             engineBtn.click();
+
         }
 
     }
