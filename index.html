@@ -24,6 +24,127 @@ body{
 }
 
 /* =========================================================
+   XANNY LIVE INFO
+========================================================= */
+
+#xannyLiveInfo{
+    position:fixed;
+    top:25px;
+    right:30px;
+    z-index:5000;
+
+    text-align:right;
+
+    font-size:9px;
+    letter-spacing:.18em;
+    line-height:1.8;
+
+    color:#75656a;
+
+    pointer-events:none;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 0 15px rgba(0,0,0,.9);
+}
+
+#xannyClock{
+    color:#aaa;
+    font-size:13px;
+    letter-spacing:.14em;
+}
+
+#xannyDate{
+    color:#66545a;
+}
+
+#xannyWeather{
+    color:#850014;
+    margin-top:2px;
+}
+
+@media(max-width:800px){
+
+    #xannyLiveInfo{
+        top:18px;
+        right:18px;
+        font-size:7px;
+        line-height:1.7;
+    }
+
+    #xannyClock{
+        font-size:11px;
+    }
+}
+
+
+/* =========================================================
+   CINEMATIC RAIN
+========================================================= */
+
+#rainContainer{
+    position:fixed;
+    inset:0;
+
+    z-index:4000;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    opacity:.48;
+
+    mix-blend-mode:screen;
+}
+
+.rain-drop{
+    position:absolute;
+
+    top:-15vh;
+
+    width:1px;
+
+    height:var(--rain-height);
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(190,210,220,.72)
+        );
+
+    opacity:var(--rain-opacity);
+
+    transform:rotate(12deg);
+
+    animation:
+        rainFall
+        var(--rain-speed)
+        linear
+        infinite;
+
+    animation-delay:var(--rain-delay);
+}
+
+@keyframes rainFall{
+
+    0%{
+        transform:
+            translate3d(0,-15vh,0)
+            rotate(12deg);
+    }
+
+    100%{
+        transform:
+            translate3d(-18vw,120vh,0)
+            rotate(12deg);
+    }
+
+}
+
+
+/* =========================================================
    GLOBAL CHERRY RED ATMOSPHERE
 ========================================================= */
 
@@ -1126,6 +1247,10 @@ footer{
         left:18px;
         right:18px;
     }
+
+    #rainContainer{
+        opacity:.40;
+    }
 }
 
 /* =========================================================
@@ -1208,6 +1333,34 @@ footer{
 </head>
 
 <body>
+
+<!-- =========================================================
+     LIVE CLOCK / DATE / WEATHER
+========================================================= -->
+
+<div id="xannyLiveInfo">
+
+    <div id="xannyClock">
+        00:00:00
+    </div>
+
+    <div id="xannyDate">
+        LOADING DATE
+    </div>
+
+    <div id="xannyWeather">
+        HYDERABAD / LOADING WEATHER
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CINEMATIC RAIN
+========================================================= -->
+
+<div id="rainContainer"></div>
+
 
 <!-- =========================================================
      START SCREEN
@@ -1628,6 +1781,287 @@ startMachine.addEventListener("click",()=>{
     },1200);
 
 });
+
+
+/* =========================================================
+   LIVE CLOCK + DATE
+========================================================= */
+
+const clockElement =
+    document.getElementById("xannyClock");
+
+const dateElement =
+    document.getElementById("xannyDate");
+
+
+function updateXannyTime(){
+
+    const now = new Date();
+
+
+    const time =
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
+            }
+        );
+
+
+    const date =
+        now.toLocaleDateString(
+            "en-IN",
+            {
+                weekday:"long",
+                day:"2-digit",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    clockElement.textContent =
+        time;
+
+    dateElement.textContent =
+        date;
+
+}
+
+
+updateXannyTime();
+
+setInterval(
+    updateXannyTime,
+    1000
+);
+
+
+/* =========================================================
+   LIVE HYDERABAD WEATHER
+   Open-Meteo — no API KEY required
+========================================================= */
+
+const weatherElement =
+    document.getElementById("xannyWeather");
+
+
+function weatherDescription(code){
+
+    const weatherCodes = {
+
+        0:"CLEAR",
+
+        1:"MAINLY CLEAR",
+        2:"PARTLY CLOUDY",
+        3:"OVERCAST",
+
+        45:"FOG",
+        48:"RIME FOG",
+
+        51:"LIGHT DRIZZLE",
+        53:"DRIZZLE",
+        55:"HEAVY DRIZZLE",
+
+        56:"FREEZING DRIZZLE",
+        57:"FREEZING DRIZZLE",
+
+        61:"LIGHT RAIN",
+        63:"RAIN",
+        65:"HEAVY RAIN",
+
+        66:"FREEZING RAIN",
+        67:"HEAVY FREEZING RAIN",
+
+        71:"LIGHT SNOW",
+        73:"SNOW",
+        75:"HEAVY SNOW",
+
+        77:"SNOW GRAINS",
+
+        80:"RAIN SHOWERS",
+        81:"RAIN SHOWERS",
+        82:"HEAVY RAIN SHOWERS",
+
+        85:"SNOW SHOWERS",
+        86:"HEAVY SNOW SHOWERS",
+
+        95:"THUNDERSTORM",
+        96:"THUNDERSTORM",
+        99:"THUNDERSTORM"
+
+    };
+
+
+    return weatherCodes[code] || "UNKNOWN";
+}
+
+
+async function updateWeather(){
+
+    try{
+
+        const response =
+            await fetch(
+                "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current=temperature_2m,weather_code&timezone=Asia%2FKolkata"
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Weather request failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const temperature =
+            Math.round(
+                data.current.temperature_2m
+            );
+
+
+        const condition =
+            weatherDescription(
+                data.current.weather_code
+            );
+
+
+        weatherElement.textContent =
+            `HYDERABAD / ${temperature}°C / ${condition}`;
+
+
+    }catch(error){
+
+        weatherElement.textContent =
+            "HYDERABAD / WEATHER UNAVAILABLE";
+
+    }
+
+}
+
+
+updateWeather();
+
+
+/* Refresh weather every 10 minutes */
+
+setInterval(
+    updateWeather,
+    10 * 60 * 1000
+);
+
+
+/* =========================================================
+   CINEMATIC RAIN GENERATOR
+========================================================= */
+
+const rainContainer =
+    document.getElementById(
+        "rainContainer"
+    );
+
+
+function createRain(){
+
+    const amount =
+        window.innerWidth < 600
+        ? 90
+        : 170;
+
+
+    rainContainer.innerHTML="";
+
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const drop =
+            document.createElement("div");
+
+
+        drop.className =
+            "rain-drop";
+
+
+        const height =
+            25+
+            Math.random()*70;
+
+
+        const opacity =
+            .12+
+            Math.random()*.42;
+
+
+        const speed =
+            0.55+
+            Math.random()*0.75;
+
+
+        const delay =
+            -(Math.random()*speed);
+
+
+        const left =
+            Math.random()*115;
+
+
+        drop.style.left =
+            left+"%";
+
+
+        drop.style.setProperty(
+            "--rain-height",
+            height+"px"
+        );
+
+
+        drop.style.setProperty(
+            "--rain-opacity",
+            opacity
+        );
+
+
+        drop.style.setProperty(
+            "--rain-speed",
+            speed+"s"
+        );
+
+
+        drop.style.setProperty(
+            "--rain-delay",
+            delay+"s"
+        );
+
+
+        rainContainer.appendChild(
+            drop
+        );
+
+    }
+
+}
+
+
+createRain();
+
+
+window.addEventListener(
+    "resize",
+    createRain
+);
 
 
 /* =========================================================
