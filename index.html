@@ -11,7 +11,7 @@
 
 /* =========================================================
    XANNY1616
-   CINEMATIC AUTOMOTIVE EXPERIENCE
+   CINEMATIC HONDA CITY EXPERIENCE
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -34,9 +34,6 @@
 
     --line:rgba(210,225,235,.12);
     --line-bright:rgba(210,225,235,.22);
-
-    --mouse-x:0px;
-    --mouse-y:0px;
 }
 
 *{
@@ -47,6 +44,7 @@
 
 html{
     background:var(--black);
+    scroll-behavior:auto;
 }
 
 body{
@@ -95,11 +93,25 @@ button{
 }
 
 @keyframes grain{
-    0%{transform:translate(0,0)}
-    25%{transform:translate(2%,-1%)}
-    50%{transform:translate(-1%,2%)}
-    75%{transform:translate(1%,1%)}
-    100%{transform:translate(-2%,-1%)}
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(2%,-1%);
+    }
+
+    50%{
+        transform:translate(-1%,2%);
+    }
+
+    75%{
+        transform:translate(1%,1%);
+    }
+
+    100%{
+        transform:translate(-2%,-1%);
+    }
 }
 
 
@@ -117,6 +129,7 @@ button{
     top:0;
 
     border:1px solid rgba(235,245,250,.9);
+
     border-radius:50%;
 
     z-index:99999;
@@ -136,13 +149,16 @@ button{
 .cursor.big{
     width:68px;
     height:68px;
+
     background:#fff;
 }
 
 @media(max-width:700px){
+
     .cursor{
         display:none;
     }
+
 }
 
 
@@ -162,6 +178,7 @@ button{
     padding:0 5vw;
 
     display:flex;
+
     align-items:center;
     justify-content:space-between;
 
@@ -183,7 +200,9 @@ button{
 
 .logo{
     font-size:21px;
+
     font-weight:900;
+
     letter-spacing:-.09em;
 }
 
@@ -202,6 +221,7 @@ button{
     color:#7b858e;
 
     font-size:8px;
+
     font-weight:800;
 
     letter-spacing:.25em;
@@ -243,6 +263,7 @@ button{
     color:#dbe5ea;
 
     font-size:8px;
+
     font-weight:900;
 
     letter-spacing:.18em;
@@ -272,50 +293,107 @@ button{
         font-size:7px;
         padding:10px 12px;
     }
+
 }
 
 
 /* =========================================================
    LIVE INFO
+   TIME / DATE / WEATHER SEPARATED
 ========================================================= */
 
 .live{
     position:fixed;
 
     right:5vw;
-    top:27px;
+    top:24px;
 
     z-index:9001;
 
+    width:210px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:5px;
+
     text-align:right;
 
-    font-size:7px;
-
-    line-height:1.8;
-
-    letter-spacing:.2em;
-
-    color:#606b74;
-
     pointer-events:none;
+
+    line-height:1.4;
 }
+
+
+/* TIME */
 
 .live strong{
     display:block;
 
-    color:#e7edf0;
+    margin:0;
 
-    font-size:11px;
+    color:#edf2f4;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    letter-spacing:.08em;
 }
 
-.live span{
+
+/* DATE */
+
+.live #date{
+    display:block;
+
+    color:#6d7982;
+
+    font-size:7px;
+
+    font-weight:600;
+
+    line-height:1.2;
+
+    letter-spacing:.2em;
+}
+
+
+/* WEATHER */
+
+.live #weather{
+    display:block;
+
+    margin-top:5px;
+
+    padding-top:7px;
+
+    border-top:1px solid rgba(180,205,220,.14);
+
     color:var(--blue);
+
+    font-size:7px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    letter-spacing:.16em;
+
+    white-space:nowrap;
 }
 
 @media(max-width:700px){
+
     .live{
         display:none;
     }
+
 }
 
 
@@ -331,6 +409,7 @@ button{
     z-index:100000;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -380,6 +459,7 @@ button{
     position:absolute;
 
     width:115vw;
+
     max-width:1450px;
 
     left:50%;
@@ -424,6 +504,7 @@ button{
 
 .loader-content{
     position:relative;
+
     z-index:3;
 
     text-align:center;
@@ -435,6 +516,7 @@ button{
     color:#68757e;
 
     font-size:8px;
+
     font-weight:800;
 
     letter-spacing:.45em;
@@ -478,6 +560,7 @@ button{
     cursor:pointer;
 
     font-size:8px;
+
     font-weight:900;
 
     letter-spacing:.25em;
@@ -487,6 +570,7 @@ button{
 
 .enter:hover{
     background:var(--blue-bright);
+
     transform:translateY(-4px);
 }
 
@@ -539,16 +623,6 @@ button{
 
     opacity:.6;
 
-    transform:
-        translate3d(
-            var(--hero-x),
-            var(--hero-y),
-            0
-        )
-        rotate(
-            var(--hero-rotation)
-        );
-
     filter:
         brightness(.58)
         contrast(1.22)
@@ -577,6 +651,7 @@ button{
     color:var(--blue);
 
     font-size:8px;
+
     font-weight:900;
 
     letter-spacing:.4em;
@@ -619,7 +694,9 @@ button{
     z-index:5;
 
     display:flex;
+
     align-items:center;
+
     gap:15px;
 
     color:#59636b;
@@ -657,6 +734,7 @@ button{
     .hero-description{
         max-width:270px;
     }
+
 }
 
 
@@ -668,6 +746,7 @@ button{
     height:50px;
 
     display:flex;
+
     align-items:center;
 
     overflow:hidden;
@@ -699,14 +778,16 @@ button{
 }
 
 @keyframes marquee{
+
     to{
         transform:translateX(-50%);
     }
+
 }
 
 
 /* =========================================================
-   CINEMATIC SCROLL
+   CINEMATIC EXPERIENCE
 ========================================================= */
 
 .cinema{
@@ -757,24 +838,12 @@ button{
 
     transform:
         translate(-50%,-50%)
-        translate3d(
-            var(--scene-x,0px),
-            var(--scene-y,0px),
-            0
-        )
-        scale(
-            var(--scene-scale,1.08)
-        )
-        rotate(
-            var(--scene-rotate,0deg)
-        );
+        scale(1.08);
 
     opacity:0;
 
     filter:
-        brightness(
-            var(--scene-brightness,.5)
-        )
+        brightness(.5)
         contrast(1.1)
         saturate(.62)
         sepia(.04)
@@ -792,6 +861,7 @@ button{
 
 .stage-vignette{
     position:absolute;
+
     inset:0;
 
     z-index:5;
@@ -809,6 +879,7 @@ button{
 
 .stage-side{
     position:absolute;
+
     inset:0;
 
     z-index:6;
@@ -827,11 +898,12 @@ button{
 
 
 /* =========================================================
-   LIGHT FLASH
+   FLASH
 ========================================================= */
 
 .flash{
     position:absolute;
+
     inset:0;
 
     z-index:20;
@@ -860,16 +932,11 @@ button{
 
     width:80%;
 
-    transform:
-        translate3d(
-            var(--text-x,0px),
-            -50%,
-            0
-        );
-
     pointer-events:none;
 
-    will-change:transform,opacity;
+    will-change:
+        transform,
+        opacity;
 }
 
 .scene-label{
@@ -878,6 +945,7 @@ button{
     color:var(--blue);
 
     font-size:8px;
+
     font-weight:900;
 
     letter-spacing:.35em;
@@ -919,7 +987,7 @@ button{
 
 
 /* =========================================================
-   GIANT BACKGROUND WORD
+   GIANT WORD
 ========================================================= */
 
 .floating-word{
@@ -929,13 +997,6 @@ button{
     top:50%;
 
     z-index:25;
-
-    transform:
-        translate3d(
-            var(--word-x,0px),
-            -50%,
-            0
-        );
 
     color:rgba(210,225,235,.035);
 
@@ -956,7 +1017,7 @@ button{
 
 
 /* =========================================================
-   TOP STRIP
+   BACKGROUND STRIP
 ========================================================= */
 
 .scene-strip{
@@ -979,13 +1040,6 @@ button{
 
     color:rgba(210,225,235,.035);
 
-    transform:
-        translate3d(
-            var(--strip-x,0px),
-            0,
-            0
-        );
-
     pointer-events:none;
 
     will-change:transform;
@@ -1006,6 +1060,7 @@ button{
     z-index:50;
 
     display:flex;
+
     justify-content:space-between;
     align-items:flex-end;
 
@@ -1051,13 +1106,11 @@ button{
     height:100%;
 
     background:var(--blue);
-
-    will-change:width;
 }
 
 
 /* =========================================================
-   ENGINE
+   ENGINE BUTTON
 ========================================================= */
 
 .engine{
@@ -1082,6 +1135,7 @@ button{
     cursor:pointer;
 
     font-size:7px;
+
     font-weight:900;
 
     letter-spacing:.1em;
@@ -1115,6 +1169,7 @@ button{
         right:18px;
         bottom:18px;
     }
+
 }
 
 
@@ -1218,6 +1273,7 @@ button{
     .detail{
         border-right:0;
     }
+
 }
 
 
@@ -1274,12 +1330,7 @@ button{
     width:100%;
 
     transform:
-        scale(1.08)
-        translate3d(
-            0,
-            var(--gallery-y,0px),
-            0
-        );
+        scale(1.08);
 
     filter:
         brightness(.72)
@@ -1295,12 +1346,7 @@ button{
 
 .gallery-item:hover img{
     transform:
-        scale(1.16)
-        translate3d(
-            0,
-            0,
-            0
-        );
+        scale(1.16);
 }
 
 .gallery-item::after{
@@ -1410,6 +1456,7 @@ button{
     .gallery-item{
         margin:0 0 12px 0 !important;
     }
+
 }
 
 
@@ -1421,7 +1468,9 @@ button{
     min-height:100vh;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
 
     padding:150px 7vw;
@@ -1490,6 +1539,7 @@ footer{
     display:flex;
 
     align-items:center;
+
     justify-content:space-between;
 
     background:#d6e1e7;
@@ -1507,10 +1557,12 @@ footer{
 
     footer{
         flex-direction:column;
+
         gap:12px;
 
         text-align:center;
     }
+
 }
 
 </style>
@@ -1535,14 +1587,18 @@ footer{
 
 
 <!-- =========================================================
-     NAV
+     NAVIGATION
 ========================================================= -->
 
 <nav class="nav">
 
-    <a href="#top" class="logo magnetic">
+    <a
+        href="#top"
+        class="logo magnetic"
+    >
         XANNY<span>1616</span>
     </a>
+
 
     <div class="nav-links">
 
@@ -1564,6 +1620,7 @@ footer{
 
     </div>
 
+
     <a
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
@@ -1576,7 +1633,7 @@ footer{
 
 
 <!-- =========================================================
-     LIVE
+     LIVE INFORMATION
 ========================================================= -->
 
 <div class="live">
@@ -1586,7 +1643,7 @@ footer{
     </strong>
 
     <div id="date">
-        LOADING
+        LOADING DATE
     </div>
 
     <span id="weather">
@@ -1600,9 +1657,13 @@ footer{
      LOADER
 ========================================================= -->
 
-<section class="loader" id="loader">
+<section
+    class="loader"
+    id="loader"
+>
 
     <div class="loader-glow"></div>
+
 
     <div class="loader-car">
 
@@ -1613,19 +1674,23 @@ footer{
 
     </div>
 
+
     <div class="loader-content">
 
         <div class="loader-small">
             XANNY1616 / AUTOMOTIVE
         </div>
 
+
         <h1 class="loader-title">
             XANNY<span>1616</span>
         </h1>
 
+
         <div class="loader-model">
             HONDA CITY / 2003
         </div>
+
 
         <button
             class="enter magnetic"
@@ -1650,6 +1715,7 @@ footer{
 
     <div class="hero-overlay"></div>
 
+
     <div
         class="hero-car"
         id="heroCar"
@@ -1662,17 +1728,20 @@ footer{
 
     </div>
 
+
     <div class="hero-content">
 
         <div class="hero-overline">
             HONDA CITY / 2003 / XANNY1616
         </div>
 
+
         <h1 class="hero-title">
             CITY.<br>
             <span>DONE</span><br>
             RIGHT.
         </h1>
+
 
         <p class="hero-description">
             A 2003 Honda City.
@@ -1682,6 +1751,7 @@ footer{
         </p>
 
     </div>
+
 
     <div class="hero-scroll">
 
@@ -1746,7 +1816,7 @@ footer{
 
 
 <!-- =========================================================
-     CINEMATIC EXPERIENCE
+     CINEMATIC MACHINE
 ========================================================= -->
 
 <section
@@ -1756,102 +1826,44 @@ footer{
 
     <div class="cinema-sticky">
 
+
         <div class="stage">
 
-            <img
-                class="stage-image"
-                src="car1.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car1.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car2.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car2.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car3.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car3.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car4.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car4.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car5.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car5.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car6.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car6.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car7.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car7.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car8.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car8.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car9.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car9.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car10.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car10.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car11.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car11.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car12.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car12.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car13.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car13.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car14.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car14.jpeg" alt="Honda City">
 
-            <img
-                class="stage-image"
-                src="car15.jpeg"
-                alt="Honda City"
-            >
+            <img class="stage-image" src="car15.jpeg" alt="Honda City">
 
         </div>
 
 
         <div class="stage-vignette"></div>
+
         <div class="stage-side"></div>
 
 
@@ -1889,6 +1901,7 @@ footer{
                 MACHINE / 001
             </div>
 
+
             <h2
                 class="scene-title"
                 id="sceneTitle"
@@ -1896,6 +1909,7 @@ footer{
                 THE<br>
                 <span>MACHINE.</span>
             </h2>
+
 
             <p
                 class="scene-description"
@@ -1914,6 +1928,7 @@ footer{
             <div class="scene-location">
                 HYDERABAD / INDIA
             </div>
+
 
             <div
                 class="scene-number"
@@ -1940,7 +1955,7 @@ footer{
 
 
 <!-- =========================================================
-     ENGINE CONTROL
+     ENGINE
 ========================================================= -->
 
 <button
@@ -1949,6 +1964,7 @@ footer{
 >
     ENG
 </button>
+
 
 <audio
     id="engineAudio"
@@ -1971,14 +1987,17 @@ footer{
         TECHNICAL ARCHIVE / 001
     </div>
 
+
     <h2 class="details-title">
         BUILT<br>
         <span>DIFFERENT.</span>
     </h2>
 
+
     <div class="detail-grid">
 
         <div class="detail">
+
             <div class="detail-label">
                 MODEL
             </div>
@@ -1986,9 +2005,12 @@ footer{
             <div class="detail-value">
                 Honda City
             </div>
+
         </div>
 
+
         <div class="detail">
+
             <div class="detail-label">
                 YEAR
             </div>
@@ -1996,9 +2018,12 @@ footer{
             <div class="detail-value">
                 2003
             </div>
+
         </div>
 
+
         <div class="detail">
+
             <div class="detail-label">
                 IDENTITY
             </div>
@@ -2006,9 +2031,12 @@ footer{
             <div class="detail-value">
                 XANNY1616
             </div>
+
         </div>
 
+
         <div class="detail">
+
             <div class="detail-label">
                 LOCATION
             </div>
@@ -2016,9 +2044,12 @@ footer{
             <div class="detail-value">
                 Hyderabad
             </div>
+
         </div>
 
+
         <div class="detail">
+
             <div class="detail-label">
                 DESIGN
             </div>
@@ -2026,9 +2057,12 @@ footer{
             <div class="detail-value">
                 Classic
             </div>
+
         </div>
 
+
         <div class="detail">
+
             <div class="detail-label">
                 STATUS
             </div>
@@ -2036,6 +2070,7 @@ footer{
             <div class="detail-value">
                 ONE MACHINE
             </div>
+
         </div>
 
     </div>
@@ -2056,10 +2091,12 @@ footer{
         VISUAL ARCHIVE / 015 FRAMES
     </div>
 
+
     <h2 class="gallery-title">
         THE<br>
         <span>ARCHIVE.</span>
     </h2>
+
 
     <div class="gallery-grid">
 
@@ -2141,10 +2178,12 @@ footer{
         END OF TRANSMISSION / 001
     </div>
 
+
     <h2 class="final-title">
         CITY<br>
         <span>FOREVER.</span>
     </h2>
+
 
     <a
         href="https://www.instagram.com/xanny1616/"
@@ -2187,7 +2226,7 @@ footer{
 
 
 /* =========================================================
-   SELECTORS
+   HELPERS
 ========================================================= */
 
 const $ = selector =>
@@ -2198,28 +2237,30 @@ const $$ = selector =>
 
 
 /* =========================================================
-   GLOBAL STATE
+   STATE
 ========================================================= */
 
 const state = {
 
-    mouseX: window.innerWidth / 2,
-    mouseY: window.innerHeight / 2,
+    mouseX:window.innerWidth / 2,
 
-    smoothMouseX: window.innerWidth / 2,
-    smoothMouseY: window.innerHeight / 2,
+    mouseY:window.innerHeight / 2,
 
-    targetScroll: window.scrollY,
-    currentScroll: window.scrollY,
+    smoothMouseX:window.innerWidth / 2,
 
-    scrollVelocity: 0,
-    previousScroll: window.scrollY,
+    smoothMouseY:window.innerHeight / 2,
 
-    time: 0,
+    targetScroll:window.scrollY,
 
-    scene: -1,
+    currentScroll:window.scrollY,
 
-    loaded: false
+    previousScroll:window.scrollY,
+
+    scrollVelocity:0,
+
+    scene:-1,
+
+    time:0
 
 };
 
@@ -2290,220 +2331,115 @@ const galleryImages =
 const scenes = [
 
     {
-        title:
-            "THE<br><span>MACHINE.</span>",
-
-        description:
-            "It started with a city car. Then the details started speaking.",
-
-        word:
-            "CITY",
-
-        label:
-            "MACHINE / 001"
+        title:"THE<br><span>MACHINE.</span>",
+        description:"An ordinary city car becomes something else when you look closely enough.",
+        word:"CITY",
+        label:"MACHINE / 001"
     },
 
     {
-        title:
-            "LOW.<br><span>CLEAN.</span>",
-
-        description:
-            "Simple lines. Quiet proportions. A shape that still works.",
-
-        word:
-            "FORM",
-
-        label:
-            "FORM / 002"
+        title:"LOW.<br><span>CLEAN.</span>",
+        description:"Simple lines. Quiet proportions. A shape that still works.",
+        word:"FORM",
+        label:"FORM / 002"
     },
 
     {
-        title:
-            "LOOK<br><span>CLOSER.</span>",
-
-        description:
-            "The closer you get, the more the machine reveals.",
-
-        word:
-            "DETAIL",
-
-        label:
-            "DETAIL / 003"
+        title:"LOOK<br><span>CLOSER.</span>",
+        description:"The closer you get, the more the machine reveals.",
+        word:"DETAIL",
+        label:"DETAIL / 003"
     },
 
     {
-        title:
-            "OLD<br><span>SCHOOL.</span>",
-
-        description:
-            "2003. Before everything became screens and sensors.",
-
-        word:
-            "2003",
-
-        label:
-            "ERA / 004"
+        title:"OLD<br><span>SCHOOL.</span>",
+        description:"2003. Before everything became screens and sensors.",
+        word:"2003",
+        label:"ERA / 004"
     },
 
     {
-        title:
-            "CITY<br><span>LIGHTS.</span>",
-
-        description:
-            "Built for the streets. Made for the night.",
-
-        word:
-            "NIGHT",
-
-        label:
-            "NIGHT / 005"
+        title:"CITY<br><span>LIGHTS.</span>",
+        description:"Built for the streets. Made for the night.",
+        word:"NIGHT",
+        label:"NIGHT / 005"
     },
 
     {
-        title:
-            "STREET<br><span>SPEC.</span>",
-
-        description:
-            "Nothing excessive. Nothing accidental.",
-
-        word:
-            "STREET",
-
-        label:
-            "STREET / 006"
+        title:"STREET<br><span>SPEC.</span>",
+        description:"Nothing excessive. Nothing accidental.",
+        word:"STREET",
+        label:"STREET / 006"
     },
 
     {
-        title:
-            "EVERY<br><span>ANGLE.</span>",
-
-        description:
-            "Fifteen frames. One machine. Infinite little details.",
-
-        word:
-            "ANGLE",
-
-        label:
-            "ANGLE / 007"
+        title:"EVERY<br><span>ANGLE.</span>",
+        description:"Fifteen frames. One machine. Infinite little details.",
+        word:"ANGLE",
+        label:"ANGLE / 007"
     },
 
     {
-        title:
-            "THE<br><span>PROFILE.</span>",
-
-        description:
-            "The silhouette that made the City unmistakable.",
-
-        word:
-            "PROFILE",
-
-        label:
-            "PROFILE / 008"
+        title:"THE<br><span>PROFILE.</span>",
+        description:"The silhouette that made the City unmistakable.",
+        word:"PROFILE",
+        label:"PROFILE / 008"
     },
 
     {
-        title:
-            "MADE<br><span>TO MOVE.</span>",
-
-        description:
-            "A car becomes memorable when it starts carrying stories.",
-
-        word:
-            "MOVE",
-
-        label:
-            "MOTION / 009"
+        title:"MADE<br><span>TO MOVE.</span>",
+        description:"A car becomes memorable when it starts carrying stories.",
+        word:"MOVE",
+        label:"MOTION / 009"
     },
 
     {
-        title:
-            "NO<br><span>FILTER.</span>",
-
-        description:
-            "Metal, glass, rubber and a little obsession.",
-
-        word:
-            "RAW",
-
-        label:
-            "RAW / 010"
+        title:"NO<br><span>FILTER.</span>",
+        description:"Metal, glass, rubber and a little obsession.",
+        word:"RAW",
+        label:"RAW / 010"
     },
 
     {
-        title:
-            "TIME<br><span>CAPSULE.</span>",
-
-        description:
-            "Twenty-three years later, the shape still has something to say.",
-
-        word:
-            "TIME",
-
-        label:
-            "TIME / 011"
+        title:"TIME<br><span>CAPSULE.</span>",
+        description:"Twenty-three years later, the shape still has something to say.",
+        word:"TIME",
+        label:"TIME / 011"
     },
 
     {
-        title:
-            "ONE<br><span>IDENTITY.</span>",
-
-        description:
-            "The badge is Honda. The identity is XANNY1616.",
-
-        word:
-            "IDENTITY",
-
-        label:
-            "IDENTITY / 012"
+        title:"ONE<br><span>IDENTITY.</span>",
+        description:"The badge is Honda. The identity is XANNY1616.",
+        word:"IDENTITY",
+        label:"IDENTITY / 012"
     },
 
     {
-        title:
-            "STILL<br><span>HERE.</span>",
-
-        description:
-            "Some machines disappear. Some become part of the landscape.",
-
-        word:
-            "STILL",
-
-        label:
-            "STILL / 013"
+        title:"STILL<br><span>HERE.</span>",
+        description:"Some machines disappear. Some become part of the landscape.",
+        word:"STILL",
+        label:"STILL / 013"
     },
 
     {
-        title:
-            "KEEP<br><span>LOOKING.</span>",
-
-        description:
-            "There is always another line, another reflection, another frame.",
-
-        word:
-            "LOOK",
-
-        label:
-            "LOOK / 014"
+        title:"KEEP<br><span>LOOKING.</span>",
+        description:"There is always another line, another reflection, another frame.",
+        word:"LOOK",
+        label:"LOOK / 014"
     },
 
     {
-        title:
-            "CITY.<br><span>DONE RIGHT.</span>",
-
-        description:
-            "Honda City 2003. XANNY1616. End of transmission.",
-
-        word:
-            "XANNY1616",
-
-        label:
-            "FINAL / 015"
+        title:"CITY.<br><span>DONE RIGHT.</span>",
+        description:"Honda City 2003. XANNY1616. End of transmission.",
+        word:"XANNY1616",
+        label:"FINAL / 015"
     }
 
 ];
 
 
 /* =========================================================
-   POINTER
+   MOUSE
 ========================================================= */
 
 window.addEventListener(
@@ -2517,7 +2453,9 @@ window.addEventListener(
             event.clientY;
 
     },
-    {passive:true}
+    {
+        passive:true
+    }
 );
 
 
@@ -2549,7 +2487,7 @@ function updateCursor(){
 
 
 /* =========================================================
-   CURSOR INTERACTION
+   CURSOR HOVER
 ========================================================= */
 
 $$(
@@ -2576,7 +2514,7 @@ $$(
 
 
 /* =========================================================
-   MAGNETIC ELEMENTS
+   MAGNETIC BUTTONS
 ========================================================= */
 
 const magneticElements =
@@ -2590,8 +2528,7 @@ function updateMagnetic(){
             if(
                 !element.matches(":hover")
             ){
-                element.style.transform =
-                    "";
+                element.style.transform = "";
                 return;
             }
 
@@ -2638,7 +2575,7 @@ function updateMagnetic(){
 
 
 /* =========================================================
-   LOADER
+   ENTER SITE
 ========================================================= */
 
 enterButton.addEventListener(
@@ -2650,9 +2587,6 @@ enterButton.addEventListener(
         document.body.classList.remove(
             "locked"
         );
-
-        state.loaded =
-            true;
 
     }
 );
@@ -2692,7 +2626,8 @@ function updateClock(){
                 month:"short",
                 year:"numeric"
             }
-        );
+        )
+        .toUpperCase();
 
 }
 
@@ -2720,8 +2655,11 @@ async function loadWeather(){
                 "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current=temperature_2m,weather_code&timezone=Asia%2FKolkata"
             );
 
-        if(!response.ok)
-            throw new Error();
+        if(!response.ok){
+            throw new Error(
+                "Weather request failed"
+            );
+        }
 
         const data =
             await response.json();
@@ -2766,7 +2704,7 @@ async function loadWeather(){
             `HYDERABAD / ${temperature}°C / ${descriptions[weatherCode] || "UNKNOWN"}`;
 
     }
-    catch{
+    catch(error){
 
         weather.textContent =
             "HYDERABAD / OFFLINE";
@@ -2841,21 +2779,6 @@ function updateHero(){
         1 +
         progress * .08;
 
-    heroCar.style.setProperty(
-        "--hero-x",
-        `${x}px`
-    );
-
-    heroCar.style.setProperty(
-        "--hero-y",
-        `${y}px`
-    );
-
-    heroCar.style.setProperty(
-        "--hero-rotation",
-        `${rotation}deg`
-    );
-
     heroCar.style.transform =
         `
         translate3d(
@@ -2871,7 +2794,7 @@ function updateHero(){
 
 
 /* =========================================================
-   SCROLL EVENT
+   SCROLL
 ========================================================= */
 
 window.addEventListener(
@@ -2889,7 +2812,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   SCROLL VELOCITY
+   SMOOTH SCROLL STATE
 ========================================================= */
 
 function updateScroll(){
@@ -2912,7 +2835,7 @@ function updateScroll(){
 
 
 /* =========================================================
-   SCENE ACTIVATION
+   CHANGE SCENE
 ========================================================= */
 
 function activateScene(index){
@@ -2930,7 +2853,7 @@ function activateScene(index){
         scenes[index];
 
     stageImages.forEach(
-        (image, i) => {
+        (image,i) => {
 
             image.classList.toggle(
                 "active",
@@ -2969,7 +2892,7 @@ function activateScene(index){
 
 
 /* =========================================================
-   CINEMATIC CAMERA
+   CINEMATIC ENGINE
 ========================================================= */
 
 function updateCinema(){
@@ -3001,9 +2924,13 @@ function updateCinema(){
         );
 
 
-    /* -----------------------------------------
-       SCENE POSITION
-    ----------------------------------------- */
+    /* PROGRESS */
+
+    progressFill.style.width =
+        `${progress * 100}%`;
+
+
+    /* SCENE */
 
     const scenePosition =
         progress *
@@ -3019,23 +2946,12 @@ function updateCinema(){
         scenePosition -
         sceneIndex;
 
-
     activateScene(
         sceneIndex
     );
 
 
-    /* -----------------------------------------
-       PROGRESS
-    ----------------------------------------- */
-
-    progressFill.style.width =
-        `${progress * 100}%`;
-
-
-    /* -----------------------------------------
-       CAMERA VELOCITY
-    ----------------------------------------- */
+    /* VELOCITY */
 
     const speed =
         Math.min(
@@ -3049,9 +2965,7 @@ function updateCinema(){
         speed * .018;
 
 
-    /* -----------------------------------------
-       CURRENT IMAGE
-    ----------------------------------------- */
+    /* CURRENT IMAGE */
 
     const currentImage =
         stageImages[sceneIndex];
@@ -3075,8 +2989,7 @@ function updateCinema(){
             Math.sin(
                 localProgress *
                 Math.PI
-            ) *
-            30;
+            ) * 30;
 
         const mouseX =
             (
@@ -3138,22 +3051,17 @@ function updateCinema(){
     }
 
 
-    /* -----------------------------------------
-       NEXT IMAGE
-    ----------------------------------------- */
+    /* NEXT IMAGE */
 
     const nextImage =
         stageImages[sceneIndex + 1];
 
     if(nextImage){
 
-        const nextDirection =
-            direction;
-
         nextImage.style.transform =
             `
             translate3d(
-                calc(-50% + ${80 * nextDirection}px),
+                calc(-50% + ${80 * direction}px),
                 -50%,
                 0
             )
@@ -3172,9 +3080,7 @@ function updateCinema(){
     }
 
 
-    /* -----------------------------------------
-       TEXT MOVEMENT
-    ----------------------------------------- */
+    /* TEXT */
 
     const textX =
         (
@@ -3211,9 +3117,7 @@ function updateCinema(){
         );
 
 
-    /* -----------------------------------------
-       TITLE CHOREOGRAPHY
-    ----------------------------------------- */
+    /* TITLE */
 
     const titleIn =
         Math.min(
@@ -3253,9 +3157,7 @@ function updateCinema(){
         `;
 
 
-    /* -----------------------------------------
-       DESCRIPTION
-    ----------------------------------------- */
+    /* DESCRIPTION */
 
     const descriptionIn =
         Math.min(
@@ -3291,9 +3193,7 @@ function updateCinema(){
         `;
 
 
-    /* -----------------------------------------
-       GIANT WORD
-    ----------------------------------------- */
+    /* GIANT WORD */
 
     const wordX =
         (
@@ -3318,9 +3218,7 @@ function updateCinema(){
         `;
 
 
-    /* -----------------------------------------
-       GIANT STRIP
-    ----------------------------------------- */
+    /* BACKGROUND STRIP */
 
     const stripX =
         progress * -1100;
@@ -3335,9 +3233,7 @@ function updateCinema(){
         `;
 
 
-    /* -----------------------------------------
-       FLASH DECAY
-    ----------------------------------------- */
+    /* FLASH */
 
     flash.style.opacity =
         parseFloat(
@@ -3354,7 +3250,7 @@ function updateCinema(){
 function updateGallery(){
 
     galleryImages.forEach(
-        (image, index) => {
+        (image,index) => {
 
             const item =
                 galleryItems[index];
@@ -3376,10 +3272,15 @@ function updateGallery(){
             const movement =
                 distance * -.035;
 
-            image.style.setProperty(
-                "--gallery-y",
-                `${movement}px`
-            );
+            image.style.transform =
+                `
+                scale(1.08)
+                translate3d(
+                    0,
+                    ${movement}px,
+                    0
+                )
+                `;
 
         }
     );
@@ -3424,7 +3325,7 @@ engineButton.addEventListener(
             catch(error){
 
                 console.log(
-                    "Audio playback blocked until user interaction."
+                    "Audio playback blocked."
                 );
 
             }
@@ -3454,7 +3355,7 @@ engineButton.addEventListener(
 
 
 /* =========================================================
-   KEYBOARD AUDIO
+   KEYBOARD ENGINE
 ========================================================= */
 
 document.addEventListener(
@@ -3482,7 +3383,9 @@ window.addEventListener(
     () => {
 
         updateHero();
+
         updateCinema();
+
         updateGallery();
 
     }
@@ -3490,7 +3393,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   MAIN RENDER LOOP
+   MAIN ANIMATION LOOP
 ========================================================= */
 
 function render(){
@@ -3517,16 +3420,21 @@ function render(){
 
 
 /* =========================================================
-   INITIALIZATION
+   INITIAL SCENE
 ========================================================= */
 
 activateScene(0);
+
+
+/* =========================================================
+   START
+========================================================= */
 
 render();
 
 
 /* =========================================================
-   PRELOAD CAR IMAGES
+   PRELOAD IMAGES
 ========================================================= */
 
 stageImages.forEach(
