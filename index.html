@@ -3,1436 +3,2365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
 <title>XANNY1616 — HONDA CITY 2003</title>
+
 <style>
+
 /* =========================================================
-   RESET
+   XANNY1616
+   CINEMATIC AUTOMOTIVE EXPERIENCE
 ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+    --black:#050505;
+    --white:#f5f5f5;
+    --yellow:#ffd400;
+    --grey:#777;
+    --line:rgba(255,255,255,.13);
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
 html{
-    scroll-behavior:smooth;
+    background:#050505;
+    scroll-behavior:auto;
 }
+
 body{
+    margin:0;
     background:#050505;
     color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
+
+body.loading{
+    overflow:hidden;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
 a{
     color:inherit;
+    text-decoration:none;
 }
+
 button{
-    font-family:inherit;
+    font:inherit;
 }
+
+
 /* =========================================================
-   COLORS
+   CURSOR
 ========================================================= */
-:root{
-    --black:#050505;
-    --dark:#0b0b0b;
-    --yellow:#ffd400;
-    --yellow-dark:#e5bd00;
-    --white:#fff;
-    --grey:#8b8b8b;
-    --line:rgba(255,255,255,.13);
-}
-/* =========================================================
-   LIVE INFO
-========================================================= */
-#xannyLiveInfo{
+
+.cursor{
     position:fixed;
-    top:22px;
-    right:28px;
-    z-index:6000;
-    text-align:right;
-    font-size:8px;
-    line-height:1.7;
-    letter-spacing:.18em;
-    color:#777;
-    pointer-events:none;
-    text-transform:uppercase;
-}
-#xannyClock{
-    color:#fff;
-    font-size:12px;
-    font-weight:700;
-}
-#xannyDate{
-    color:#777;
-}
-#xannyWeather{
-    color:var(--yellow);
-    margin-top:2px;
-}
-@media(max-width:800px){
-    #xannyLiveInfo{
-        top:16px;
-        right:18px;
-        font-size:7px;
-    }
-    #xannyClock{
-        font-size:10px;
-    }
-}
-/* =========================================================
-   NAVIGATION
-========================================================= */
-.navbar{
-    position:fixed;
-    top:0;
     left:0;
+    top:0;
+
+    width:12px;
+    height:12px;
+
+    border:1px solid #fff;
+    border-radius:50%;
+
+    pointer-events:none;
+    z-index:99999;
+
+    transform:translate(-50%,-50%);
+
+    mix-blend-mode:difference;
+
+    transition:
+        width .35s cubic-bezier(.2,.8,.2,1),
+        height .35s cubic-bezier(.2,.8,.2,1),
+        background .35s ease;
+}
+
+.cursor.large{
+    width:70px;
+    height:70px;
+    background:#fff;
+}
+
+@media(max-width:700px){
+    .cursor{
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   GRAIN
+========================================================= */
+
+.grain{
+    position:fixed;
+    inset:-50%;
+    z-index:9990;
+
+    pointer-events:none;
+
+    opacity:.045;
+
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+    animation:grain .25s steps(2) infinite;
+}
+
+@keyframes grain{
+
+    0%{transform:translate(0,0)}
+    25%{transform:translate(2%,1%)}
+    50%{transform:translate(-1%,2%)}
+    75%{transform:translate(1%,-2%)}
+    100%{transform:translate(-2%,1%)}
+
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav{
+    position:fixed;
+
+    left:0;
+    top:0;
+
     width:100%;
-    height:82px;
+    height:90px;
+
     padding:0 5vw;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    z-index:5000;
-    background:rgba(5,5,5,.86);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-.logo{
-    text-decoration:none;
-    font-size:25px;
-    font-weight:1000;
-    letter-spacing:-.08em;
-}
-.logo span{
-    color:var(--yellow);
-}
-.nav-links{
-    display:flex;
-    gap:34px;
-    list-style:none;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.2em;
-}
-.nav-links a{
-    text-decoration:none;
-    transition:.25s;
-}
-.nav-links a:hover{
-    color:var(--yellow);
-}
-.nav-order{
-    padding:13px 20px;
-    background:var(--yellow);
-    color:#000;
-    font-size:9px;
-    font-weight:900;
-    text-decoration:none;
-    transition:.25s;
-}
-.nav-order:hover{
-    background:#fff;
-}
-@media(max-width:700px){
-    .navbar{
-        height:65px;
-        padding:0 20px;
-    }
-    .logo{
-        font-size:21px;
-    }
-    .nav-links{
-        display:none;
-    }
-    .nav-order{
-        padding:10px 13px;
-        font-size:8px;
-    }
-}
-/* =========================================================
-   RAIN
-========================================================= */
-#rainContainer{
-    position:fixed;
-    inset:0;
-    z-index:4000;
+
+    z-index:9000;
+
     pointer-events:none;
-    overflow:hidden;
-    opacity:.22;
-    mix-blend-mode:screen;
-}
-.rain-drop{
-    position:absolute;
-    top:-15vh;
-    width:1px;
-    height:var(--rain-height);
+
     background:
         linear-gradient(
             to bottom,
-            transparent,
-            rgba(255,255,255,.65),
+            rgba(0,0,0,.7),
             transparent
         );
-    opacity:var(--rain-opacity);
-    transform:rotate(12deg);
-    animation:
-        rainFall
-        var(--rain-speed)
-        linear
-        infinite;
-    animation-delay:var(--rain-delay);
 }
-@keyframes rainFall{
-    0%{
-        transform:
-            translate3d(0,-15vh,0)
-            rotate(12deg);
-    }
-    100%{
-        transform:
-            translate3d(-18vw,120vh,0)
-            rotate(12deg);
-    }
+
+.nav > *{
+    pointer-events:auto;
 }
-/* =========================================================
-   WATER DROPLETS
-========================================================= */
-#rainGlass{
-    position:fixed;
-    inset:0;
-    z-index:4001;
-    pointer-events:none;
-    overflow:hidden;
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-.09em;
 }
-.glass-drop{
+
+.logo span{
+    color:var(--yellow);
+}
+
+.nav-center{
+    display:flex;
+    gap:35px;
+}
+
+.nav-center a{
+    position:relative;
+
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+
+    color:#aaa;
+}
+
+.nav-center a::after{
+    content:"";
+
     position:absolute;
-    width:var(--glass-size);
-    height:var(--glass-size);
-    border-radius:50%;
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(255,255,255,.25),
-            rgba(255,255,255,.07) 35%,
-            transparent 72%
-        );
-    opacity:var(--glass-opacity);
-    animation:
-        glassMove
-        var(--glass-duration)
-        ease-in-out
-        infinite;
-    animation-delay:var(--glass-delay);
+
+    left:0;
+    bottom:-8px;
+
+    width:0;
+    height:1px;
+
+    background:var(--yellow);
+
+    transition:.3s;
 }
-@keyframes glassMove{
-    0%,100%{
-        transform:translate3d(0,0,0);
-    }
-    50%{
-        transform:
-            translate3d(
-                var(--glass-x),
-                var(--glass-y),
-                0
-            );
-    }
+
+.nav-center a:hover{
+    color:#fff;
 }
+
+.nav-center a:hover::after{
+    width:100%;
+}
+
+.nav-social{
+    padding:12px 17px;
+
+    background:var(--yellow);
+    color:#000;
+
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:.18em;
+
+    transition:.3s;
+}
+
+.nav-social:hover{
+    background:#fff;
+}
+
+@media(max-width:700px){
+
+    .nav{
+        height:70px;
+        padding:0 20px;
+    }
+
+    .nav-center{
+        display:none;
+    }
+
+    .nav-social{
+        padding:10px 12px;
+        font-size:7px;
+    }
+
+}
+
+
 /* =========================================================
-   START SCREEN
+   LIVE INFO
 ========================================================= */
-#startScreen{
+
+.live{
+    position:fixed;
+
+    top:27px;
+    right:5vw;
+
+    z-index:9001;
+
+    text-align:right;
+
+    font-size:7px;
+    line-height:1.8;
+
+    letter-spacing:.2em;
+
+    color:#666;
+
+    pointer-events:none;
+}
+
+.live strong{
+    display:block;
+
+    color:#fff;
+
+    font-size:11px;
+}
+
+.live span{
+    color:var(--yellow);
+}
+
+@media(max-width:700px){
+
+    .live{
+        top:19px;
+        right:20px;
+    }
+
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
     position:fixed;
     inset:0;
-    z-index:9999;
+
+    z-index:100000;
+
     background:#050505;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
+
     transition:
-        opacity .9s ease,
-        visibility .9s ease;
+        opacity 1.2s cubic-bezier(.2,.8,.2,1),
+        visibility 1.2s;
 }
-#startScreen.hide{
+
+.loader.done{
     opacity:0;
     visibility:hidden;
     pointer-events:none;
 }
-.start-car{
+
+.loader-bg{
     position:absolute;
-    width:min(1150px,100vw);
+
+    width:80vw;
+    height:80vw;
+
+    max-width:1000px;
+    max-height:1000px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,212,0,.2),
+            transparent 60%
+        );
+
+    filter:blur(70px);
+}
+
+.loader-image{
+    position:absolute;
+
+    width:110vw;
+    max-width:1400px;
+
     left:50%;
-    top:55%;
+    top:50%;
+
     transform:
-        translate(-50%,-50%);
-    opacity:.55;
+        translate(-50%,-50%)
+        scale(1.15);
+
+    opacity:.28;
+
     filter:
-        brightness(.48)
+        brightness(.4)
+        contrast(1.4)
+        saturate(.5);
+
+    animation:
+        loaderZoom 5s ease-in-out infinite alternate;
+}
+
+.loader-image img{
+    width:100%;
+}
+
+@keyframes loaderZoom{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            scale(1.08)
+            rotate(-1deg);
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            scale(1.2)
+            rotate(1deg);
+    }
+
+}
+
+.loader-content{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+}
+
+.loader-small{
+    margin-bottom:25px;
+
+    color:#666;
+
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:.45em;
+}
+
+.loader-title{
+    font-size:
+        clamp(
+            75px,
+            16vw,
+            220px
+        );
+
+    line-height:.72;
+
+    letter-spacing:-.11em;
+
+    font-weight:900;
+}
+
+.loader-title span{
+    color:var(--yellow);
+}
+
+.loader-model{
+    margin-top:28px;
+
+    color:#888;
+
+    font-size:8px;
+
+    letter-spacing:.35em;
+}
+
+.enter{
+    margin-top:45px;
+
+    padding:17px 32px;
+
+    border:0;
+
+    background:var(--yellow);
+    color:#000;
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:.25em;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.enter:hover{
+    background:#fff;
+    transform:translateY(-4px);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#050505;
+}
+
+.intro-bg{
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(255,212,0,.1),
+            transparent 30%
+        );
+}
+
+.intro-car{
+    position:absolute;
+
+    width:
+        min(
+            1100px,
+            82vw
+        );
+
+    right:-5vw;
+    bottom:3vh;
+
+    opacity:.58;
+
+    transform:
+        translate(
+            var(--introX,0px),
+            var(--introY,0px)
+        )
+        rotate(
+            var(--introR,-2deg)
+        );
+
+    filter:
+        brightness(.7)
         contrast(1.2)
         saturate(.75);
 }
-.start-car img{
+
+.intro-car img{
     width:100%;
-    display:block;
 }
-.start-overlay{
+
+.intro-copy{
     position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.15) 40%,
-            rgba(0,0,0,.90)
-        );
-}
-.start-yellow{
-    position:absolute;
-    width:300px;
-    height:300px;
-    background:var(--yellow);
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.13;
-}
-.start-content{
-    position:relative;
+
+    left:7vw;
+    top:50%;
+
+    transform:translateY(-50%);
+
     z-index:3;
-    text-align:center;
 }
-.start-label{
-    font-size:9px;
-    font-weight:800;
+
+.intro-overline{
+    color:var(--yellow);
+
+    font-size:8px;
+    font-weight:900;
+
     letter-spacing:.4em;
-    color:#aaa;
-    margin-bottom:20px;
+
+    margin-bottom:25px;
 }
-.start-content h1{
-    font-size:clamp(70px,15vw,190px);
-    line-height:.78;
-    font-weight:1000;
-    letter-spacing:-.10em;
-}
-.start-content h1 span{
-    color:var(--yellow);
-}
-.start-content p{
-    margin-top:28px;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:.35em;
-    color:#aaa;
-}
-#startMachine{
-    margin-top:40px;
-    padding:17px 34px;
-    border:0;
-    background:var(--yellow);
-    color:#000;
-    font-size:9px;
-    font-weight:1000;
-    letter-spacing:.25em;
-    cursor:pointer;
-    transition:.25s;
-}
-#startMachine:hover{
-    background:#fff;
-    transform:translateY(-3px);
-}
-.start-bottom{
-    position:absolute;
-    left:25px;
-    right:25px;
-    bottom:25px;
-    display:flex;
-    justify-content:space-between;
-    font-size:8px;
-    font-weight:800;
-    letter-spacing:.25em;
-    color:#777;
-}
-/* =========================================================
-   HERO
-========================================================= */
-.hero{
-    min-height:100vh;
-    padding:
-        150px 7vw
-        100px;
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    overflow:hidden;
-    background:
-        radial-gradient(
-            circle at 70% 55%,
-            rgba(255,212,0,.12),
-            transparent 28%
-        ),
-        #050505;
-}
-.hero::after{
-    content:"";
-    position:absolute;
-    width:45vw;
-    height:45vw;
-    right:-10vw;
-    bottom:-20vw;
-    border-radius:50%;
-    background:var(--yellow);
-    filter:blur(130px);
-    opacity:.06;
-}
-.hero-label{
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:.35em;
-    color:var(--yellow);
-}
-.hero-title{
-    margin-top:28px;
-    font-size:clamp(
-        75px,
-        14vw,
-        205px
-    );
-    line-height:.76;
-    font-weight:1000;
-    letter-spacing:-.095em;
-    position:relative;
-    z-index:2;
-}
-.hero-title .yellow{
-    color:var(--yellow);
-}
-.hero-sub{
-    max-width:520px;
-    margin-top:55px;
-    font-size:13px;
-    line-height:1.8;
-    color:#999;
-    position:relative;
-    z-index:2;
-}
-.hero-strip{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:48px;
-    display:flex;
-    align-items:center;
-    background:var(--yellow);
-    color:#000;
-    overflow:hidden;
-    font-size:10px;
-    font-weight:1000;
-    letter-spacing:.25em;
-    white-space:nowrap;
-}
-.hero-strip span{
-    padding-right:60px;
-    animation:
-        stripMove
-        15s
-        linear
-        infinite;
-}
-@keyframes stripMove{
-    from{
-        transform:translateX(0);
-    }
-    to{
-        transform:translateX(-100%);
-    }
-}
-/* =========================================================
-   BIG STATEMENT
-========================================================= */
-.statement{
-    padding:130px 0;
-    background:#0a0a0a;
-    overflow:hidden;
-}
-.statement-label{
-    margin-left:7vw;
-    margin-bottom:35px;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.3em;
-    color:var(--yellow);
-}
-.statement-line{
-    width:max-content;
-    white-space:nowrap;
-    padding:13px 0;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    font-size:clamp(
-        50px,
-        9vw,
-        140px
-    );
-    line-height:.78;
-    font-weight:1000;
-    letter-spacing:-.075em;
-}
-.statement-line:nth-child(2){
-    transform:translateX(-5%);
-}
-.statement-line:nth-child(3){
-    transform:translateX(8%);
-}
-.statement-line:nth-child(4){
-    transform:translateX(-2%);
-    color:var(--yellow);
-}
-@media(max-width:800px){
-    .statement-line{
-        font-size:12vw;
-    }
-    .statement-line:nth-child(n){
-        transform:none;
-    }
-}
-/* =========================================================
-   STATS
-========================================================= */
-.stats{
-    display:grid;
-    grid-template-columns:
-        repeat(4,1fr);
-    background:var(--yellow);
-    color:#000;
-}
-.stat{
-    padding:60px 30px;
-    border-right:1px solid rgba(0,0,0,.18);
-}
-.stat:last-child{
-    border-right:0;
-}
-.stat-number{
-    font-size:45px;
-    font-weight:1000;
-    letter-spacing:-.06em;
-}
-.stat-label{
-    margin-top:10px;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:.25em;
-}
-@media(max-width:700px){
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-    .stat{
-        padding:40px 20px;
-    }
-    .stat-number{
-        font-size:34px;
-    }
-}
-/* =========================================================
-   MACHINE
-========================================================= */
-.machine{
-    height:250vh;
-    position:relative;
-    background:#050505;
-}
-.machine-sticky{
-    position:sticky;
-    top:0;
-    height:100vh;
-    overflow:hidden;
-    perspective:1200px;
-    background:
-        radial-gradient(
-            circle at 50% 55%,
-            rgba(255,212,0,.12),
-            transparent 32%
-        ),
-        #050505;
-}
-.machine-sticky::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            115deg,
-            transparent 30%,
-            rgba(255,212,0,.035),
-            transparent 65%
-        );
-    pointer-events:none;
-}
-.machine-label{
-    position:absolute;
-    top:105px;
-    left:35px;
-    z-index:20;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.3em;
-    color:var(--yellow);
-}
-.machine-title{
-    position:absolute;
-    right:35px;
-    top:105px;
-    z-index:20;
-    text-align:right;
-    font-size:9px;
-    font-weight:800;
-    line-height:1.7;
-    letter-spacing:.25em;
-    color:#777;
-}
-.machine-scene{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transform:
-        translate3d(
-            0,
-            var(--sceneY,160px),
-            var(--sceneZ,-320px)
-        )
-        rotateX(var(--sceneRotateX,19deg))
-        rotateY(var(--sceneRotateY,-15deg))
-        scale(var(--sceneScale,.62));
-    transform-style:preserve-3d;
-    will-change:transform;
-}
-.car-frame{
-    position:relative;
-    width:min(1100px,92vw);
-    transform:
-        translate3d(
-            var(--frameX,-18px),
-            var(--frameY,18px),
-            0
-        )
-        rotateZ(var(--frameRotateZ,-2.2deg))
-        rotateX(var(--frameRotateX,7deg))
-        rotateY(var(--mouseX,0deg))
-        scale(var(--frameScale,.84));
-    transform-style:preserve-3d;
-}
-.car-frame::before{
-    content:"";
-    position:absolute;
-    inset:12%;
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,212,0,.35),
-            transparent 68%
-        );
-    filter:blur(90px);
-    opacity:.22;
-    pointer-events:none;
-}
-.car-frame::after{
-    content:"";
-    position:absolute;
-    inset:-5%;
-    background:
-        linear-gradient(
-            105deg,
-            transparent 35%,
-            rgba(255,255,255,.13) 48%,
-            transparent 58%
-        );
-    transform:
-        translateX(var(--shineX,-35%));
-    mix-blend-mode:screen;
-    pointer-events:none;
-}
-.car-image{
-    width:100%;
-    display:block;
-    transform:
-        translate3d(
-            var(--imageX,-42px),
-            var(--imageY,25px),
-            0
-        )
-        scale(var(--imageScale,1.22))
-        rotateZ(var(--imageRotate,-1.2deg));
-    filter:
-        brightness(var(--brightness,.70))
-        contrast(var(--contrast,1.18))
-        saturate(var(--saturation,.85));
-}
-.car-shadow{
-    position:absolute;
-    width:70%;
-    height:13%;
-    left:15%;
-    bottom:-5%;
-    background:#000;
-    border-radius:50%;
-    filter:blur(35px);
-    transform:
-        scaleX(var(--shadowScale,.65))
-        scaleY(var(--shadowY,1.1));
-    opacity:var(--shadowOpacity,.45);
-}
-.machine-caption{
-    position:absolute;
-    bottom:35px;
-    left:35px;
-    right:35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    z-index:20;
-}
-.machine-caption p{
-    max-width:330px;
-    font-size:11px;
-    line-height:1.7;
-    color:#888;
-}
-.controls{
-    display:flex;
-}
-.control{
-    padding:15px 25px;
-    border:0;
-    background:var(--yellow);
-    color:#000;
-    font-size:9px;
-    font-weight:1000;
-    letter-spacing:.25em;
-    cursor:pointer;
-    transition:.25s;
-}
-.control:hover,
-.control.active{
-    background:#fff;
-    transform:translateY(-2px);
-}
-@media(max-width:700px){
-    .machine-label{
-        top:85px;
-        left:20px;
-    }
-    .machine-title{
-        top:85px;
-        right:20px;
-    }
-    .machine-caption{
-        left:20px;
-        right:20px;
-        bottom:22px;
-        flex-direction:column;
-        align-items:flex-start;
-        gap:18px;
-    }
-    .controls{
-        width:100%;
-    }
-    .control{
-        width:100%;
-    }
-}
-/* =========================================================
-   TECHNICAL
-========================================================= */
-.technical{
-    padding:150px 7vw;
-    background:#0a0a0a;
-}
-.tech-label{
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.3em;
-    color:var(--yellow);
-}
-.tech-heading{
-    margin-top:25px;
-    margin-bottom:80px;
+
+.intro-title{
     font-size:
         clamp(
-            55px,
-            10vw,
-            145px
+            75px,
+            14vw,
+            200px
         );
-    line-height:.78;
-    font-weight:1000;
-    letter-spacing:-.08em;
+
+    line-height:.73;
+
+    letter-spacing:-.1em;
+
+    font-weight:900;
 }
-.tech-grid{
+
+.intro-title span{
+    color:var(--yellow);
+}
+
+.intro-description{
+    max-width:400px;
+
+    margin-top:45px;
+
+    color:#777;
+
+    font-size:11px;
+
+    line-height:1.8;
+}
+
+.intro-scroll{
+    position:absolute;
+
+    left:7vw;
+    bottom:45px;
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    color:#666;
+
+    font-size:8px;
+    letter-spacing:.3em;
+
+    z-index:4;
+}
+
+.intro-scroll-line{
+    width:65px;
+    height:1px;
+
+    background:#555;
+}
+
+@media(max-width:700px){
+
+    .intro-copy{
+        left:20px;
+        top:38%;
+    }
+
+    .intro-title{
+        font-size:21vw;
+    }
+
+    .intro-car{
+        width:130vw;
+        right:-30vw;
+        bottom:10vh;
+        opacity:.42;
+    }
+
+    .intro-description{
+        max-width:270px;
+        font-size:10px;
+    }
+
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+    height:50px;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+
+    background:var(--yellow);
+    color:#000;
+}
+
+.marquee-track{
+    display:flex;
+
+    width:max-content;
+
+    animation:
+        marquee 18s linear infinite;
+}
+
+.marquee-item{
+    padding-right:70px;
+
+    white-space:nowrap;
+
+    font-size:9px;
+    font-weight:900;
+
+    letter-spacing:.3em;
+}
+
+@keyframes marquee{
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN CINEMATIC SCROLL
+========================================================= */
+
+.cinema{
+    position:relative;
+
+    height:1050vh;
+
+    background:#050505;
+}
+
+.cinema-sticky{
+    position:sticky;
+
+    top:0;
+
+    width:100%;
+    height:100vh;
+
+    overflow:hidden;
+
+    background:#050505;
+}
+
+
+/* =========================================================
+   CINEMA IMAGE STAGE
+========================================================= */
+
+.stage{
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    perspective:1200px;
+}
+
+.stage-image{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:100vw;
+    height:100vh;
+
+    object-fit:cover;
+
+    transform:
+        translate(-50%,-50%)
+        translate3d(
+            var(--imgX,0px),
+            var(--imgY,0px),
+            var(--imgZ,0px)
+        )
+        scale(
+            var(--imgScale,1.05)
+        )
+        rotate(
+            var(--imgRotate,0deg)
+        );
+
+    filter:
+        brightness(
+            var(--imgBrightness,.6)
+        )
+        contrast(
+            1.1
+        )
+        saturate(
+            .75
+        );
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+
+    opacity:0;
+
+    transition:
+        opacity .15s linear;
+}
+
+.stage-image.active{
+    opacity:1;
+}
+
+
+/* =========================================================
+   CINEMA IMAGE COLOR / VIGNETTE
+========================================================= */
+
+.stage::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0,0,0,.28) 70%,
+            rgba(0,0,0,.75)
+        );
+
+    z-index:5;
+}
+
+.stage::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:6;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.55),
+            transparent 35%,
+            transparent 65%,
+            rgba(0,0,0,.45)
+        );
+}
+
+
+/* =========================================================
+   CINEMA FLASH / TRANSITION
+========================================================= */
+
+.transition-flash{
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+    background:#fff;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    mix-blend-mode:screen;
+}
+
+
+/* =========================================================
+   CINEMA TEXT
+========================================================= */
+
+.scene-copy{
+    position:absolute;
+
+    z-index:30;
+
+    left:7vw;
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        translate3d(
+            var(--copyX,0px),
+            var(--copyY,0px),
+            0
+        );
+
+    width:80%;
+
+    pointer-events:none;
+}
+
+.scene-index{
+    margin-bottom:25px;
+
+    color:var(--yellow);
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:.35em;
+}
+
+.scene-title{
+    font-size:
+        clamp(
+            70px,
+            13vw,
+            190px
+        );
+
+    line-height:.72;
+
+    letter-spacing:-.1em;
+
+    font-weight:900;
+
+    opacity:0;
+
+    transform:
+        translateY(100px)
+        skewX(-5deg);
+}
+
+.scene-title span{
+    color:var(--yellow);
+}
+
+.scene-description{
+    max-width:370px;
+
+    margin-top:40px;
+
+    color:#bbb;
+
+    font-size:10px;
+    line-height:1.8;
+
+    opacity:0;
+
+    transform:translateY(40px);
+}
+
+
+/* =========================================================
+   SCENE UI
+========================================================= */
+
+.scene-ui{
+    position:absolute;
+
+    left:7vw;
+    right:7vw;
+    bottom:35px;
+
+    z-index:40;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    pointer-events:none;
+}
+
+.scene-location{
+    color:#666;
+
+    font-size:7px;
+    letter-spacing:.3em;
+}
+
+.scene-number{
+    color:#fff;
+
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:.2em;
+}
+
+.scene-progress{
+    position:absolute;
+
+    left:50%;
+    bottom:35px;
+
+    width:100px;
+    height:1px;
+
+    background:#333;
+
+    transform:translateX(-50%);
+}
+
+.scene-progress-fill{
+    width:0%;
+    height:100%;
+
+    background:var(--yellow);
+}
+
+
+/* =========================================================
+   CINEMA SCENE ANIMATION STATES
+========================================================= */
+
+.scene-copy.show .scene-title{
+    opacity:1;
+
+    transform:
+        translateY(0)
+        skewX(0);
+
+    transition:
+        opacity .8s cubic-bezier(.2,.8,.2,1),
+        transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.scene-copy.show .scene-description{
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition:
+        opacity .8s .12s ease,
+        transform .9s .12s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   FLOATING TEXT
+========================================================= */
+
+.floating-word{
+    position:absolute;
+
+    z-index:25;
+
+    right:-5vw;
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        translateX(
+            var(--floatX,0px)
+        );
+
+    color:rgba(255,255,255,.035);
+
+    font-size:
+        clamp(
+            120px,
+            25vw,
+            400px
+        );
+
+    line-height:.7;
+
+    font-weight:900;
+
+    letter-spacing:-.12em;
+
+    white-space:nowrap;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   HORIZONTAL TEXT STRIP
+========================================================= */
+
+.scene-strip{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    z-index:31;
+
+    white-space:nowrap;
+
+    font-size:
+        clamp(
+            70px,
+            12vw,
+            180px
+        );
+
+    line-height:.8;
+
+    font-weight:900;
+
+    letter-spacing:-.08em;
+
+    color:rgba(255,255,255,.035);
+
+    transform:
+        translateX(
+            var(--stripX,0px)
+        );
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   MACHINE AUDIO
+========================================================= */
+
+.engine-control{
+    position:fixed;
+
+    right:30px;
+    bottom:30px;
+
+    z-index:8000;
+
+    width:55px;
+    height:55px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.45);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:7px;
+    font-weight:900;
+
+    letter-spacing:.1em;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+}
+
+.engine-control:hover{
+    background:var(--yellow);
+    color:#000;
+}
+
+.engine-control.active{
+    background:var(--yellow);
+    color:#000;
+
+    box-shadow:
+        0 0 0 8px rgba(255,212,0,.05),
+        0 0 40px rgba(255,212,0,.2);
+}
+
+@media(max-width:700px){
+
+    .engine-control{
+        right:18px;
+        bottom:18px;
+
+        width:48px;
+        height:48px;
+    }
+
+}
+
+
+/* =========================================================
+   TECH SECTION
+========================================================= */
+
+.details{
+    position:relative;
+
+    padding:170px 7vw;
+
+    background:#090909;
+}
+
+.section-tag{
+    color:var(--yellow);
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:.4em;
+}
+
+.details-title{
+    margin-top:30px;
+
+    font-size:
+        clamp(
+            70px,
+            13vw,
+            190px
+        );
+
+    line-height:.72;
+
+    letter-spacing:-.1em;
+
+    font-weight:900;
+}
+
+.details-title span{
+    color:var(--yellow);
+}
+
+.detail-grid{
+    margin-top:110px;
+
     display:grid;
+
     grid-template-columns:
         repeat(3,1fr);
+
     border-top:1px solid var(--line);
 }
-.tech-item{
+
+.detail{
     padding:35px 20px;
+
     border-right:1px solid var(--line);
     border-bottom:1px solid var(--line);
 }
-.tech-item span{
-    display:block;
+
+.detail:nth-child(3n){
+    border-right:0;
+}
+
+.detail-label{
     margin-bottom:15px;
+
+    color:#666;
+
     font-size:8px;
-    font-weight:900;
-    letter-spacing:.25em;
-    color:#777;
-}
-.tech-item strong{
-    font-size:22px;
     font-weight:800;
+
+    letter-spacing:.25em;
 }
+
+.detail-value{
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:-.05em;
+}
+
 @media(max-width:700px){
-    .tech-grid{
+
+    .details{
+        padding:110px 7vw;
+    }
+
+    .detail-grid{
         grid-template-columns:1fr;
     }
+
+    .detail{
+        border-right:0;
+    }
+
 }
+
+
 /* =========================================================
    GALLERY
 ========================================================= */
+
 .gallery{
-    padding:150px 5vw;
+    padding:160px 5vw;
+
     background:#050505;
 }
-.gallery-label{
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.3em;
-    color:var(--yellow);
-}
+
 .gallery-heading{
-    margin-top:25px;
-    margin-bottom:70px;
+    margin-top:30px;
+
     font-size:
         clamp(
-            60px,
-            11vw,
-            155px
+            80px,
+            15vw,
+            220px
         );
-    line-height:.8;
-    font-weight:1000;
-    letter-spacing:-.09em;
+
+    line-height:.7;
+
+    letter-spacing:-.11em;
+
+    font-weight:900;
 }
+
+.gallery-heading span{
+    color:var(--yellow);
+}
+
 .gallery-grid{
+    margin-top:120px;
+
     display:grid;
+
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(12,1fr);
+
     gap:12px;
 }
+
 .gallery-item{
-    position:relative;
     overflow:hidden;
+
     background:#111;
+
+    position:relative;
 }
-.gallery-item::before{
-    content:"XANNY1616";
-    position:absolute;
-    left:15px;
-    top:15px;
-    z-index:2;
-    padding:7px 9px;
-    background:var(--yellow);
-    color:#000;
-    font-size:7px;
-    font-weight:1000;
-    letter-spacing:.15em;
+
+.gallery-item:nth-child(1){
+    grid-column:1 / 8;
 }
+
+.gallery-item:nth-child(2){
+    grid-column:8 / 13;
+    margin-top:160px;
+}
+
+.gallery-item:nth-child(3){
+    grid-column:2 / 7;
+    margin-top:80px;
+}
+
+.gallery-item:nth-child(4){
+    grid-column:7 / 13;
+    margin-top:-70px;
+}
+
+.gallery-item:nth-child(5){
+    grid-column:1 / 6;
+}
+
+.gallery-item:nth-child(6){
+    grid-column:6 / 12;
+    margin-top:110px;
+}
+
+.gallery-item:nth-child(7){
+    grid-column:2 / 9;
+    margin-top:80px;
+}
+
+.gallery-item:nth-child(8){
+    grid-column:9 / 13;
+    margin-top:-30px;
+}
+
+.gallery-item:nth-child(9){
+    grid-column:1 / 7;
+    margin-top:120px;
+}
+
+.gallery-item:nth-child(10){
+    grid-column:7 / 13;
+    margin-top:-100px;
+}
+
+.gallery-item:nth-child(11){
+    grid-column:2 / 8;
+}
+
+.gallery-item:nth-child(12){
+    grid-column:8 / 13;
+    margin-top:100px;
+}
+
+.gallery-item:nth-child(13){
+    grid-column:1 / 6;
+}
+
+.gallery-item:nth-child(14){
+    grid-column:6 / 11;
+    margin-top:100px;
+}
+
+.gallery-item:nth-child(15){
+    grid-column:3 / 12;
+    margin-top:100px;
+}
+
 .gallery-item img{
     width:100%;
-    display:block;
-    transition:
-        transform
-        .8s
-        cubic-bezier(.2,.7,.2,1);
-    filter:
-        brightness(.88)
-        contrast(1.05);
-}
-.gallery-item:hover img{
-    transform:scale(1.06);
-}
-.gallery-item:nth-child(3n){
-    grid-column:span 2;
-}
-@media(max-width:700px){
-    .gallery-grid{
-        grid-template-columns:1fr;
-    }
-    .gallery-item:nth-child(3n){
-        grid-column:auto;
-    }
-}
-/* =========================================================
-   FINAL
-========================================================= */
-.final{
-    min-height:85vh;
-    padding:150px 7vw;
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-    background:
-        radial-gradient(
-            circle at 70% 40%,
-            rgba(255,212,0,.13),
-            transparent 32%
-        ),
-        #050505;
-}
-.final-small{
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.35em;
-    color:var(--yellow);
-}
-.final-title{
-    margin-top:30px;
-    font-size:
-        clamp(
-            65px,
-            13vw,
-            180px
+
+    transform:
+        scale(1.08)
+        translateY(
+            var(--galleryY,0px)
         );
-    line-height:.76;
-    font-weight:1000;
-    letter-spacing:-.09em;
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1);
+
+    filter:
+        brightness(.8)
+        contrast(1.1)
+        saturate(.8);
 }
-.final-title span{
-    color:var(--yellow);
+
+.gallery-item:hover img{
+    transform:
+        scale(1.16)
+        translateY(0);
 }
-.instagram{
-    display:inline-block;
-    width:max-content;
-    margin-top:65px;
-    padding:16px 24px;
+
+.gallery-item::after{
+    content:"XANNY1616";
+
+    position:absolute;
+
+    top:14px;
+    left:14px;
+
+    padding:7px 9px;
+
     background:var(--yellow);
     color:#000;
-    text-decoration:none;
-    font-size:9px;
-    font-weight:1000;
-    letter-spacing:.25em;
-    transition:.25s;
+
+    font-size:6px;
+    font-weight:900;
+
+    letter-spacing:.2em;
 }
-.instagram:hover{
-    background:#fff;
-    transform:translateY(-3px);
-}
-/* =========================================================
-   FOOTER
-========================================================= */
-footer{
-    padding:30px 5vw;
-    display:flex;
-    justify-content:space-between;
-    background:var(--yellow);
-    color:#000;
-    font-size:8px;
-    font-weight:1000;
-    letter-spacing:.25em;
-}
-@media(max-width:600px){
-    footer{
-        gap:15px;
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-    }
-}
-/* =========================================================
-   MOBILE
-========================================================= */
-@media(max-width:430px){
-    .hero{
-        padding-left:7vw;
-        padding-right:7vw;
-    }
-    .hero-title{
-        font-size:20vw;
-    }
-    .hero-sub{
-        font-size:12px;
-    }
-    .statement{
-        padding:100px 0;
-    }
-    .statement-line{
-        font-size:11vw;
-        width:100%;
-        text-align:center;
-    }
-    .start-content h1{
-        font-size:19vw;
-    }
-    .start-content p{
-        font-size:8px;
-        letter-spacing:.28em;
-    }
+
+@media(max-width:700px){
+
     .gallery{
         padding:100px 4vw;
     }
-    .technical{
-        padding:100px 7vw;
+
+    .gallery-grid{
+        display:block;
+        margin-top:70px;
     }
-    .final{
-        padding:110px 7vw;
+
+    .gallery-item{
+        margin:
+            0 0 12px 0
+            !important;
     }
-    .final-title{
-        font-size:18vw;
-    }
-    #rainContainer{
-        opacity:.16;
-    }
+
 }
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:150px 7vw;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(255,212,0,.12),
+            transparent 30%
+        ),
+        #050505;
+}
+
+.final-tag{
+    color:var(--yellow);
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:.4em;
+}
+
+.final-title{
+    margin-top:30px;
+
+    font-size:
+        clamp(
+            75px,
+            15vw,
+            220px
+        );
+
+    line-height:.7;
+
+    letter-spacing:-.11em;
+
+    font-weight:900;
+}
+
+.final-title span{
+    color:var(--yellow);
+}
+
+.final-link{
+    width:max-content;
+
+    margin-top:65px;
+
+    padding:17px 25px;
+
+    background:var(--yellow);
+    color:#000;
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:.22em;
+
+    transition:.3s;
+}
+
+.final-link:hover{
+    background:#fff;
+    transform:translateY(-4px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    min-height:80px;
+
+    padding:30px 5vw;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:var(--yellow);
+    color:#000;
+
+    font-size:7px;
+    font-weight:900;
+
+    letter-spacing:.25em;
+}
+
+@media(max-width:600px){
+
+    footer{
+        flex-direction:column;
+        gap:12px;
+        text-align:center;
+    }
+
+}
+
 </style>
 </head>
-<body>
+
+
+<body class="loading">
+
+
 <!-- =========================================================
-     LIVE CLOCK / WEATHER
+     SYSTEM
 ========================================================= -->
-<div id="xannyLiveInfo">
-    <div id="xannyClock">
-        00:00:00
-    </div>
-    <div id="xannyDate">
-        LOADING DATE
-    </div>
-    <div id="xannyWeather">
-        HYDERABAD / LOADING WEATHER
-    </div>
-</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+
+
 <!-- =========================================================
-     NAVIGATION
+     NAV
 ========================================================= -->
-<nav class="navbar">
-    <a
-        href="#top"
-        class="logo"
-    >
+
+<nav class="nav">
+
+    <a href="#top" class="logo magnetic">
         XANNY<span>1616</span>
     </a>
-    <ul class="nav-links">
-        <li>
-            <a href="#machine">
-                MACHINE
-            </a>
-        </li>
-        <li>
-            <a href="#technical">
-                DETAILS
-            </a>
-        </li>
-        <li>
-            <a href="#gallery">
-                GALLERY
-            </a>
-        </li>
-        <li>
-            <a href="#final">
-                CONTACT
-            </a>
-        </li>
-    </ul>
+
+    <div class="nav-center">
+
+        <a href="#experience">
+            MACHINE
+        </a>
+
+        <a href="#details">
+            DETAILS
+        </a>
+
+        <a href="#gallery">
+            ARCHIVE
+        </a>
+
+        <a href="#contact">
+            CONTACT
+        </a>
+
+    </div>
+
     <a
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
-        class="nav-order"
+        class="nav-social magnetic"
     >
         @XANNY1616
     </a>
+
 </nav>
+
+
 <!-- =========================================================
-     RAIN
+     LIVE
 ========================================================= -->
-<div id="rainContainer"></div>
-<div id="rainGlass"></div>
+
+<div class="live">
+
+    <strong id="clock">
+        00:00:00
+    </strong>
+
+    <div id="date">
+        LOADING
+    </div>
+
+    <span id="weather">
+        HYDERABAD / LOADING
+    </span>
+
+</div>
+
+
 <!-- =========================================================
-     START SCREEN
+     LOADER
 ========================================================= -->
-<div id="startScreen">
-    <div class="start-yellow"></div>
-    <div class="start-car">
+
+<section class="loader" id="loader">
+
+    <div class="loader-bg"></div>
+
+    <div class="loader-image">
         <img
             src="car15.jpeg"
             alt="Honda City 2003"
         >
     </div>
-    <div class="start-overlay"></div>
-    <div class="start-content">
-        <div class="start-label">
+
+    <div class="loader-content">
+
+        <div class="loader-small">
             XANNY1616 / AUTOMOTIVE
         </div>
-        <h1>
+
+        <h1 class="loader-title">
             XANNY<span>1616</span>
         </h1>
-        <p>
+
+        <div class="loader-model">
             HONDA CITY / 2003
-        </p>
-        <button id="startMachine">
+        </div>
+
+        <button
+            class="enter magnetic"
+            id="enter"
+        >
             ENTER THE CITY
         </button>
+
     </div>
-    <div class="start-bottom">
-        <span>
-            EST. 2026
-        </span>
-        <span>
-            HONDA CITY / 01
-        </span>
-    </div>
-</div>
+
+</section>
+
+
 <!-- =========================================================
-     HERO
+     INTRO
 ========================================================= -->
+
 <section
-    class="hero"
+    class="intro"
     id="top"
 >
-    <div class="hero-label">
-        XANNY1616 / AUTOMOTIVE
+
+    <div class="intro-bg"></div>
+
+    <div
+        class="intro-car"
+        id="introCar"
+    >
+        <img
+            src="car15.jpeg"
+            alt="Honda City 2003"
+        >
     </div>
-    <h1 class="hero-title">
-        CITY.<br>
-        <span class="yellow">
-            DONE
-        </span><br>
-        RIGHT.
-    </h1>
-    <p class="hero-sub">
-        One car. One identity.
-        A 2003 Honda City kept alive
-        through character, obsession
-        and attention to detail.
-    </p>
-    <div class="hero-strip">
-        <span>
-            HONDA CITY / 2003 &nbsp;&nbsp;&nbsp;
-            XANNY1616 &nbsp;&nbsp;&nbsp;
-            CLASSIC / TIMELESS &nbsp;&nbsp;&nbsp;
-            HONDA CITY / 2003 &nbsp;&nbsp;&nbsp;
-            XANNY1616 &nbsp;&nbsp;&nbsp;
-        </span>
-    </div>
-</section>
-<!-- =========================================================
-     STATEMENT
-========================================================= -->
-<section class="statement">
-    <div class="statement-label">
-        THE MACHINE / 001
-    </div>
-    <div class="statement-line">
-        HONDA CITY
-    </div>
-    <div class="statement-line">
-        2003
-    </div>
-    <div class="statement-line">
-        XANNY1616
-    </div>
-</section>
-<!-- =========================================================
-     STATS
-========================================================= -->
-<section class="stats">
-    <div class="stat">
-        <div class="stat-number">
-            2003
+
+    <div class="intro-copy">
+
+        <div class="intro-overline">
+            HONDA CITY / 2003 / XANNY1616
         </div>
-        <div class="stat-label">
-            MODEL YEAR
-        </div>
+
+        <h1 class="intro-title">
+            CITY.<br>
+            <span>DONE</span><br>
+            RIGHT.
+        </h1>
+
+        <p class="intro-description">
+            A 2003 Honda City.
+            One machine, photographed,
+            remembered and rebuilt as
+            a moving digital experience.
+        </p>
+
     </div>
-    <div class="stat">
-        <div class="stat-number">
+
+    <div class="intro-scroll">
+
+        <span>SCROLL TO ENTER</span>
+
+        <span class="intro-scroll-line"></span>
+
+        <span>↓</span>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MARQUEE
+========================================================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <div class="marquee-item">
+            XANNY1616
+        </div>
+
+        <div class="marquee-item">
+            HONDA CITY 2003
+        </div>
+
+        <div class="marquee-item">
+            BUILT WITH CHARACTER
+        </div>
+
+        <div class="marquee-item">
+            ONE MACHINE / ONE IDENTITY
+        </div>
+
+        <div class="marquee-item">
+            XANNY1616
+        </div>
+
+        <div class="marquee-item">
+            HONDA CITY 2003
+        </div>
+
+        <div class="marquee-item">
+            BUILT WITH CHARACTER
+        </div>
+
+        <div class="marquee-item">
+            ONE MACHINE / ONE IDENTITY
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CINEMATIC EXPERIENCE
+========================================================= -->
+
+<section
+    class="cinema"
+    id="experience"
+>
+
+    <div class="cinema-sticky">
+
+        <div
+            class="stage"
+            id="stage"
+        >
+
+            <img
+                class="stage-image"
+                data-index="0"
+                src="car1.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="1"
+                src="car2.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="2"
+                src="car3.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="3"
+                src="car4.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="4"
+                src="car5.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="5"
+                src="car6.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="6"
+                src="car7.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="7"
+                src="car8.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="8"
+                src="car9.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="9"
+                src="car10.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="10"
+                src="car11.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="11"
+                src="car12.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="12"
+                src="car13.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="13"
+                src="car14.jpeg"
+                alt="Honda City"
+            >
+
+            <img
+                class="stage-image"
+                data-index="14"
+                src="car15.jpeg"
+                alt="Honda City"
+            >
+
+        </div>
+
+
+        <div
+            class="transition-flash"
+            id="flash"
+        ></div>
+
+
+        <div
+            class="floating-word"
+            id="floatingWord"
+        >
             CITY
         </div>
-        <div class="stat-label">
-            MODEL
-        </div>
-    </div>
-    <div class="stat">
-        <div class="stat-number">
-            01
-        </div>
-        <div class="stat-label">
-            MACHINE
-        </div>
-    </div>
-    <div class="stat">
-        <div class="stat-number">
-            1616
-        </div>
-        <div class="stat-label">
-            IDENTITY
-        </div>
-    </div>
-</section>
-<!-- =========================================================
-     MACHINE
-========================================================= -->
-<section
-    class="machine"
-    id="machine"
->
-    <div class="machine-sticky">
-        <div class="machine-label">
-            MACHINE / 001
-        </div>
-        <div class="machine-title">
-            HONDA CITY<br>
-            2003 MODEL
-        </div>
+
+
         <div
-            class="machine-scene"
-            id="machineScene"
+            class="scene-strip"
+            id="sceneStrip"
         >
+            HONDA CITY / XANNY1616 /
+        </div>
+
+
+        <div
+            class="scene-copy"
+            id="sceneCopy"
+        >
+
             <div
-                class="car-frame"
-                id="carFrame"
+                class="scene-index"
+                id="sceneIndex"
             >
-                <div class="car-shadow"></div>
-                <img
-                    src="car15.jpeg"
-                    class="car-image"
-                    id="carImage"
-                    alt="Honda City 2003"
-                >
+                MACHINE / 001
             </div>
-        </div>
-        <div class="machine-caption">
-            <p>
-                A machine from another era.
-                Still moving. Still turning heads.
-                Still XANNY1616.
+
+            <h2
+                class="scene-title"
+                id="sceneTitle"
+            >
+                THE<br>
+                <span>MACHINE.</span>
+            </h2>
+
+            <p
+                class="scene-description"
+                id="sceneDescription"
+            >
+                An ordinary city car becomes
+                something else when you look
+                closely enough.
             </p>
-            <div class="controls">
-                <button
-                    class="control"
-                    id="engineBtn"
-                >
-                    ENGINE
-                </button>
+
+        </div>
+
+
+        <div class="scene-ui">
+
+            <div class="scene-location">
+                HYDERABAD / INDIA
+            </div>
+
+            <div
+                class="scene-number"
+                id="sceneNumber"
+            >
+                01 / 15
+            </div>
+
+        </div>
+
+
+        <div class="scene-progress">
+
+            <div
+                class="scene-progress-fill"
+                id="sceneProgress"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ENGINE
+========================================================= -->
+
+<button
+    class="engine-control magnetic"
+    id="engineButton"
+>
+    ENG
+</button>
+
+<audio
+    id="engineAudio"
+    src="engine.mp3"
+    loop
+    preload="auto"
+></audio>
+
+
+<!-- =========================================================
+     DETAILS
+========================================================= -->
+
+<section
+    class="details"
+    id="details"
+>
+
+    <div class="section-tag">
+        TECHNICAL ARCHIVE / 001
+    </div>
+
+    <h2 class="details-title">
+        BUILT<br>
+        <span>DIFFERENT.</span>
+    </h2>
+
+    <div class="detail-grid">
+
+        <div class="detail">
+            <div class="detail-label">
+                MODEL
+            </div>
+            <div class="detail-value">
+                Honda City
             </div>
         </div>
-    </div>
-</section>
-<!-- =========================================================
-     TECHNICAL
-========================================================= -->
-<section
-    class="technical"
-    id="technical"
->
-    <div class="tech-label">
-        TECHNICAL / 001
-    </div>
-    <h2 class="tech-heading">
-        BUILT<br>
-        DIFFERENT.
-    </h2>
-    <div class="tech-grid">
-        <div class="tech-item">
-            <span>
-                MODEL
-            </span>
-            <strong>
-                Honda City
-            </strong>
-        </div>
-        <div class="tech-item">
-            <span>
+
+        <div class="detail">
+            <div class="detail-label">
                 YEAR
-            </span>
-            <strong>
+            </div>
+            <div class="detail-value">
                 2003
-            </strong>
+            </div>
         </div>
-        <div class="tech-item">
-            <span>
+
+        <div class="detail">
+            <div class="detail-label">
                 IDENTITY
-            </span>
-            <strong>
+            </div>
+            <div class="detail-value">
                 XANNY1616
-            </strong>
+            </div>
         </div>
-        <div class="tech-item">
-            <span>
-                STYLE
-            </span>
-            <strong>
-                CLASSIC
-            </strong>
+
+        <div class="detail">
+            <div class="detail-label">
+                LOCATION
+            </div>
+            <div class="detail-value">
+                Hyderabad
+            </div>
         </div>
-        <div class="tech-item">
-            <span>
-                CHARACTER
-            </span>
-            <strong>
-                TIMELESS
-            </strong>
+
+        <div class="detail">
+            <div class="detail-label">
+                DESIGN
+            </div>
+            <div class="detail-value">
+                Classic
+            </div>
         </div>
-        <div class="tech-item">
-            <span>
+
+        <div class="detail">
+            <div class="detail-label">
                 STATUS
-            </span>
-            <strong>
-                ONE OF ONE
-            </strong>
+            </div>
+            <div class="detail-value">
+                ONE MACHINE
+            </div>
         </div>
+
     </div>
+
 </section>
+
+
 <!-- =========================================================
      GALLERY
 ========================================================= -->
+
 <section
     class="gallery"
     id="gallery"
 >
-    <div class="gallery-label">
-        VISUAL ARCHIVE / 001
+
+    <div class="section-tag">
+        VISUAL ARCHIVE / 015 FRAMES
     </div>
+
     <h2 class="gallery-heading">
-        THE CITY.
+        THE<br>
+        <span>ARCHIVE.</span>
     </h2>
+
     <div class="gallery-grid">
+
         <div class="gallery-item">
             <img src="car1.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car2.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car3.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car4.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car5.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car6.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car7.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car8.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car9.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car10.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car11.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car12.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car13.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car14.jpeg" alt="Honda City">
         </div>
+
         <div class="gallery-item">
             <img src="car15.jpeg" alt="Honda City">
         </div>
+
     </div>
+
 </section>
+
+
 <!-- =========================================================
      FINAL
 ========================================================= -->
+
 <section
     class="final"
-    id="final"
+    id="contact"
 >
-    <div class="final-small">
+
+    <div class="final-tag">
         END OF TRANSMISSION / 001
     </div>
+
     <h2 class="final-title">
-        HONDA CITY<br>
-        <span>
-            2003.
-        </span>
+        CITY<br>
+        <span>FOREVER.</span>
     </h2>
+
     <a
-        class="instagram"
         href="https://www.instagram.com/xanny1616/"
         target="_blank"
+        class="final-link magnetic"
     >
-        INSTAGRAM / @XANNY1616
+        FOLLOW @XANNY1616
     </a>
+
 </section>
+
+
 <!-- =========================================================
      FOOTER
 ========================================================= -->
+
 <footer>
+
     <span>
         XANNY1616
     </span>
+
     <span>
         HONDA CITY / 2003
     </span>
+
     <span>
-        EST. 2026
+        HYDERABAD / INDIA
     </span>
+
 </footer>
-<!-- =========================================================
-     ENGINE AUDIO
-========================================================= -->
-<audio
-    id="engineAudio"
-    src="engine.mp3"
-    loop>
-</audio>
+
+
 <script>
+
 /* =========================================================
-   START SCREEN
+   BASIC HELPERS
 ========================================================= */
-const startScreen =
-    document.getElementById("startScreen");
-const startMachine =
-    document.getElementById("startMachine");
-startMachine.addEventListener(
+
+const $ = selector =>
+    document.querySelector(selector);
+
+const $$ = selector =>
+    document.querySelectorAll(selector);
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+const cursor =
+    $("#cursor");
+
+let mouseX =
+    window.innerWidth / 2;
+
+let mouseY =
+    window.innerHeight / 2;
+
+let cursorX =
+    mouseX;
+
+let cursorY =
+    mouseY;
+
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+    },
+    {passive:true}
+);
+
+function cursorLoop(){
+
+    cursorX +=
+        (mouseX - cursorX) * .18;
+
+    cursorY +=
+        (mouseY - cursorY) * .18;
+
+    cursor.style.left =
+        cursorX + "px";
+
+    cursor.style.top =
+        cursorY + "px";
+
+    requestAnimationFrame(
+        cursorLoop
+    );
+
+}
+
+cursorLoop();
+
+
+$$("a,button,.gallery-item")
+.forEach(el => {
+
+    el.addEventListener(
+        "mouseenter",
+        () => {
+            cursor.classList.add("large");
+        }
+    );
+
+    el.addEventListener(
+        "mouseleave",
+        () => {
+            cursor.classList.remove("large");
+        }
+    );
+
+});
+
+
+/* =========================================================
+   MAGNETIC ELEMENTS
+========================================================= */
+
+$$(".magnetic")
+.forEach(el => {
+
+    el.addEventListener(
+        "mousemove",
+        e => {
+
+            const rect =
+                el.getBoundingClientRect();
+
+            const x =
+                e.clientX -
+                rect.left -
+                rect.width / 2;
+
+            const y =
+                e.clientY -
+                rect.top -
+                rect.height / 2;
+
+            el.style.transform =
+                `translate(${x * .15}px,${y * .15}px)`;
+
+        }
+    );
+
+    el.addEventListener(
+        "mouseleave",
+        () => {
+
+            el.style.transform =
+                "translate(0,0)";
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+const loader =
+    $("#loader");
+
+const enter =
+    $("#enter");
+
+enter.addEventListener(
     "click",
-    ()=>{
-        startScreen.classList.add("hide");
-        setTimeout(
-            ()=>{
-                startScreen.style.display="none";
-            },
-            1000
+    () => {
+
+        loader.classList.add("done");
+
+        document.body.classList.remove(
+            "loading"
         );
+
+        setTimeout(
+            () => {
+                window.scrollTo(0,0);
+            },
+            100
+        );
+
     }
 );
+
+
 /* =========================================================
-   CLOCK + DATE
+   CLOCK
 ========================================================= */
-const clockElement =
-    document.getElementById(
-        "xannyClock"
-    );
-const dateElement =
-    document.getElementById(
-        "xannyDate"
-    );
-function updateXannyTime(){
+
+const clock =
+    $("#clock");
+
+const date =
+    $("#date");
+
+function updateClock(){
+
     const now =
         new Date();
-    const time =
+
+    clock.textContent =
         now.toLocaleTimeString(
             "en-IN",
             {
@@ -1442,263 +2371,434 @@ function updateXannyTime(){
                 hour12:false
             }
         );
-    const date =
+
+    date.textContent =
         now.toLocaleDateString(
             "en-IN",
             {
-                weekday:"long",
                 day:"2-digit",
-                month:"long",
+                month:"short",
                 year:"numeric"
             }
         );
-    clockElement.textContent =
-        time;
-    dateElement.textContent =
-        date;
+
 }
-updateXannyTime();
+
+updateClock();
+
 setInterval(
-    updateXannyTime,
+    updateClock,
     1000
 );
+
+
 /* =========================================================
-   HYDERABAD WEATHER
+   WEATHER
 ========================================================= */
-const weatherElement =
-    document.getElementById(
-        "xannyWeather"
-    );
-function weatherDescription(code){
-    const weatherCodes = {
-        0:"CLEAR",
-        1:"MAINLY CLEAR",
-        2:"PARTLY CLOUDY",
-        3:"OVERCAST",
-        45:"FOG",
-        48:"RIME FOG",
-        51:"LIGHT DRIZZLE",
-        53:"DRIZZLE",
-        55:"HEAVY DRIZZLE",
-        56:"FREEZING DRIZZLE",
-        57:"FREEZING DRIZZLE",
-        61:"LIGHT RAIN",
-        63:"RAIN",
-        65:"HEAVY RAIN",
-        66:"FREEZING RAIN",
-        67:"HEAVY FREEZING RAIN",
-        71:"LIGHT SNOW",
-        73:"SNOW",
-        75:"HEAVY SNOW",
-        77:"SNOW GRAINS",
-        80:"RAIN SHOWERS",
-        81:"RAIN SHOWERS",
-        82:"HEAVY RAIN SHOWERS",
-        85:"SNOW SHOWERS",
-        86:"HEAVY SNOW SHOWERS",
-        95:"THUNDERSTORM",
-        96:"THUNDERSTORM",
-        99:"THUNDERSTORM"
-    };
-    return (
-        weatherCodes[code] ||
-        "UNKNOWN"
-    );
-}
-async function updateWeather(){
+
+const weather =
+    $("#weather");
+
+async function getWeather(){
+
     try{
+
         const response =
             await fetch(
                 "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current=temperature_2m,weather_code&timezone=Asia%2FKolkata"
             );
-        if(!response.ok){
-            throw new Error(
-                "Weather request failed"
-            );
-        }
+
+        if(!response.ok)
+            throw new Error();
+
         const data =
             await response.json();
-        const temperature =
+
+        const temp =
             Math.round(
                 data.current.temperature_2m
             );
-        const condition =
-            weatherDescription(
-                data.current.weather_code
-            );
-        weatherElement.textContent =
-            `HYDERABAD / ${temperature}°C / ${condition}`;
+
+        const code =
+            data.current.weather_code;
+
+        const labels = {
+
+            0:"CLEAR",
+            1:"CLEAR",
+            2:"CLOUDY",
+            3:"OVERCAST",
+            45:"FOG",
+            48:"FOG",
+            51:"DRIZZLE",
+            53:"DRIZZLE",
+            55:"DRIZZLE",
+            61:"RAIN",
+            63:"RAIN",
+            65:"HEAVY RAIN",
+            80:"SHOWERS",
+            81:"SHOWERS",
+            82:"HEAVY SHOWERS",
+            95:"STORM",
+            96:"STORM",
+            99:"STORM"
+
+        };
+
+        weather.textContent =
+            `HYDERABAD / ${temp}°C / ${labels[code] || "UNKNOWN"}`;
+
     }
-    catch(error){
-        weatherElement.textContent =
-            "HYDERABAD / WEATHER UNAVAILABLE";
+    catch{
+
+        weather.textContent =
+            "HYDERABAD / OFFLINE";
+
     }
+
 }
-updateWeather();
+
+getWeather();
+
 setInterval(
-    updateWeather,
-    10 * 60 * 1000
+    getWeather,
+    600000
 );
+
+
 /* =========================================================
-   RAIN ENGINE
+   INTRO MOUSE PARALLAX
 ========================================================= */
-const rainContainer =
-    document.getElementById(
-        "rainContainer"
-    );
-const rainGlass =
-    document.getElementById(
-        "rainGlass"
-    );
-function createRain(){
-    const isMobile =
-        window.innerWidth < 600;
-    const amount =
-        isMobile
-        ? 60
-        : 130;
-    const glassAmount =
-        isMobile
-        ? 10
-        : 20;
-    rainContainer.innerHTML="";
-    rainGlass.innerHTML="";
-    for(
-        let i=0;
-        i<amount;
-        i++
-    ){
-        const drop =
-            document.createElement(
-                "div"
-            );
-        drop.className =
-            "rain-drop";
-        const height =
-            25+
-            Math.random()*70;
-        const opacity =
-            .10+
-            Math.random()*.28;
-        const speed =
-            .55+
-            Math.random()*.75;
-        const delay =
-            -(Math.random()*speed);
-        const left =
-            Math.random()*115;
-        drop.style.left =
-            left+"%";
-        drop.style.setProperty(
-            "--rain-height",
-            height+"px"
-        );
-        drop.style.setProperty(
-            "--rain-opacity",
-            opacity
-        );
-        drop.style.setProperty(
-            "--rain-speed",
-            speed+"s"
-        );
-        drop.style.setProperty(
-            "--rain-delay",
-            delay+"s"
-        );
-        rainContainer.appendChild(
-            drop
-        );
+
+const intro =
+    $(".intro");
+
+const introCar =
+    $("#introCar");
+
+let introTargetX = 0;
+let introTargetY = 0;
+
+intro.addEventListener(
+    "mousemove",
+    e => {
+
+        const x =
+            e.clientX /
+            window.innerWidth -
+            .5;
+
+        const y =
+            e.clientY /
+            window.innerHeight -
+            .5;
+
+        introTargetX =
+            x * 35;
+
+        introTargetY =
+            y * 25;
+
     }
-    for(
-        let i=0;
-        i<glassAmount;
-        i++
-    ){
-        const drop =
-            document.createElement(
-                "div"
-            );
-        drop.className =
-            "glass-drop";
-        const size =
-            Math.random()*12+4;
-        const opacity =
-            Math.random()*.18+.05;
-        const duration =
-            Math.random()*5+4;
-        const delay =
-            -(Math.random()*5);
-        const moveY =
-            Math.random()*40+20;
-        const moveX =
-            Math.random()*12-6;
-        drop.style.left =
-            Math.random()*100+"%";
-        drop.style.top =
-            Math.random()*100+"%";
-        drop.style.setProperty(
-            "--glass-size",
-            size+"px"
-        );
-        drop.style.setProperty(
-            "--glass-opacity",
-            opacity
-        );
-        drop.style.setProperty(
-            "--glass-duration",
-            duration+"s"
-        );
-        drop.style.setProperty(
-            "--glass-delay",
-            delay+"s"
-        );
-        drop.style.setProperty(
-            "--glass-y",
-            moveY+"px"
-        );
-        drop.style.setProperty(
-            "--glass-x",
-            moveX+"px"
-        );
-        rainGlass.appendChild(
-            drop
-        );
-    }
+);
+
+function introLoop(){
+
+    introCar.style.setProperty(
+        "--introX",
+        introTargetX + "px"
+    );
+
+    introCar.style.setProperty(
+        "--introY",
+        introTargetY + "px"
+    );
+
+    requestAnimationFrame(
+        introLoop
+    );
+
 }
-createRain();
-window.addEventListener(
-    "resize",
-    createRain
-);
+
+introLoop();
+
+
 /* =========================================================
-   MACHINE SCROLL
+   CINEMA ENGINE
 ========================================================= */
-const machine =
-    document.getElementById(
-        "machine"
+
+const cinema =
+    $(".cinema");
+
+const images =
+    [...$$(".stage-image")];
+
+const sceneCopy =
+    $("#sceneCopy");
+
+const sceneTitle =
+    $("#sceneTitle");
+
+const sceneDescription =
+    $("#sceneDescription");
+
+const sceneIndex =
+    $("#sceneIndex");
+
+const sceneNumber =
+    $("#sceneNumber");
+
+const progressBar =
+    $("#sceneProgress");
+
+const floatingWord =
+    $("#floatingWord");
+
+const sceneStrip =
+    $("#sceneStrip");
+
+const flash =
+    $("#flash");
+
+
+/* =========================================================
+   SCENE DATA
+========================================================= */
+
+const scenes = [
+
+    {
+        title:"THE<br><span>MACHINE.</span>",
+        description:
+            "It started with a city car. Then the details started speaking.",
+        word:"CITY",
+        label:"MACHINE / 001"
+    },
+
+    {
+        title:"LOW.<br><span>CLEAN.</span>",
+        description:
+            "Simple lines. Quiet proportions. A shape that still works.",
+        word:"FORM",
+        label:"FORM / 002"
+    },
+
+    {
+        title:"LOOK<br><span>CLOSER.</span>",
+        description:
+            "The closer you get, the more the machine reveals.",
+        word:"DETAIL",
+        label:"DETAIL / 003"
+    },
+
+    {
+        title:"OLD<br><span>SCHOOL.</span>",
+        description:
+            "2003. Before everything became screens and sensors.",
+        word:"2003",
+        label:"ERA / 004"
+    },
+
+    {
+        title:"CITY<br><span>LIGHTS.</span>",
+        description:
+            "Built for the streets. Made for the night.",
+        word:"NIGHT",
+        label:"NIGHT / 005"
+    },
+
+    {
+        title:"STREET<br><span>SPEC.</span>",
+        description:
+            "Nothing excessive. Nothing accidental.",
+        word:"STREET",
+        label:"STREET / 006"
+    },
+
+    {
+        title:"EVERY<br><span>ANGLE.</span>",
+        description:
+            "Fifteen frames. One machine. Infinite little details.",
+        word:"ANGLE",
+        label:"ANGLE / 007"
+    },
+
+    {
+        title:"THE<br><span>PROFILE.</span>",
+        description:
+            "The silhouette that made the City unmistakable.",
+        word:"PROFILE",
+        label:"PROFILE / 008"
+    },
+
+    {
+        title:"MADE<br><span>TO MOVE.</span>",
+        description:
+            "A car becomes memorable when it starts carrying stories.",
+        word:"MOVE",
+        label:"MOTION / 009"
+    },
+
+    {
+        title:"NO<br><span>FILTER.</span>",
+        description:
+            "Metal, glass, rubber and a little obsession.",
+        word:"RAW",
+        label:"RAW / 010"
+    },
+
+    {
+        title:"TIME<br><span>CAPSULE.</span>",
+        description:
+            "Twenty-three years later, the shape still has something to say.",
+        word:"TIME",
+        label:"TIME / 011"
+    },
+
+    {
+        title:"ONE<br><span>IDENTITY.</span>",
+        description:
+            "The badge is Honda. The identity is XANNY1616.",
+        word:"IDENTITY",
+        label:"IDENTITY / 012"
+    },
+
+    {
+        title:"STILL<br><span>HERE.</span>",
+        description:
+            "Some machines disappear. Some become part of the landscape.",
+        word:"STILL",
+        label:"STILL / 013"
+    },
+
+    {
+        title:"KEEP<br><span>LOOKING.</span>",
+        description:
+            "There is always another line, another reflection, another frame.",
+        word:"LOOK",
+        label:"LOOK / 014"
+    },
+
+    {
+        title:"CITY.<br><span>DONE RIGHT.</span>",
+        description:
+            "Honda City 2003. XANNY1616. End of transmission.",
+        word:"XANNY1616",
+        label:"FINAL / 015"
+    }
+
+];
+
+
+/* =========================================================
+   INITIAL SCENE
+========================================================= */
+
+let currentScene =
+    -1;
+
+let targetScene =
+    0;
+
+let smoothScroll =
+    window.scrollY;
+
+let previousScene =
+    0;
+
+function activateScene(index){
+
+    if(index === currentScene)
+        return;
+
+    currentScene =
+        index;
+
+    const data =
+        scenes[index];
+
+    images.forEach(
+        (image,i) => {
+
+            image.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
     );
-const machineScene =
-    document.getElementById(
-        "machineScene"
+
+
+    sceneCopy.classList.remove(
+        "show"
     );
-const carFrame =
-    document.getElementById(
-        "carFrame"
+
+
+    setTimeout(
+        () => {
+
+            sceneIndex.textContent =
+                data.label;
+
+            sceneNumber.textContent =
+                `${String(index + 1).padStart(2,"0")} / 15`;
+
+            sceneTitle.innerHTML =
+                data.title;
+
+            sceneDescription.textContent =
+                data.description;
+
+            floatingWord.textContent =
+                data.word;
+
+            sceneCopy.classList.add(
+                "show"
+            );
+
+        },
+        100
     );
-const carImage =
-    document.getElementById(
-        "carImage"
-    );
-let targetProgress=0;
-let currentProgress=0;
-function updateScroll(){
+
+
+    if(
+        Math.abs(index - previousScene) > 0
+    ){
+
+        flash.style.opacity =
+            ".07";
+
+        setTimeout(
+            () => {
+                flash.style.opacity = "0";
+            },
+            100
+        );
+
+    }
+
+    previousScene =
+        index;
+
+}
+
+
+/* =========================================================
+   CINEMA SCROLL CALCULATION
+========================================================= */
+
+function updateCinema(){
+
     const rect =
-        machine.getBoundingClientRect();
-    const total =
-        machine.offsetHeight -
+        cinema.getBoundingClientRect();
+
+    const max =
+        cinema.offsetHeight -
         window.innerHeight;
+
     let progress =
-        -rect.top/total;
+        -rect.top / max;
+
     progress =
         Math.max(
             0,
@@ -1707,281 +2807,424 @@ function updateScroll(){
                 progress
             )
         );
-    targetProgress =
-        progress;
+
+
+    const exact =
+        progress *
+        (images.length - 1);
+
+    const scene =
+        Math.min(
+            images.length - 1,
+            Math.floor(exact)
+        );
+
+    const sceneProgress =
+        exact - scene;
+
+
+    targetScene =
+        scene;
+
+
+    activateScene(
+        targetScene
+    );
+
+
+    progressBar.style.width =
+        `${progress * 100}%`;
+
+
+    /* -----------------------------------------
+       IMAGE CAMERA
+    ----------------------------------------- */
+
+    const current =
+        images[scene];
+
+    if(current){
+
+        const direction =
+            scene % 2 === 0
+            ? 1
+            : -1;
+
+        const x =
+            (
+                sceneProgress * 100 -
+                50
+            ) *
+            direction;
+
+        const y =
+            Math.sin(
+                sceneProgress *
+                Math.PI
+            ) *
+            35;
+
+        const scale =
+            1.05 +
+            Math.sin(
+                sceneProgress *
+                Math.PI
+            ) *
+            .23;
+
+        const rotate =
+            (
+                sceneProgress -
+                .5
+            ) *
+            direction *
+            2.5;
+
+        const brightness =
+            .52 +
+            Math.sin(
+                sceneProgress *
+                Math.PI
+            ) *
+            .18;
+
+
+        current.style.setProperty(
+            "--imgX",
+            `${x}px`
+        );
+
+        current.style.setProperty(
+            "--imgY",
+            `${y}px`
+        );
+
+        current.style.setProperty(
+            "--imgScale",
+            scale
+        );
+
+        current.style.setProperty(
+            "--imgRotate",
+            `${rotate}deg`
+        );
+
+        current.style.setProperty(
+            "--imgBrightness",
+            brightness
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       NEXT IMAGE PRE-MOTION
+    ----------------------------------------- */
+
+    const next =
+        images[scene + 1];
+
+    if(next){
+
+        next.style.setProperty(
+            "--imgX",
+            `${directionValue(scene) * 80}px`
+        );
+
+        next.style.setProperty(
+            "--imgY",
+            `0px`
+        );
+
+        next.style.setProperty(
+            "--imgScale",
+            "1.22"
+        );
+
+        next.style.setProperty(
+            "--imgRotate",
+            "0deg"
+        );
+
+        next.style.setProperty(
+            "--imgBrightness",
+            ".45"
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       TEXT MOVEMENT
+    ----------------------------------------- */
+
+    const copyMovement =
+        sceneProgress *
+        120;
+
+    const copyOpacity =
+        1 -
+        Math.abs(
+            sceneProgress - .5
+        ) *
+        1.35;
+
+    sceneCopy.style.setProperty(
+        "--copyX",
+        `${-copyMovement}px`
+    );
+
+    sceneCopy.style.setProperty(
+        "--copyY",
+        `${(sceneProgress - .5) * 45}px`
+    );
+
+    sceneCopy.style.opacity =
+        Math.max(
+            .15,
+            copyOpacity
+        );
+
+
+    /* -----------------------------------------
+       GIANT BACKGROUND WORD
+    ----------------------------------------- */
+
+    const floatMovement =
+        (
+            sceneProgress -
+            .5
+        ) * 260;
+
+    floatingWord.style.setProperty(
+        "--floatX",
+        `${floatMovement}px`
+    );
+
+
+    /* -----------------------------------------
+       GIANT STRIP
+    ----------------------------------------- */
+
+    const stripMovement =
+        (
+            progress * -900
+        );
+
+    sceneStrip.style.setProperty(
+        "--stripX",
+        `${stripMovement}px`
+    );
+
 }
+
+
+/* =========================================================
+   DIRECTION
+========================================================= */
+
+function directionValue(scene){
+
+    return scene % 2 === 0
+        ? -1
+        : 1;
+
+}
+
+
+/* =========================================================
+   SMOOTH SCROLL
+========================================================= */
+
+let scrollTarget =
+    window.scrollY;
+
+let scrollCurrent =
+    window.scrollY;
+
 window.addEventListener(
     "scroll",
-    updateScroll,
-    {
-        passive:true
-    }
+    () => {
+
+        scrollTarget =
+            window.scrollY;
+
+    },
+    {passive:true}
 );
-function easeInOut(p){
-    return p<.5
-        ?4*p*p*p
-        :1-Math.pow(
-            -2*p+2,
-            3
-        )/2;
-}
-function render(){
-    currentProgress +=
+
+function smoothScrollLoop(){
+
+    scrollCurrent +=
         (
-            targetProgress -
-            currentProgress
-        )*.075;
-    const p =
-        easeInOut(
-            currentProgress
-        );
-    const sceneY =
-        160-p*160;
-    const sceneZ =
-        -320+p*320;
-    const sceneRotateX =
-        19-p*19;
-    const sceneRotateY =
-        -15+p*15;
-    const sceneScale =
-        .62+p*.38;
-    const frameX =
-        -18+p*18;
-    const frameY =
-        18-p*18;
-    const frameRotateZ =
-        -2.2+p*2.2;
-    const frameRotateX =
-        7-p*7;
-    const frameScale =
-        .84+p*.16;
-    const imageX =
-        -42+p*42;
-    const imageY =
-        25-p*25;
-    const imageScale =
-        1.22-p*.22;
-    const imageRotate =
-        -1.2+p*1.2;
-    const brightness =
-        .70+p*.25;
-    const contrast =
-        1.18-p*.08;
-    const saturation =
-        .85+p*.18;
-    const shineX =
-        -35+p*170;
-    const shadowScale =
-        .65+p*.55;
-    const shadowY =
-        1.1-p*.3;
-    const shadowOpacity =
-        .45+p*.35;
-    machineScene.style.setProperty(
-        "--sceneY",
-        sceneY+"px"
-    );
-    machineScene.style.setProperty(
-        "--sceneZ",
-        sceneZ+"px"
-    );
-    machineScene.style.setProperty(
-        "--sceneRotateX",
-        sceneRotateX+"deg"
-    );
-    machineScene.style.setProperty(
-        "--sceneRotateY",
-        sceneRotateY+"deg"
-    );
-    machineScene.style.setProperty(
-        "--sceneScale",
-        sceneScale
-    );
-    carFrame.style.setProperty(
-        "--frameX",
-        frameX+"px"
-    );
-    carFrame.style.setProperty(
-        "--frameY",
-        frameY+"px"
-    );
-    carFrame.style.setProperty(
-        "--frameRotateZ",
-        frameRotateZ+"deg"
-    );
-    carFrame.style.setProperty(
-        "--frameRotateX",
-        frameRotateX+"deg"
-    );
-    carFrame.style.setProperty(
-        "--frameScale",
-        frameScale
-    );
-    carImage.style.setProperty(
-        "--imageX",
-        imageX+"px"
-    );
-    carImage.style.setProperty(
-        "--imageY",
-        imageY+"px"
-    );
-    carImage.style.setProperty(
-        "--imageScale",
-        imageScale
-    );
-    carImage.style.setProperty(
-        "--imageRotate",
-        imageRotate+"deg"
-    );
-    carImage.style.setProperty(
-        "--brightness",
-        brightness
-    );
-    carImage.style.setProperty(
-        "--contrast",
-        contrast
-    );
-    carImage.style.setProperty(
-        "--saturation",
-        saturation
-    );
-    carFrame.style.setProperty(
-        "--shineX",
-        shineX+"%"
-    );
-    carFrame.style.setProperty(
-        "--shadowScale",
-        shadowScale
-    );
-    carFrame.style.setProperty(
-        "--shadowY",
-        shadowY
-    );
-    carFrame.style.setProperty(
-        "--shadowOpacity",
-        shadowOpacity
-    );
+            scrollTarget -
+            scrollCurrent
+        ) * .08;
+
+    updateCinema();
+
     requestAnimationFrame(
-        render
+        smoothScrollLoop
     );
+
 }
-render();
+
+smoothScrollLoop();
+
+
 /* =========================================================
-   MOUSE PARALLAX
+   GALLERY PARALLAX
 ========================================================= */
+
+const galleryImages =
+    [...$$(".gallery-item img")];
+
+function updateGallery(){
+
+    galleryImages.forEach(
+        img => {
+
+            const rect =
+                img.parentElement
+                    .getBoundingClientRect();
+
+            const distance =
+                rect.top +
+                rect.height / 2 -
+                window.innerHeight / 2;
+
+            const movement =
+                distance * -.035;
+
+            img.style.setProperty(
+                "--galleryY",
+                `${movement}px`
+            );
+
+        }
+    );
+
+}
+
 window.addEventListener(
-    "mousemove",
-    (event)=>{
-        const x =
-            event.clientX/
-            window.innerWidth -
-            .5;
-        const y =
-            event.clientY/
-            window.innerHeight -
-            .5;
-        carFrame.style.setProperty(
-            "--mouseX",
-            (x*4)+"deg"
-        );
-        carFrame.style.setProperty(
-            "--mouseY",
-            (-y*3)+"deg"
-        );
-    }
+    "scroll",
+    updateGallery,
+    {passive:true}
 );
+
+
 /* =========================================================
-   ENGINE AUDIO
+   ENGINE
 ========================================================= */
-const engineBtn =
-    document.getElementById(
-        "engineBtn"
-    );
-const engineAudio =
-    document.getElementById(
-        "engineAudio"
-    );
-let engineOn=false;
-function setEngineState(
-    state
-){
-    engineOn=state;
-    if(engineOn){
-        engineBtn.classList.add(
-            "active"
-        );
-        engineBtn.textContent =
-            "ENGINE ON";
-    }else{
-        engineBtn.classList.remove(
-            "active"
-        );
-        engineBtn.textContent =
-            "ENGINE";
-    }
-}
-engineBtn.addEventListener(
+
+const engine =
+    $("#engineAudio");
+
+const engineButton =
+    $("#engineButton");
+
+let enginePlaying =
+    false;
+
+engineButton.addEventListener(
     "click",
-    async()=>{
-        if(!engineOn){
+    async () => {
+
+        if(!enginePlaying){
+
             try{
-                await engineAudio.play();
-                setEngineState(
-                    true
+
+                await engine.play();
+
+                enginePlaying =
+                    true;
+
+                engineButton.classList.add(
+                    "active"
                 );
+
+                engineButton.textContent =
+                    "ON";
+
             }
-            catch(error){
-                setEngineState(
-                    false
+            catch{
+
+                console.log(
+                    "Audio requires user interaction."
                 );
+
             }
+
         }
         else{
-            engineAudio.pause();
-            engineAudio.currentTime=0;
-            setEngineState(
-                false
+
+            engine.pause();
+
+            engine.currentTime =
+                0;
+
+            enginePlaying =
+                false;
+
+            engineButton.classList.remove(
+                "active"
             );
+
+            engineButton.textContent =
+                "ENG";
+
         }
+
     }
 );
-engineAudio.addEventListener(
-    "play",
-    ()=>{
-        setEngineState(true);
-    }
-);
-engineAudio.addEventListener(
-    "pause",
-    ()=>{
-        setEngineState(false);
-    }
-);
-engineAudio.addEventListener(
-    "ended",
-    ()=>{
-        setEngineState(false);
-    }
-);
+
+
 /* =========================================================
-   KEYBOARD
+   KEYBOARD AUDIO
 ========================================================= */
+
 document.addEventListener(
     "keydown",
-    (event)=>{
+    e => {
+
         if(
-            event.key.toLowerCase()
-            ===
-            "e"
+            e.key.toLowerCase() === "e"
         ){
-            engineBtn.click();
+
+            engineButton.click();
+
         }
+
     }
 );
+
+
 /* =========================================================
-   INITIAL
+   RESIZE
 ========================================================= */
-updateScroll();
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        updateCinema();
+        updateGallery();
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+activateScene(0);
+
+updateCinema();
+
+updateGallery();
+
 </script>
+
 </body>
 </html>
